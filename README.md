@@ -2,16 +2,16 @@ Hash Utils
 ==========
 
 **Hash Utils** adds some utility methods well known from [Array][1]
-cl  ass to [Hash][2] class. Extends it with following methods:
+class to [Hash][2] class. Extends it with following methods:
 
-* [#compact][3] – rejects elements with `nil` values,
-* [#compact!][4]
-* \#map_pairs – works as [Array#map][5], but for whole pair,
-* \#map_pairs!
-* \#map_keys – works as [Array#map][5], but for keys only,
-* \#map_keys!
-* \#keys_to_sym – converts all keys to [Symbols][6],
-* \#keys_to_sym!
+* [`#compact`][3] – rejects elements with `nil` values,
+* [`#compact!`][4]
+* `#map_pairs` – works as [Array#map][5], but for whole pair,
+* `#map_pairs!`
+* `#map_keys` – works as [Array#map][5], but for keys only,
+* `#map_keys!`
+* `#keys_to_sym` – converts all keys to [Symbols][6],
+* `#keys_to_sym`
 
 All methods with `!` emulates work *in place*, but in fact they will 
 replace old hash with new one. An example of use: 
@@ -19,7 +19,7 @@ replace old hash with new one. An example of use:
     foo = {"a" => 1, "b" => 2}
     foo.map_keys! { |k| k.to_sym }
     
-    # result is 
+    # result will be
     #   {:a => 1, :b => 2}
     
 This is the same as `#keys_to_sym!` for example.
