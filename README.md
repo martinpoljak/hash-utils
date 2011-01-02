@@ -6,9 +6,9 @@ class to [Hash][2] class. Extends it with following methods:
 
 * [`#compact`][3] – rejects elements with `nil` values,
 * [`#compact!`][4]
-* `#map_pairs` – works as [Array#map][5], but for whole pair,
+* `#map_pairs` – works as [Array#map][5], but for *whole pair*,
 * `#map_pairs!`
-* `#map_keys` – works as [Array#map][5], but for keys only,
+* `#map_keys` – works as [Array#map][5], but for *keys only*,
 * `#map_keys!`
 * `#keys_to_sym` – converts all keys to [Symbols][6],
 * `#keys_to_sym`
