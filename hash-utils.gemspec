@@ -18,10 +18,12 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.md",
     "Rakefile",
     "VERSION",
+    "hash-utils.gemspec",
     "lib/hash-utils.rb"
   ]
   s.homepage = %q{http://github.com/martinkozak/hash-utils}
