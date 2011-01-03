@@ -11,7 +11,7 @@ class to [Hash][2] class. Extends it with following methods:
 * `#map_keys` – works as [Array#map][5], but for *keys only*,
 * `#map_keys!`
 * `#keys_to_sym` – converts all keys to [Symbols][6],
-* `#keys_to_sym`
+* `#keys_to_sym!`
 
 All methods with `!` emulates work *in place*, but in fact they will 
 replace old hash with new one. An example of use: 
