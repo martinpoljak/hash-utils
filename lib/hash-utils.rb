@@ -139,7 +139,7 @@ class Hash
     # block. Block must return Boolean.
     #
     
-    def some?
+    def some?(&block)
         self.each_value do |v|
             if block.call(v) == true
                 return true
@@ -154,7 +154,7 @@ class Hash
     # block. Block must return Boolean.
     #
         
-    def some_pairs?
+    def some_pairs?(&block)
         self.each_pair do |k, v|
             if block.call(k, v) == true
                 return true
@@ -193,7 +193,7 @@ class Array
     # block. Block must return Boolean.
     #
     
-    def some?
+    def some?(&block)
         self.each do |v|
             if block.call(v) == true
                 return true
