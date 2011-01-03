@@ -24,7 +24,7 @@ class Hash
     ##
     # Returns a new hash with the results of running block once for 
     # every pair in <tt>self</tt>.
-    #
+    # 
     
     def map_pairs(&block)
         new = Hash::new(&self.default_proc)
@@ -91,4 +91,116 @@ class Hash
     def keys_to_sym!
         self.replace(self.keys_to_sym)
     end
+    
+    ##
+    # Checks, all elements values follow condition expressed in block.
+    # Block must return Boolean.
+    #
+    # If it's empty, returns <tt>true</tt>.
+    #
+    
+    def all?(&block)
+        if self.empty?
+            return true
+        end
+        
+        self.each_value do |v|
+            if block.call(v) == false
+                return false
+            end
+        end
+        
+        return true
+    end
+        
+    ##
+    # Checks, all elements follow condition expressed in block.
+    # Block must return Boolean.
+    #
+    # If it's empty, returns <tt>true</tt>.
+    #
+    
+    def all_pairs?(&block)
+        if self.empty?
+            return true
+        end
+        
+        self.each_pair do |k, v|
+            if block.call(k, v) == false
+                return false
+            end
+        end
+        
+        return true
+    end
+    
+    ##
+    # Checks, at least one element value follows condition expressed in 
+    # block. Block must return Boolean.
+    #
+    
+    def some?
+        self.each_value do |v|
+            if block.call(v) == true
+                return true
+            end
+        end
+        
+        return false
+    end
+
+    ##
+    # Checks, at least one element follows condition expressed in 
+    # block. Block must return Boolean.
+    #
+        
+    def some_pairs?
+        self.each_pair do |k, v|
+            if block.call(k, v) == true
+                return true
+            end
+        end
+        
+        return false
+    end
+end
+
+class Array
+
+    ##
+    # Checks, all values follow condition expressed in block.
+    # Block must return Boolean.
+    #
+    # If it's empty, returns <tt>true</tt>.
+    #
+    
+    def all?(&block)
+        if self.empty?
+            return true
+        end
+        
+        self.each do |v|
+            if block.call(v) == false
+                return false
+            end
+        end
+        
+        return true
+    end
+
+    ##
+    # Checks, at least one value follows condition expressed in 
+    # block. Block must return Boolean.
+    #
+    
+    def some?
+        self.each do |v|
+            if block.call(v) == true
+                return true
+            end
+        end
+        
+        return false
+    end
+
 end
