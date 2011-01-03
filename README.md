@@ -38,7 +38,7 @@ Contributing
 Copyright
 ---------
 
-Copyright (c) 2011 [Martin Kozák][8]. See `LICENSE.txt` for
+Copyright &copy; 2011 [Martin Kozák][8]. See `LICENSE.txt` for
 further details.
 
 [1]: http://www.ruby-doc.org/core/classes/Array.html
