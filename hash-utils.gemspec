@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hash-utils}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Kozák"]
-  s.date = %q{2011-01-04}
+  s.date = %q{2011-01-05}
   s.email = %q{martinkozak@martinkozak.net}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -24,13 +24,18 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "hash-utils.gemspec",
-    "lib/hash-utils.rb"
+    "lib/hash-utils.rb",
+    "lib/hash-utils/array.rb",
+    "lib/hash-utils/hash.rb",
+    "lib/hash-utils/numeric.rb",
+    "lib/hash-utils/string.rb",
+    "lib/hash-utils/symbol.rb"
   ]
   s.homepage = %q{http://github.com/martinkozak/hash-utils}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Adds some useful well known methods similar to appropriate Array methods to Hash and some useful methods known from Python to both of them.}
+  s.summary = %q{Adds some useful well known methods similar to appropriate Array methods to Hash and some useful methods known from Python to both of them. Also defines some utility method for other data types.}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

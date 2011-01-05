@@ -36,8 +36,8 @@ For example:
     foo.some? { |i| i.kind_of? Numeric }    # returns true
     foo.all? { |i| i.kind_of? Symbol }      # returns false
     
-And finally introduces one method to [Numeric][...], [Symbol][...] and 
-[String][...]:
+And finally introduces one method to [Numeric][7], [Symbol][6] and 
+[String][8]:
 
 * `in?` – returns `true` if value is in some Object which support 
 `include?` method
@@ -50,6 +50,13 @@ For example:
     
 As you can see, it's syntactic sugar, of sure, but useful in some cases.
 
+### Modularization
+
+If you don't want to include whole library, you can include extensions 
+to appropriate type only by including the:
+
+    require "hash-utils/<lowercase-data-type-name>"
+
 Contributing
 ------------
 
@@ -57,14 +64,14 @@ Contributing
 2. Create a branch (`git checkout -b 20101220-my-change`).
 3. Commit your changes (`git commit -am "Added something"`).
 4. Push to the branch (`git push origin 20101220-my-change`).
-5. Create an [Issue][7] with a link to your branch.
+5. Create an [Issue][9] with a link to your branch.
 6. Enjoy a refreshing Diet Coke and wait.
 
 
 Copyright
 ---------
 
-Copyright &copy; 2011 [Martin Kozák][8]. See `LICENSE.txt` for
+Copyright &copy; 2011 [Martin Kozák][10]. See `LICENSE.txt` for
 further details.
 
 [1]: http://www.ruby-doc.org/core/classes/Array.html
@@ -73,5 +80,7 @@ further details.
 [4]: http://www.ruby-doc.org/core/classes/Array.html#M000279
 [5]: http://www.ruby-doc.org/core/classes/Array.html#M000249
 [6]: http://www.ruby-doc.org/core/classes/Symbol.html
-[7]: http://github.com/martinkozak/hash-utils/issues
-[8]: http://www.martinkozak.net/
+[7]: http://www.ruby-doc.org/core/classes/Numeric.html
+[8]: http://www.ruby-doc.org/core/classes/String.html
+[9]: http://github.com/martinkozak/hash-utils/issues
+[10]: http://www.martinkozak.net/

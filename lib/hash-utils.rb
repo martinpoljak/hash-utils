@@ -4,3 +4,5 @@
 require "hash-utils/array"
 require "hash-utils/hash"
 require "hash-utils/numeric"
+require "hash-utils/string"
+require "hash-utils/symbol"
