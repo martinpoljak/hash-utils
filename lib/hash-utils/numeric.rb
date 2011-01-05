@@ -3,14 +3,10 @@
 
 class Numeric
     ##
-    # Indicates numeric is in range.
+    # Indicates numeric is in some object which supports #include?.
     #
     
     def in?(range)
-        if not range.kind_of? Range
-            Exception::new("Range expected.")
-        end
-        
         range.include? self
     end
 end

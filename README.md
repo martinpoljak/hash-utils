@@ -33,8 +33,22 @@ some methods known from Python to both [Array][1] and [Hash][2] class:
 For example:
 
     foo = [:alfa, :beta, 5, :gama]
-    foo.some? { |i| i.kind_of? Integer }    # returns true
+    foo.some? { |i| i.kind_of? Numeric }    # returns true
     foo.all? { |i| i.kind_of? Symbol }      # returns false
+    
+And finally introduces one method to [Numeric][...], [Symbol][...] and 
+[String][...]:
+
+* `in?` – returns `true` if value is in some Object which support 
+`include?` method
+
+For example:
+    
+    foo = [1, 2, 3, 5, 8]
+    5.in? foo       # returns true
+    5.in? 3..6      # returns true
+    
+As you can see, it's syntactic sugar, of sure, but useful in some cases.
 
 Contributing
 ------------
