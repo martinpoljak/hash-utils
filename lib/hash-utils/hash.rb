@@ -163,4 +163,19 @@ class Hash
         
         return false
     end
+    
+    ##
+    # Defines hash by setting the default value or Proc and content.
+    #
+    
+    def self.define(values = { }, default = nil, &block) 
+        hash = self[values]
+        hash.default = default
+        
+        if not block.nil?
+            hash.default_proc = block
+        end
+        
+        return hash
+    end
 end
