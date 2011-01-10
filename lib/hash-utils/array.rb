@@ -4,6 +4,27 @@
 class Array
 
     ##
+    # Moves selected values outside the array, so returns them.
+    #
+    # Works similar to #reject!, but returns removed items instead 
+    # of remaining items.
+    #
+    
+    def remove!(&block)
+        result = [ ]
+        self.reject! do |v|
+            if block.call(v)
+                result << v
+                true
+            else
+                false
+            end
+        end
+        
+        return result
+    end
+
+    ##
     # Checks, all values follow condition expressed in block.
     # Block must return Boolean.
     #

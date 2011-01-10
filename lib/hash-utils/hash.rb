@@ -4,6 +4,70 @@
 class Hash
 
     ##
+    # Defines hash by setting the default value or Proc and content.
+    #
+    
+    def self.define(values = { }, default = nil, &block) 
+        hash = self[values]
+        self::create(default, hash, &block)
+    end
+    
+    ##
+    # Creates hash by setting default settings in one call.
+    #
+    
+    def self.create(default = nil, hash = { }, &block)
+        hash.default = default
+        
+        if not block.nil?
+            hash.default_proc = block
+        end
+        
+        return hash        
+    end
+
+    ##
+    # Recreates the hash, so creates empty one and assigns
+    # the same default values.
+    #
+    
+    def recreate
+        self.class::create(self.default, &self.default_proc)
+    end
+    
+    ##
+    # Recreates the hash in place, so creates empty one, assigns
+    # the same default values and replaces the old one.
+    #
+    
+    def recreate!
+        self.replace(self.recreate)
+    end
+
+    ##
+    # Moves selected pairs outside the hash, so returns them.
+    # Output hash has the same default settings.
+    #
+    
+    def remove!(&block)
+        result = self.recreate
+        delete = [ ]
+        
+        self.each_pair do |k, v|
+            if block.call(k, v)
+                result[k] = v
+                delete << k
+            end
+        end
+        
+        delete.each do |k|
+            self.delete(k)
+        end
+        
+        return result
+    end
+
+    ##
     # Returns a copy of <tt>self</tt> with all <tt>nil</tt> 
     # elements removed.
     #
@@ -27,8 +91,7 @@ class Hash
     # 
     
     def map_pairs(&block)
-        new = Hash::new(&self.default_proc)
-        new.default = self.default
+        new = self.recreate
         
         self.each_pair do |k, v|
             new_k, new_v = block.call(k, v)
@@ -162,20 +225,5 @@ class Hash
         end
         
         return false
-    end
-    
-    ##
-    # Defines hash by setting the default value or Proc and content.
-    #
-    
-    def self.define(values = { }, default = nil, &block) 
-        hash = self[values]
-        hash.default = default
-        
-        if not block.nil?
-            hash.default_proc = block
-        end
-        
-        return hash
     end
 end
