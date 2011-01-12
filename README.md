@@ -12,6 +12,7 @@ class to [Hash][2] class. Extends them with following methods:
 * `#map_keys!`
 * `#keys_to_sym` – converts all keys to [Symbols][6],
 * `#keys_to_sym!`
+* …
 
 All methods with `!` emulates work *in place*, but in fact they 
 replace old hash with new one. An example of use: 
@@ -49,6 +50,7 @@ For example:
     5.in? 3..6      # returns true
     
 As you can see, it's syntactic sugar, of sure, but useful in some cases.
+Except these, it adds many other useful metods. See documentation.
 
 ### Modularization
 
