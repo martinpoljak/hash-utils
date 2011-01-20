@@ -9,6 +9,8 @@ class Array
     # Works similar to #reject!, but returns removed items instead 
     # of remaining items.
     #
+    # @since 0.3.0
+    #
     
     def remove!(&block)
         result = [ ]
@@ -30,6 +32,8 @@ class Array
     #
     # If it's empty, returns <tt>true</tt>.
     #
+    # @since 0.2.0
+    #
     
     def all?(&block)
         if self.empty?
@@ -48,6 +52,8 @@ class Array
     ##
     # Checks, at least one value follows condition expressed in 
     # block. Block must return Boolean.
+    #
+    # @since 0.2.0
     #
     
     def some?(&block)

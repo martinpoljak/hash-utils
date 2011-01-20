@@ -10,6 +10,7 @@ class String
     
     ##
     # Indicates string is in some object which supports #include?.
+    # @since 0.3.0
     #
     
     def in?(range)
@@ -18,6 +19,7 @@ class String
     
     ##
     # Indicates, string is numeric, so consists of numbers only.
+    # @since 0.3.0
     #
     
     def numeric?

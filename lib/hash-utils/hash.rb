@@ -5,6 +5,7 @@ class Hash
 
     ##
     # Defines hash by setting the default value or Proc and content.
+    # @since 0.3.0
     #
     
     def self.define(values = { }, default = nil, &block) 
@@ -14,6 +15,7 @@ class Hash
     
     ##
     # Creates hash by setting default settings in one call.
+    # @since 0.3.0
     #
     
     def self.create(default = nil, hash = { }, &block)
@@ -30,6 +32,8 @@ class Hash
     # Recreates the hash, so creates empty one and assigns
     # the same default values.
     #
+    # @since 0.3.0
+    #
     
     def recreate
         self.class::create(self.default, &self.default_proc)
@@ -39,6 +43,8 @@ class Hash
     # Recreates the hash in place, so creates empty one, assigns
     # the same default values and replaces the old one.
     #
+    # @since 0.3.0
+    #
     
     def recreate!
         self.replace(self.recreate)
@@ -47,6 +53,8 @@ class Hash
     ##
     # Moves selected pairs outside the hash, so returns them.
     # Output hash has the same default settings.
+    #
+    # @since 0.3.0
     #
     
     def remove!(&block)
@@ -71,6 +79,8 @@ class Hash
     # Returns a copy of <tt>self</tt> with all <tt>nil</tt> 
     # elements removed.
     #
+    # @since 0.1.0
+    #
 
     def compact
         self.reject { |k, v| v.nil? }
@@ -78,7 +88,9 @@ class Hash
     
     ##
     # Removes <tt>nil</tt> elements from the hash. Returns <tt>nil</tt> 
-    # if no changes were made, otherwise returns <tt>self</self>.
+    # if no changes were made, otherwise returns <tt>self</tt>.
+    #
+    # @since 0.1.0
     #
     
     def compact!
@@ -88,6 +100,8 @@ class Hash
     ##
     # Returns a new hash with the results of running block once for 
     # every pair in <tt>self</tt>.
+    #
+    # @since 0.1.0
     # 
     
     def map_pairs(&block)
@@ -107,6 +121,8 @@ class Hash
     # Emulates #map_pairs on place. In fact, replaces old hash by 
     # new one.
     #
+    # @since 0.1.0
+    #
     
     def map_pairs!(&block)
         self.replace(self.map_pairs(&block))
@@ -117,6 +133,8 @@ class Hash
     ##
     # Returns a new hash with the results of running block once for 
     # every key in <tt>self</tt>.
+    #
+    # @since 0.1.0
     #
     
     def map_keys(&block)
@@ -131,6 +149,8 @@ class Hash
     # Emulates #map_keys on place. In fact, replaces old hash by 
     # new one.
     #
+    # @since 0.1.0
+    #
     
     def map_keys!(&block)
         self.replace(self.map_keys(&block))
@@ -140,6 +160,7 @@ class Hash
     
     ##
     # Converts all keys to symbols.
+    # @since 0.1.0
     #
     
     def keys_to_sym
@@ -149,6 +170,7 @@ class Hash
     ##
     # Emulates #keys_to_sym on place. In fact, replaces old hash by 
     # new one.
+    # @since 0.1.0
     #
     
     def keys_to_sym!
@@ -160,6 +182,8 @@ class Hash
     # Block must return Boolean.
     #
     # If it's empty, returns <tt>true</tt>.
+    # 
+    # @since 0.2.0
     #
     
     def all?(&block)
@@ -182,6 +206,8 @@ class Hash
     #
     # If it's empty, returns <tt>true</tt>.
     #
+    # @since 0.2.0
+    #
     
     def all_pairs?(&block)
         if self.empty?
@@ -201,6 +227,8 @@ class Hash
     # Checks, at least one element value follows condition expressed in 
     # block. Block must return Boolean.
     #
+    # @since 0.2.0
+    #
     
     def some?(&block)
         self.each_value do |v|
@@ -215,6 +243,8 @@ class Hash
     ##
     # Checks, at least one element follows condition expressed in 
     # block. Block must return Boolean.
+    #
+    # @since 0.2.0
     #
         
     def some_pairs?(&block)

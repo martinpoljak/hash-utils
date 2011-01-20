@@ -4,6 +4,7 @@
 class Numeric
     ##
     # Indicates numeric is in some object which supports #include?.
+    # @since 0.3.0
     #
     
     def in?(range)
