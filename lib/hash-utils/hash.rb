@@ -1,10 +1,20 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
+
+##
+# Hash extension.
+#
+
 class Hash
 
     ##
     # Defines hash by setting the default value or Proc and content.
+    #
+    # @param [Hash] values  initial values
+    # @param [Object] default  default value
+    # @param [Proc] block  default block
+    # @return [Hash] new hash
     # @since 0.3.0
     #
     
@@ -15,6 +25,11 @@ class Hash
     
     ##
     # Creates hash by setting default settings in one call.
+    #
+    # @param [Hash] values  initial values
+    # @param [Object] default  default value
+    # @param [Proc] block  default block
+    # @return [Hash] new hash
     # @since 0.3.0
     #
     
@@ -32,6 +47,7 @@ class Hash
     # Recreates the hash, so creates empty one and assigns
     # the same default values.
     #
+    # @return [Hash] new hash
     # @since 0.3.0
     #
     
@@ -54,6 +70,8 @@ class Hash
     # Moves selected pairs outside the hash, so returns them.
     # Output hash has the same default settings.
     #
+    # @param [Proc] block selecting block
+    # @return [Hash] removed selected pairs
     # @since 0.3.0
     #
     
@@ -79,6 +97,7 @@ class Hash
     # Returns a copy of <tt>self</tt> with all <tt>nil</tt> 
     # elements removed.
     #
+    # @return [Hash] new hash
     # @since 0.1.0
     #
 
@@ -90,6 +109,7 @@ class Hash
     # Removes <tt>nil</tt> elements from the hash. Returns <tt>nil</tt> 
     # if no changes were made, otherwise returns <tt>self</tt>.
     #
+    # @return [Hash] new hash
     # @since 0.1.0
     #
     
@@ -101,6 +121,8 @@ class Hash
     # Returns a new hash with the results of running block once for 
     # every pair in <tt>self</tt>.
     #
+    # @param [Proc] block evaluating block
+    # @return [Hash] new hash
     # @since 0.1.0
     # 
     
@@ -121,6 +143,7 @@ class Hash
     # Emulates #map_pairs on place. In fact, replaces old hash by 
     # new one.
     #
+    # @param [Proc] block evaluating block
     # @since 0.1.0
     #
     
@@ -134,6 +157,8 @@ class Hash
     # Returns a new hash with the results of running block once for 
     # every key in <tt>self</tt>.
     #
+    # @param [Proc] block evaluating block
+    # @return [Hash] new hash
     # @since 0.1.0
     #
     
@@ -149,6 +174,7 @@ class Hash
     # Emulates #map_keys on place. In fact, replaces old hash by 
     # new one.
     #
+    # @param [Proc] block evaluating block
     # @since 0.1.0
     #
     
@@ -160,6 +186,8 @@ class Hash
     
     ##
     # Converts all keys to symbols.
+    #
+    # @return [Hash] new hash
     # @since 0.1.0
     #
     
@@ -170,6 +198,7 @@ class Hash
     ##
     # Emulates #keys_to_sym on place. In fact, replaces old hash by 
     # new one.
+    #
     # @since 0.1.0
     #
     
@@ -182,7 +211,9 @@ class Hash
     # Block must return Boolean.
     #
     # If it's empty, returns <tt>true</tt>.
-    # 
+    #
+    # @param [Proc] block checking block
+    # @return [Boolean] 'true' if yes, 'false' in otherwise 
     # @since 0.2.0
     #
     
@@ -206,6 +237,8 @@ class Hash
     #
     # If it's empty, returns <tt>true</tt>.
     #
+    # @param [Proc] block checking block
+    # @return [Boolean] 'true' if yes, 'false' in otherwise 
     # @since 0.2.0
     #
     
@@ -227,6 +260,8 @@ class Hash
     # Checks, at least one element value follows condition expressed in 
     # block. Block must return Boolean.
     #
+    # @param [Proc] block checking block
+    # @return [Boolean] 'true' if yes, 'false' in otherwise 
     # @since 0.2.0
     #
     
@@ -244,6 +279,8 @@ class Hash
     # Checks, at least one element follows condition expressed in 
     # block. Block must return Boolean.
     #
+    # @param [Proc] block checking block
+    # @return [Boolean] 'true' if yes, 'false' in otherwise 
     # @since 0.2.0
     #
         

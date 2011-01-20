@@ -1,6 +1,10 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
+##
+# String extension.
+#
+
 class String
     ##
     # Holds numeric matcher.
@@ -10,6 +14,9 @@ class String
     
     ##
     # Indicates string is in some object which supports #include?.
+    #
+    # @param [Object] range container for analyzing
+    # @param [Boolean] 'true' if yes, 'false' in otherwise
     # @since 0.3.0
     #
     
@@ -19,6 +26,8 @@ class String
     
     ##
     # Indicates, string is numeric, so consists of numbers only.
+    #
+    # @return [Boolean] 'true' if yes, 'false' in otherwise
     # @since 0.3.0
     #
     

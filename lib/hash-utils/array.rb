@@ -1,6 +1,10 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
+##
+# Array extension.
+#
+
 class Array
 
     ##
@@ -9,6 +13,8 @@ class Array
     # Works similar to #reject!, but returns removed items instead 
     # of remaining items.
     #
+    # @param [Proc] block selecting block
+    # @return [Array] removed values
     # @since 0.3.0
     #
     
@@ -32,6 +38,8 @@ class Array
     #
     # If it's empty, returns <tt>true</tt>.
     #
+    # @param [Proc] block checking block
+    # @return [Boolean] 'true' if yes, 'false' in otherwise
     # @since 0.2.0
     #
     
@@ -53,6 +61,8 @@ class Array
     # Checks, at least one value follows condition expressed in 
     # block. Block must return Boolean.
     #
+    # @param [Proc] block checking block
+    # @return [Boolean] 'true' if yes, 'false' in otherwise
     # @since 0.2.0
     #
     
