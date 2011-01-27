@@ -70,33 +70,33 @@ class String
     # @since 0.4.0
     #
     
-    def tr(defs, mode = nil, &block)
+    def strtr(defs, mode = nil, &block)
         if block.nil?
             block = Proc::new { |s| s }
         end
         
-        defs, matcher = __prepare_tr(defs, mode)
+        defs, matcher = __prepare_strtr(defs, mode)
         self.gsub(matcher) { |s| defs[block.call(s)] }
     end
     
     ##
     # Replaces set of substrings by another strings -- in place.
-    # See {#tr} for details.
+    # See {#strtr} for details.
     #
     # @param [Array, Hash] replacements replacements definition
     # @param [Symbol] mode flat mode switch, can be +:flat+ or +nil+
     # @param [Proc] block with keys mapping worker (see description)
     # @return [String] string with applied replacements
-    # @see #tr
+    # @see #strtr
     # @since 0.4.0
     #
     
-    def tr!(defs, mode = nil, &block)
+    def strtr!(defs, mode = nil, &block)
         if block.nil?
             block = Proc::new { |s| s }
         end
         
-        defs, matcher = __prepare_tr(defs, mode)
+        defs, matcher = __prepare_strtr(defs, mode)
         self.gsub!(matcher) { |s| defs[block.call(s)] }
     end
     
@@ -104,10 +104,10 @@ class String
     private
     
     ##
-    # Prepares matcher for #tr.
+    # Prepares matcher for #strtr.
     #
     
-    def __prepare_tr(defs, mode = nil)
+    def __prepare_strtr(defs, mode = nil)
         defs = defs.to_h(mode)
         keys = defs.keys
         keys.map! { |i| i.to_s }
