@@ -7,10 +7,10 @@
 
 class Numeric
     ##
-    # Indicates numeric is in some object which supports #include?.
+    # Indicates numeric is in some object which supports +#include?+.
     #
     # @param [Object] range container for analyzing
-    # @param [Boolean] 'true' if yes, 'false' in otherwise
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
     # @since 0.3.0
     #
     

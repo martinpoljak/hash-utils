@@ -9,7 +9,8 @@
 class Hash
 
     ##
-    # Defines hash by setting the default value or Proc and content.
+    # Defines hash by setting the default value or an +Proc+ 
+    # and content.
     #
     # @param [Hash] values  initial values
     # @param [Object] default  default value
@@ -94,8 +95,7 @@ class Hash
     end
 
     ##
-    # Returns a copy of <tt>self</tt> with all <tt>nil</tt> 
-    # elements removed.
+    # Returns a copy of +self+ with all +nil+ elements removed.
     #
     # @return [Hash] new hash
     # @since 0.1.0
@@ -106,8 +106,8 @@ class Hash
     end
     
     ##
-    # Removes <tt>nil</tt> elements from the hash. Returns <tt>nil</tt> 
-    # if no changes were made, otherwise returns <tt>self</tt>.
+    # Removes +nil+ elements from the hash. Returns +nil+ 
+    # if no changes were made, otherwise returns +self+.
     #
     # @return [Hash] new hash
     # @since 0.1.0
@@ -119,7 +119,7 @@ class Hash
     
     ##
     # Returns a new hash with the results of running block once for 
-    # every pair in <tt>self</tt>.
+    # every pair in +self+.
     #
     # @param [Proc] block evaluating block
     # @return [Hash] new hash
@@ -140,7 +140,7 @@ class Hash
     alias :collect_pairs :map_pairs
     
     ##
-    # Emulates #map_pairs on place. In fact, replaces old hash by 
+    # Emulates {#map_pairs} on place. In fact, replaces old hash by 
     # new one.
     #
     # @param [Proc] block evaluating block
@@ -155,7 +155,7 @@ class Hash
     
     ##
     # Returns a new hash with the results of running block once for 
-    # every key in <tt>self</tt>.
+    # every key in +self+.
     #
     # @param [Proc] block evaluating block
     # @return [Hash] new hash
@@ -171,7 +171,7 @@ class Hash
     alias :collect_keys :map_keys
     
     ##
-    # Emulates #map_keys on place. In fact, replaces old hash by 
+    # Emulates {#map_keys} on place. In fact, replaces old hash by 
     # new one.
     #
     # @param [Proc] block evaluating block
@@ -196,7 +196,7 @@ class Hash
     end
     
     ##
-    # Emulates #keys_to_sym on place. In fact, replaces old hash by 
+    # Emulates {#keys_to_sym} on place. In fact, replaces old hash by 
     # new one.
     #
     # @since 0.1.0
@@ -208,12 +208,12 @@ class Hash
     
     ##
     # Checks, all elements values follow condition expressed in block.
-    # Block must return Boolean.
+    # Block must return boolean.
     #
-    # If it's empty, returns <tt>true</tt>.
+    # If it's empty, returns +true+.
     #
     # @param [Proc] block checking block
-    # @return [Boolean] 'true' if yes, 'false' in otherwise 
+    # @return [Boolean] +true+ if yes, +false+ in otherwise 
     # @since 0.2.0
     #
     
@@ -233,12 +233,12 @@ class Hash
         
     ##
     # Checks, all elements follow condition expressed in block.
-    # Block must return Boolean.
+    # Block must return boolean.
     #
-    # If it's empty, returns <tt>true</tt>.
+    # If it's empty, returns +true+.
     #
     # @param [Proc] block checking block
-    # @return [Boolean] 'true' if yes, 'false' in otherwise 
+    # @return [Boolean] +true+ if yes, +false+ in otherwise 
     # @since 0.2.0
     #
     
@@ -258,10 +258,10 @@ class Hash
     
     ##
     # Checks, at least one element value follows condition expressed in 
-    # block. Block must return Boolean.
+    # block. Block must return boolean.
     #
     # @param [Proc] block checking block
-    # @return [Boolean] 'true' if yes, 'false' in otherwise 
+    # @return [Boolean] +true+ if yes, +false+ in otherwise 
     # @since 0.2.0
     #
     
@@ -277,10 +277,10 @@ class Hash
 
     ##
     # Checks, at least one element follows condition expressed in 
-    # block. Block must return Boolean.
+    # block. Block must return boolean.
     #
     # @param [Proc] block checking block
-    # @return [Boolean] 'true' if yes, 'false' in otherwise 
+    # @return [Boolean] +true+ if yes, +false+ in otherwise 
     # @since 0.2.0
     #
         
@@ -292,5 +292,16 @@ class Hash
         end
         
         return false
+    end
+    
+    ##
+    # Compatibility method with {Array#to_h}. Returns itself.
+    #
+    # @return [Hash] itself
+    # @since 0.4.0
+    #
+    
+    def to_h(mode = nil)
+        self
     end
 end

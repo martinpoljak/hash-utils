@@ -10,7 +10,7 @@ class Array
     ##
     # Moves selected values outside the array, so returns them.
     #
-    # Works similar to #reject!, but returns removed items instead 
+    # Works similar to +Hash#reject!+, but returns removed items instead 
     # of remaining items.
     #
     # @param [Proc] block selecting block
@@ -36,7 +36,7 @@ class Array
     # Checks, all values follow condition expressed in block.
     # Block must return Boolean.
     #
-    # If it's empty, returns <tt>true</tt>.
+    # If it's empty, returns +true+.
     #
     # @param [Proc] block checking block
     # @return [Boolean] 'true' if yes, 'false' in otherwise
@@ -75,5 +75,34 @@ class Array
         
         return false
     end
-
+    
+    ##
+    # Converts array to hash.
+    #
+    # Works as alias for +Hash#[]+ method. If you specify the +:flat+ 
+    # mode, array items will be treaten as arguments to +Hash#[]+ 
+    # method.
+    #
+    # Should be noted, it cannot be named +#to_hash+, because #to_hash 
+    # is called by the +Hash#[]+ itself. Reasons why it's absolutely 
+    # undocumented call are unknown.
+	#
+    # @example Equivalent calls
+    #   [["aa", "bb"], ["bb", "aa"]].to_h
+    #   ["aa", "bb", "bb", "aa"].to_h(:flat)
+    #
+    # @param [Symbol] mode flat mode switch, can be +:flat+ or +nil+
+    # @return Hash new hash
+    # @see http://www.ruby-doc.org/core/classes/Hash.html#M000716
+    # @since 0.4.0
+    #
+    
+    def to_h(mode = nil)
+		if mode == :flat
+			Hash[*self]
+		else
+			Hash[self]
+		end
+    end
+    
 end
