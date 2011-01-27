@@ -77,7 +77,7 @@ class Array
     end
     
     ##
-    # Converts array to hash.
+    # Converts array to +Hash+.
     #
     # Works as alias for +Hash#[]+ method. If you specify the +:flat+ 
     # mode, array items will be treaten as arguments to +Hash#[]+ 
