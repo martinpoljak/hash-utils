@@ -16,7 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "hash-utils"
   gem.homepage = "http://github.com/martinkozak/hash-utils"
   gem.license = "MIT"
-  gem.summary = 'Adds some useful well known methods similar to appropriate Array methods to Hash and some useful methods known from Python to both of them. Also defines some utility method for other data types.'
+  gem.summary = 'Adds a lot of useful fundamental utility methods which are missing in Ruby, both to Array and Hash classes and introduces some useful methods and syntactic sugar to Numeric, Symbol and String classes too.'
   gem.email = "martinkozak@martinkozak.net"
   gem.authors = ["Martin Kozák"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
