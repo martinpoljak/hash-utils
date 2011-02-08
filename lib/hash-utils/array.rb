@@ -39,7 +39,7 @@ class Array
     # If it's empty, returns +true+.
     #
     # @param [Proc] block checking block
-    # @return [Boolean] 'true' if yes, 'false' in otherwise
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
     # @since 0.2.0
     #
     
@@ -62,7 +62,7 @@ class Array
     # block. Block must return Boolean.
     #
     # @param [Proc] block checking block
-    # @return [Boolean] 'true' if yes, 'false' in otherwise
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
     # @since 0.2.0
     #
     
