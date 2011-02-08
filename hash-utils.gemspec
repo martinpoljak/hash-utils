@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hash-utils}
-  s.version = "0.4.1"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Kozák"]
-  s.date = %q{2011-01-27}
+  s.date = %q{2011-02-08}
   s.email = %q{martinkozak@martinkozak.net}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -34,11 +34,10 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/martinkozak/hash-utils}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Adds some useful well known methods similar to appropriate Array methods to Hash and some useful methods known from Python to both of them. Also defines some utility method for other data types.}
+  s.rubygems_version = %q{1.5.0}
+  s.summary = %q{Adds a lot of useful fundamental utility methods which are missing in Ruby, both to Array and Hash classes and introduces some useful methods and syntactic sugar to Numeric, Symbol and String classes too.}
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
