@@ -60,6 +60,7 @@ class Hash
     # Recreates the hash in place, so creates empty one, assigns
     # the same default values and replaces the old one.
     #
+    # @return [Hash] new hash
     # @since 0.3.0
     #
     
@@ -144,6 +145,7 @@ class Hash
     # new one.
     #
     # @param [Proc] block evaluating block
+    # @return [Hash] new hash
     # @since 0.1.0
     #
     
@@ -175,6 +177,7 @@ class Hash
     # new one.
     #
     # @param [Proc] block evaluating block
+    # @return [Hash] new hash
     # @since 0.1.0
     #
     
@@ -199,6 +202,7 @@ class Hash
     # Emulates {#keys_to_sym} on place. In fact, replaces old hash by 
     # new one.
     #
+    # @return [Hash] new hash
     # @since 0.1.0
     #
     
@@ -304,4 +308,109 @@ class Hash
     def to_h(mode = nil)
         self
     end
+    
+    ##
+    # Simulates sorting in place. In fact, replaces old one by new one.
+    #
+    # @param [Proc] block comparing block (see similar for #sort method)
+    # @return [Hash] new sorted hash
+    # @since 0.5.0
+    #
+    
+    def sort!(&block)
+        self.replace(Hash[self.sort(&block)])
+    end
+    
+    ##
+    # Sorts hash according to keys. It's equivalent of PHP ksort().
+    #
+    # Be warn, this method have sense in Ruby 1.9 only. Ruby 1.8 doesn't
+    # maintain pair order in Hashes.
+    #
+    # @param [Proc] block comparing block (see similar for #sort method)
+    # @return [Hash] new sorted hash
+    # @see http://www.igvita.com/2009/02/04/ruby-19-internals-ordered-hash/
+    # @see http://www.php.net/ksort
+    # @since 0.5.0
+    #
+    
+    def ksort(&block)
+        if block.nil?
+           block =  Proc::new { |a, b| a <=> b }
+        end
+        Hash[self.sort { |a, b| block.call(a[0], b[0]) }]
+    end
+    
+    ##
+    # Sorts hash according to keys, replaces the original one.
+    # 
+    # @param [Proc] block comparing block (see similar for #sort method)
+    # @return [Hash] new sorted hash
+    # @see #ksort
+    # @since 0.5.0
+    #
+
+    def ksort!(&block)
+        self.replace(self.ksort(&block))
+    end
+    
+    ##
+    # Sorts hash according to values. Keeps key associations.
+    # It's equivalent of PHP asort().
+    #
+    # Be warn, this method have sense in Ruby 1.9 only. Ruby 1.8 doesn't
+    # maintain pair order in Hashes. 
+    #
+    # @param [Proc] block comparing block (see similar for #sort method)
+    # @return [Hash] new sorted hash
+    # @see http://www.igvita.com/2009/02/04/ruby-19-internals-ordered-hash/
+    # @see http://www.php.net/asort
+    # @since 0.5.0
+    #
+    
+    def asort(&block)
+        if block.nil?
+           block =  Proc::new { |a, b| a <=> b }
+        end
+        Hash[self.sort { |a, b| block.call(a[1], b[1]) }]
+    end
+    
+    ##
+    # Sorts hash according to values, replaces the original one.
+    # 
+    # @param [Proc] block comparing block (see similar for #sort method)
+    # @return [Hash] reversed hash
+    # @see #asort
+    # @since 0.5.0
+    #
+    
+    def asort!(&block)
+        self.replace(self.asort(&block))
+    end
+    
+    ##
+    # Reverses order of the hash pairs.
+    #
+    # Be warn, this method have sense in Ruby 1.9 only. Ruby 1.8 doesn't
+    # maintain pair order in Hashes.
+    #
+    # @return [Hash] reversed hash
+    # @since 0.5.0
+    #
+    
+    def reverse
+        Hash[self.to_a.reverse]
+    end
+    
+    ##
+    # Reverses order of the hash pairs, replaces the original one.
+    #
+    # @return [Hash] reversed hash
+    # @since 0.5.0
+    #
+    
+    def reverse!
+        self.replace(self.reverse)
+    end
+    
 end
