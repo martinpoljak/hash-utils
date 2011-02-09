@@ -100,6 +100,64 @@ class String
         self.gsub!(matcher) { |s| defs[block.call(s)] }
     end
     
+    ##
+    # Converts String to Array of characters.
+    #
+    # @example
+    #   foo = "012"
+    #   puts foo.to_a.inspect   # prints out ["0", "1", "2"]
+    #
+    # @return [Array] array of single character strings
+    # @since 0.6.0
+    # 
+    
+    def to_a
+        output = [ ]
+        self.each_char do |ch|
+            output << ch
+        end
+        
+        return output
+    end
+    
+    ##
+    # Applies block to each character and returns resultant string.
+    #
+    # @example
+    #   foo = "012"
+    #   puts foo.map { |ch| (ch.to_i + 1).to_s }.inspect   # prints out "123"
+    #
+    # @param [Proc] block transforming block
+    # @param [String] transformed string
+    # @since 0.6.0
+    #
+    
+    def map(&block)
+        buffer = ""
+        self.each_char do |ch|
+            buffer << block.call(ch)
+        end
+        
+        return buffer
+    end
+    
+    ##
+    # Applies block to each character in place. For example see {#map}.
+    # @since 0.6.0
+    #
+    # @param [Proc] block transforming block
+    # @return [String] self
+    # @see #map
+    #
+    
+    def map!(&block)
+        self.length.times do |i|
+            self[i] = block.call(self[i])
+        end
+        
+        self
+    end
+    
     
     private
     
