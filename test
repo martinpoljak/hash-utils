@@ -1,0 +1,11 @@
+#!/usr/bin/ruby
+
+$:.push("./lib")
+require "hash-utils/string"
+foo = "012"
+
+puts foo.to_a.inspect
+puts foo.map { |ch| (ch.to_i + 1).to_s }.inspect
+
+foo.map! { |ch| (ch.to_i + 1).to_s }
+puts foo.inspect
