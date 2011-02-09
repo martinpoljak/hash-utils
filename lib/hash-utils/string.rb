@@ -143,10 +143,10 @@ class String
     
     ##
     # Applies block to each character in place. For example see {#map}.
-    # @since 0.6.0
     #
     # @param [Proc] block transforming block
     # @return [String] self
+    # @since 0.6.0
     # @see #map
     #
     
