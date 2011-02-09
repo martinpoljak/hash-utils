@@ -133,11 +133,11 @@ class String
     #
     
     def map(&block)
-        buffer = ""
-        self.each_char do |ch|
-            buffer << block.call(ch)
+        buffer = " " * self.length
+        self.length.times do |i|
+            buffer[i] = block.call(self[i])
         end
-        
+                
         return buffer
     end
     
