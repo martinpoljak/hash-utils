@@ -1,2 +1,3 @@
 * add examples to each call
 * puts list of methods directly to readme for each class
+* changes list
