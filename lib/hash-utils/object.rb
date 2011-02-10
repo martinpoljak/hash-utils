@@ -11,7 +11,7 @@ class Object
     #
     # @param [Object] range container for analyzing
     # @return [Boolean] +true+ if yes, +false+ in otherwise
-    # @since 0.7.1
+    # @since 0.8.0
     #
     
     def in?(range)

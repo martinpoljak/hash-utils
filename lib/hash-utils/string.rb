@@ -142,6 +142,55 @@ class String
         self
     end
     
+    ##
+    # Replaces all substrings defined by Regexp by complex way. It 
+    # means, it gives to block not only whole match, but submatches too.
+    # In fact, emulates PHP's +preg_replace_callback()+ function. 
+    # In other ways emulates standard +#gsub+.
+    # 
+    # @param [Regexp] regexp matching expression
+    # @param [String] to new string
+    # @param [Proc] block block which will receive each match
+    # @return [String] resultant string
+    # @see http://www.php.net/preg_replace_callback
+    # @since 0.8.0
+    #
+
+    def gsub_f(from, to = nil, &block) 
+        __prepare_gsub_f(from, to, block) do |callback|
+            if to.nil?
+                self.gsub(from, &callback)
+            else
+                self.gsub(from, to)
+            end
+        end
+    end
+    
+    ##
+    # Performs complex regexp replacing same as {#gsub_f}, but in place.
+    # In other ways emulates standard +#gsub!+.
+    #
+    # @param [Regexp] from matching expression
+    # @param [String] to new string
+    # @param [Proc] block block which will receive each match
+    # @return [String] resultant string    
+    # @see #gsub_f
+    # @since 0.8.0
+    #
+
+    def gsub_f!(from, to = nil, &block) 
+        __prepare_gsub_f(from, to, block) do |callback|
+            if to.nil?
+                self.gsub!(from, &callback)
+            else
+                self.gsub!(from, to)
+            end
+        end
+        
+        self
+    end
+    
+    
     
     private
     
@@ -158,5 +207,18 @@ class String
         return [defs, matcher]
     end
     
+    ## 
+    # Prepares #gsub_f family methods.
+    #
+    
+    def __prepare_gsub_f(from, to = nil, callback = nil, &block)
+        if not callback.nil?
+            newcall = Proc::new do |s|
+                callback.call(s.match(from))
+            end
+        end
+        
+        block.call(newcall)
+    end
 end
 
