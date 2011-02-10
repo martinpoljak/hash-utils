@@ -3,6 +3,7 @@
 
 require "hash-utils/array"
 require "hash-utils/hash"
+require "hash-utils/object"
 
 ##
 # String extension.
@@ -14,18 +15,6 @@ class String
     #
     
     NUMERIC = /^\s*-?\d+(?:\.\d+)?\s*$/
-    
-    ##
-    # Indicates string is in some object which supports +#include?+.
-    #
-    # @param [Object] range container for analyzing
-    # @return [Boolean] +true+ if yes, +false+ in otherwise
-    # @since 0.3.0
-    #
-    
-    def in?(range)
-        range.include? self
-    end
     
     ##
     # Indicates, string is numeric, so consists of numbers only.

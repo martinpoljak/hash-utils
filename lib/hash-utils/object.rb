@@ -7,6 +7,18 @@
 
 class Object
     ##
+    # Indicates object is in some object which supports +#include?+.
+    #
+    # @param [Object] range container for analyzing
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.7.1
+    #
+    
+    def in?(range)
+        range.include? self
+    end
+
+    ##
     # Converts object to Boolean according to Ruby conversion rules.
     #
     # @return [Boolean] +true+ or +false+
