@@ -101,12 +101,7 @@ class String
     # 
     
     def to_a
-        output = [ ]
-        self.each_char do |ch|
-            output << ch
-        end
-        
-        return output
+        self.split("")
     end
     
     ##
