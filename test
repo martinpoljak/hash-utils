@@ -4,6 +4,9 @@ $:.push("./lib")
 require "hash-utils/string"
 foo = "bb aa cc aa dd"
 
-foo.gsub_f!(/(aa)/, "xx")
+result = foo.gsub_f(/..(aa)/) do |match|
+    puts match[1].inspect
+    "XX"
+end
 
-puts foo
+puts result
