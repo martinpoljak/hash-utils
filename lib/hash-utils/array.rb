@@ -92,7 +92,7 @@ class Array
     #   ["aa", "bb", "bb", "aa"].to_h(:flat)
     #
     # @param [Symbol] mode flat mode switch, can be +:flat+ or +nil+
-    # @return Hash new hash
+    # @return [Hash] new hash
     # @see http://www.ruby-doc.org/core/classes/Hash.html#M000716
     # @since 0.4.0
     #

@@ -1,12 +1,9 @@
 #!/usr/bin/ruby
 
 $:.push("./lib")
-require "hash-utils/string"
-foo = "bb aa cc aa dd"
+require "hash-utils/hash"
 
-result = foo.gsub_f(/..(aa)/) do |match|
-    puts match[1].inspect
-    "XX"
-end
-
-puts result
+hash = {:a => 1, :b => 2}
+puts hash.has_keys? [:a, :b]
+puts hash.has_keys? [:a]
+puts hash.has_keys? [:a, :c]

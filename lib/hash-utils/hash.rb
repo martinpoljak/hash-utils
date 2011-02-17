@@ -153,7 +153,7 @@ class Hash
         self.replace(self.map_pairs(&block))
     end
     
-    alias :"collect_pairs!" :"map_pairs!"
+    alias :collect_pairs! :map_pairs!
     
     ##
     # Returns a new hash with the results of running block once for 
@@ -185,7 +185,7 @@ class Hash
         self.replace(self.map_keys(&block))
     end
     
-    alias :"collect_keys!" :"map_keys!"
+    alias :collect_keys! :map_keys!
     
     ##
     # Converts all keys to symbols.
@@ -411,6 +411,24 @@ class Hash
     
     def reverse!
         self.replace(self.reverse)
+    end
+    
+    ##
+    # Indicates, some keys are available in Hash.
+    #
+    # @param [Array] keys objects for checking
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.8.1
+    #
+    
+    def has_keys?(keys)
+        keys.each do |key|
+            if not self.has_key? key
+                return false
+            end
+        end
+        
+        return true
     end
     
 end
