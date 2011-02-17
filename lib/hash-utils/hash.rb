@@ -418,7 +418,7 @@ class Hash
     #
     # @param [Array] keys objects for checking
     # @return [Boolean] +true+ if yes, +false+ in otherwise
-    # @since 0.8.1
+    # @since 0.9.0
     #
     
     def has_keys?(keys)
