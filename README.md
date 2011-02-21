@@ -3,8 +3,7 @@ Hash Utils
 
 **Hash Utils** adds a lot of useful fundamental utility methods which 
 are missing in Ruby, both to [Array][1] and [Hash][2] classes and 
-introduces some useful methods and syntactic sugar to [Numeric][7], 
-[Symbol][6] and [String][8] classes too.
+introduces some useful methods and syntactic sugar to [Object][6] and [String][8] classes too.
 
 For full reference and methods lists, see **[documentation][3]**.
 
@@ -35,8 +34,7 @@ further details.
 [1]: http://www.ruby-doc.org/core/classes/Array.html
 [2]: http://www.ruby-doc.org/core/classes/Hash.html
 [3]: http://rubydoc.info/gems/hash-utils
-[6]: http://www.ruby-doc.org/core/classes/Symbol.html
-[7]: http://www.ruby-doc.org/core/classes/Numeric.html
+[6]: http://www.ruby-doc.org/core/classes/Object.html
 [8]: http://www.ruby-doc.org/core/classes/String.html
 [9]: http://github.com/martinkozak/hash-utils/issues
 [10]: http://www.martinkozak.net/
