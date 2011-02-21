@@ -7,3 +7,5 @@ hash = {:a => 1, :b => 2}
 puts hash.has_keys? [:a, :b]
 puts hash.has_keys? [:a]
 puts hash.has_keys? [:a, :c]
+puts hash.has_some? [:a, :c]
+puts hash.has_some? [:c]
