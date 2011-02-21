@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Kozák"]
-  s.date = %q{2011-02-17}
+  s.date = %q{2011-02-21}
   s.email = %q{martinkozak@martinkozak.net}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.5.2}
-  s.summary = %q{Adds a lot of useful fundamental utility methods which are missing in Ruby, both to Array and Hash classes and introduces some useful methods and syntactic sugar to Numeric, Symbol and String classes too.}
+  s.summary = %q{Adds a lot of useful fundamental utility methods which are missing in Ruby, both to Array and Hash classes and introduces some useful methods and syntactic sugar to Object and String classes too.}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
