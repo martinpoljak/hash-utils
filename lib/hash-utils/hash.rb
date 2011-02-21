@@ -414,14 +414,14 @@ class Hash
     end
     
     ##
-    # Indicates, some keys are available in Hash.
+    # Indicates, all of the keys are available in Hash.
     #
     # @param [Array] keys objects for checking
     # @return [Boolean] +true+ if yes, +false+ in otherwise
     # @since 0.9.0
     #
     
-    def has_keys?(keys)
+    def has_all?(keys)
         keys.each do |key|
             if not self.has_key? key
                 return false
@@ -429,6 +429,26 @@ class Hash
         end
         
         return true
+    end
+    
+    alias :has_keys? :has_all?
+    
+    ##
+    # Indicates, some of the keys are available in Hash.
+    #
+    # @param [Array] keys objects for checking
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.9.0
+    #
+    
+    def has_some?(keys)
+        keys.each do |key|
+            if self.has_key? key
+                return true
+            end
+        end
+        
+        return false
     end
     
 end
