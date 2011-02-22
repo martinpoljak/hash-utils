@@ -1,7 +1,6 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
-
 ##
 # Hash extension.
 #
@@ -218,11 +217,21 @@ class Hash
     #
     # @param [Proc] block checking block
     # @return [Boolean] +true+ if yes, +false+ in otherwise 
+    # @note This method is currently in conflict with Ruby 1.9.2 
+    #   +Hash#all?+ method. Given block arity is checked, so code should 
+    #   be compatible for now, but this method will be probably moved 
+    #   around +0.13.0+ for performance reasons of sure to deprecated 
+    #   module.
+    # @deprecated (since 0.10.0, conflict with built-in method)
     # @since 0.2.0
     #
     
     def all?(&block)
-        if self.empty?
+        if block.arity == 2
+            self.all_pairs? &block
+        end
+        
+        if self.empty? or block.nil?
             return true
         end
         
@@ -234,7 +243,7 @@ class Hash
         
         return true
     end
-        
+    
     ##
     # Checks, all elements follow condition expressed in block.
     # Block must return boolean.
@@ -243,6 +252,8 @@ class Hash
     #
     # @param [Proc] block checking block
     # @return [Boolean] +true+ if yes, +false+ in otherwise 
+    # @note Since version 0.13.0 will be replaced by an alias to 
+    #   Ruby built-in +#all?+.
     # @since 0.2.0
     #
     
@@ -270,15 +281,11 @@ class Hash
     #
     
     def some?(&block)
-        self.each_value do |v|
-            if block.call(v) == true
-                return true
-            end
+        self.one? do |pair|
+            block.call(pair[1])
         end
-        
-        return false
     end
-
+       
     ##
     # Checks, at least one element follows condition expressed in 
     # block. Block must return boolean.
@@ -287,16 +294,8 @@ class Hash
     # @return [Boolean] +true+ if yes, +false+ in otherwise 
     # @since 0.2.0
     #
-        
-    def some_pairs?(&block)
-        self.each_pair do |k, v|
-            if block.call(k, v) == true
-                return true
-            end
-        end
-        
-        return false
-    end
+    
+    alias :some_pairs? :one?
     
     ##
     # Compatibility method with {Array#to_h}. Returns itself.
@@ -305,9 +304,7 @@ class Hash
     # @since 0.4.0
     #
     
-    def to_h(mode = nil)
-        self
-    end
+    alias :to_h :to_hash
     
     ##
     # Simulates sorting in place. In fact, replaces old one by new one.
@@ -449,6 +446,31 @@ class Hash
         end
         
         return false
+    end
+    
+    ##
+    # Combines two arrays to Hash. First array will be keys, second one
+    # will be values.
+    #
+    # @example
+    #   keys = [:a, :b, :c]
+    #   values = [1, 2, 3]
+    #
+    #   Hash::combine(keys, values)     # will return {:a => 1, :b => 2, :c => 3}
+    #
+    # @param [Array] keys keys
+    # @param [Array] values values
+    # @return [Hash] resultant hash
+    # @since 0.10.0
+    #
+    
+    def self.combine(keys, values)
+        result = { }
+        keys.each_index do |i|
+            result[keys[i]] = values[i]
+        end
+        
+        return result
     end
     
 end

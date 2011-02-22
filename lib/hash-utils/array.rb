@@ -31,32 +31,7 @@ class Array
         
         return result
     end
-
-    ##
-    # Checks, all values follow condition expressed in block.
-    # Block must return Boolean.
-    #
-    # If it's empty, returns +true+.
-    #
-    # @param [Proc] block checking block
-    # @return [Boolean] +true+ if yes, +false+ in otherwise
-    # @since 0.2.0
-    #
     
-    def all?(&block)
-        if self.empty?
-            return true
-        end
-        
-        self.each do |v|
-            if block.call(v) == false
-                return false
-            end
-        end
-        
-        return true
-    end
-
     ##
     # Checks, at least one value follows condition expressed in 
     # block. Block must return Boolean.
@@ -66,15 +41,7 @@ class Array
     # @since 0.2.0
     #
     
-    def some?(&block)
-        self.each do |v|
-            if block.call(v) == true
-                return true
-            end
-        end
-        
-        return false
-    end
+    alias :some? :one?
     
     ##
     # Converts array to +Hash+.
@@ -103,6 +70,28 @@ class Array
 		else
 			Hash[self]
 		end
+    end
+    
+    ##
+    # Merges arrays in place. It seems to be rather unuseful, but it's
+    # intended for special cases, for example joining arrays while
+    # constructing.
+    #
+    # An example (underlying object is extended array):
+    #   def initialize(array)
+    #       self += array       # impossible, will fail
+    #       self.merge! array   # possible, of sure
+    #   end
+    #
+    # @param [Array] arrays array for merge-in
+    # @return [Array] self
+    # @since 0.10.0
+    #
+    
+    def merge!(*arrays)
+        arrays.flatten!(1)
+        arrays.each { |i| self << i }
+        self
     end
     
 end
