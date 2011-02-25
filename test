@@ -1,6 +1,20 @@
 #!/usr/bin/ruby
+# encoding: utf-8
+# (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
 $:.push("./lib")
-require "hash-utils/hash"
+require "hash-utils"
+require "riot"
 
-puts Hash::combine([:a, :b, :c], [1, 2, 3]).inspect
+
+context "File#touch" do
+    setup { File.touch("./~test") }
+    asserts(nil) { File.exists? "./~test" }
+    teardown { File.unlink("./~test") }
+end
+
+context "File#write" do
+    setup { File.write("./~test", "some string") }
+    asserts(nil) { File.read("./~test") == "some string" }
+    teardown { File.unlink("./~test") }
+end
