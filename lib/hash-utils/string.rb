@@ -190,6 +190,34 @@ class String
         self
     end
     
+    ##
+    # Returns first character of the string.
+    #
+    # @example
+    #   "abc".first     # will return 'a'
+    #
+    # @return [String] first character
+    # @since 0.11.0
+    #
+    
+    def first
+        self[0].chr
+    end
+    
+    ##
+    # Returns last character of the string.
+    #
+    # @example
+    #   "abc".last     # will return 'c'
+    #
+    # @return [String] last character
+    # @since 0.11.0
+    #
+    
+    def last
+        self[-1].chr
+    end
+    
     
     
     private

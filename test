@@ -7,14 +7,28 @@ require "hash-utils"
 require "riot"
 
 
+## FILE
+
 context "File#touch" do
     setup { File.touch("./~test") }
-    asserts(nil) { File.exists? "./~test" }
+    asserts("corectness") { File.exists? "./~test" }
     teardown { File.unlink("./~test") }
 end
 
 context "File#write" do
     setup { File.write("./~test", "some string") }
-    asserts(nil) { File.read("./~test") == "some string" }
+    asserts("corectness") { File.read("./~test") == "some string" }
     teardown { File.unlink("./~test") }
+end
+
+## STRING
+
+context "String#first" do
+    setup { "abc".first }
+    asserts("corectness") { topic == ?a }
+end
+
+context "String#last" do
+    setup { "abc".last }
+    asserts("corectness") { topic == ?c }
 end
