@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hash-utils}
-  s.version = "0.10.0"
+  s.version = "0.11.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Kozák"]
-  s.date = %q{2011-02-23}
+  s.date = %q{2011-02-28}
   s.email = %q{martinkozak@martinkozak.net}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "hash-utils.gemspec",
     "lib/hash-utils.rb",
     "lib/hash-utils/array.rb",
+    "lib/hash-utils/file.rb",
     "lib/hash-utils/hash.rb",
     "lib/hash-utils/numeric.rb",
     "lib/hash-utils/object.rb",
@@ -44,7 +45,7 @@ to Ruby's one.
 
 }
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.2}
+  s.rubygems_version = %q{1.5.3}
   s.summary = %q{Adds a lot of useful fundamental utility methods which are missing in Ruby, both to Array and Hash classes and introduces some useful methods and syntactic sugar to Object and String classes too.}
 
   if s.respond_to? :specification_version then
