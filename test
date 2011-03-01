@@ -11,24 +11,36 @@ require "riot"
 
 context "File#touch" do
     setup { File.touch("./~test") }
-    asserts("corectness") { File.exists? "./~test" }
+    asserts("correctness") { File.exists? "./~test" }
     teardown { File.unlink("./~test") }
 end
 
 context "File#write" do
     setup { File.write("./~test", "some string") }
-    asserts("corectness") { File.read("./~test") == "some string" }
+    asserts("correctness") { File.read("./~test") == "some string" }
     teardown { File.unlink("./~test") }
+end
+
+## HASH
+
+context "Hash#map_values" do
+    setup { {:a => 1, :b => 2 }.map_values { |i| i + 1 } }
+    asserts("correctness") { topic == { :a => 2, :b => 3 } }
+end
+
+context "Hash#map_values!" do
+    setup { {:a => 1, :b => 2 }.map_values! { |i| i + 1 } }
+    asserts("correctness") { topic == { :a => 2, :b => 3 } }
 end
 
 ## STRING
 
 context "String#first" do
     setup { "abc".first }
-    asserts("corectness") { topic == ?a }
+    asserts("correctness") { topic == ?a }
 end
 
 context "String#last" do
     setup { "abc".last }
-    asserts("corectness") { topic == ?c }
+    asserts("correctness") { topic == ?c }
 end

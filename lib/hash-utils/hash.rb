@@ -187,6 +187,38 @@ class Hash
     alias :collect_keys! :map_keys!
     
     ##
+    # Returns a new hash with the results of running block once for 
+    # every value in +self+.
+    #
+    # @param [Proc] block evaluating block
+    # @return [Hash] new hash
+    # @since 0.11.0
+    #
+    
+    def map_values(&block)
+        self.map_pairs do |k, v|
+            [k, block.call(v)]
+        end
+    end
+    
+    alias :collect_values :map_values
+    
+    ##
+    # Emulates {#map_values} on place. In fact, replaces old hash by 
+    # new one.
+    #
+    # @param [Proc] block evaluating block
+    # @return [Hash] new hash
+    # @since 0.11.0
+    #
+    
+    def map_values!(&block)
+        self.replace(self.map_values(&block))
+    end
+    
+    alias :collect_values! :map_values!
+    
+    ##
     # Converts all keys to symbols.
     #
     # @return [Hash] new hash
