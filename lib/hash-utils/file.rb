@@ -9,7 +9,8 @@
 class File
 
     ##
-    # Writes data to file and closes it in single call.
+    # Writes data to file and closes it in single call. Data are written
+    # in binary mode since +0.11.1+.
     #
     # @param [String] filepath path to file
     # @param [String] data data for write
@@ -19,7 +20,7 @@ class File
     
     def self.write(filepath, data = "")
         len = nil
-        File.open(filepath, "w") do |io|
+        File.open(filepath, "wb") do |io|
             len = io.write(data)
         end
         return len
@@ -34,7 +35,7 @@ class File
     #
     
     def self.touch(filepath)
-        File.open(filepath, "w").close()
+        File.open(filepath, "wb").close()
     end
     
 end
