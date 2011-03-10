@@ -10,6 +10,7 @@ require "hash-utils/object"
 #
 
 class String
+
     ##
     # Holds numeric matcher.
     #
@@ -218,6 +219,230 @@ class String
         self[-1].chr
     end
     
+    ##
+    # Returns required count of lines from beginning of string.
+    #
+    # @example
+    #   "a\nb\nc\nd\n".first_lines(2)
+    #   # will return ["a\n", "b\n"]   
+    #
+    # @note Works well for UNIX strings only. Convert your string 
+    #   if necessary.
+    # @param [Integer] count required count of lines
+    # @return [Array] array of lines
+    # @since 0.12.0
+    #
+    
+    def first_lines(count = 1)
+        result = [ ]
+        self.each_line do |line|
+            count -= 1
+            result << line
+            break if count == 0
+        end
+        
+        return result
+    end
+    
+    ##
+    # Returns first line of the string.
+    #
+    # @example
+    #   "a\nb\nc\nd\n".first_line
+    #   # will return "a\n"
+    #
+    # @note Works well for UNIX strings only. Convert your string 
+    #   if necessary.
+    # @return [String] line with +\n+
+    # @since 0.12.0
+    #
+        
+    def first_line
+        self.first_lines.first
+    end
+
+    ##
+    # Returns required count of lines from end of string.
+    #
+    # @example
+    #   "a\nb\nc\nd".last_lines(2)
+    #   # will return ["c\n", "d"]   
+    #
+    # @note Works well for UNIX strings only. Convert your string 
+    #   if necessary.
+    # @param [Integer] count required count of lines
+    # @return [Array] array of lines
+    # @since 0.12.0
+    #
+    
+    def last_lines(count = 1)
+        buffer = ""
+        result = [ ]
+        (self.length - 1).downto(0) do |i|
+            chr = self[i]
+            if chr.ord == 10
+                count -= 1
+                result << buffer.reverse!
+                buffer = ""
+                break if count == 0
+            end
+            buffer << chr.chr
+        end
+
+        if count != 0
+            result << buffer.reverse!
+        end
+        return result.reverse!
+    end
+    
+    ##
+    # Returns last line of the string.
+    #
+    # @example
+    #   "a\nb\nc\nd".last_line
+    #   # will return "d"
+    #
+    # @note Works well for UNIX strings only. Convert your string 
+    #   if necessary.
+    # @return [String] line
+    # @since 0.12.0
+    #
+        
+    def last_line
+        self.last_lines.last
+    end
+    
+    ##
+    # Removes given count of lines from beginning of file.
+    #
+    # @example 
+    #   str = "a\nb\nc\nd"
+    #
+    #   str.shift_lines(2)
+    #   # will return ["a\n", "b\n"]      
+    #   p str
+    #   # will print out "c\nd"
+    #
+    # @note Works well for UNIX strings only. Convert your string 
+    #   if necessary.
+    # @param [Integer] count required number of lines
+    # @string [Array] removed lines
+    # @since 0.12.0
+    #
+    
+    def shift_lines(count = 1)
+        lines = self.first_lines(count)
+        length = lines.inject(0) { |sum, i| sum + i.length }
+        self.replace(self[length..-1])
+        return lines
+    end
+    
+    ##
+    # Removes first line out from the string and returns it.
+    # @return [String] removed line
+    #
+    
+    def shift_line
+        self.shift_lines.first
+    end
+    
+    ##
+    # Puts lines to begin of string.
+    #
+    # @param [Array] lines line bodies without +\n+
+    # @return [String] itself
+    # @since 0.12.0
+    #
+    
+    def unshift_lines(*lines)
+        self.unshift(lines.join("\n") << "\n")
+    end
+    
+    alias :unshift_line :unshift_lines
+    
+    ##
+    # Removes lines out of end of the string.
+    #
+    # @note Works well for UNIX strings only. Convert your string 
+    #   if necessary.
+    # @param [Integer] count required number of lines
+    # @string [Array] removed lines
+    # @since 0.12.0
+    #
+    
+    def pop_lines(count = 1)
+        lines = self.last_lines(count)
+        length = lines.inject(0) { |sum, i| sum + i.length }
+        self.replace(self[0..(length - 1)])
+        return lines
+    end
+
+    ##
+    # Removes last line out from the string and returns it.
+    # @return [String] removed line
+    #
+    
+    def pop_line
+        self.pop_lines.first
+    end
+    
+    ##
+    # Joins lines to string.
+    #
+    # @param [Array] lines line bodies without +\n+
+    # @return [String] itself
+    # @since 0.12.0
+    #
+        
+    def push_lines(*lines)
+        self.push("\n" << lines.join("\n"))
+    end
+    
+    alias :push_line :push_lines
+    alias :push :<<
+    
+    ##
+    # Removes appropriate number of characters from end of string.
+    #
+    # @param [Integer] count required number of characters
+    # @string [String] removed characters
+    # @since 0.12.0
+    #
+    
+    def pop(count = 1)
+        res = self[(self.length - count)..-1]
+        self.replace(self[0..-(count + 1)])
+        return res
+    end
+
+    ##
+    # Removes appropriate number of characters from begin of string.
+    #
+    # @param [Integer] count required number of characters
+    # @string [String] removed characters
+    # @since 0.12.0
+    #
+    
+    def shift(count = 1)
+        res = self[0...count]
+        self.replace(self[count..-1])
+        return res
+    end
+
+    ##
+    # Puts content to begin of file.
+    #
+    # @param [String] string string for prepend
+    # @return [String] itself
+    # @since 0.12.0
+    #
+    
+    def unshift(string)
+        self.replace(string << self)
+    end    
+    
+    alias :prepend :unshift
+    alias :append :<<
     
     
     private
@@ -248,5 +473,6 @@ class String
         
         block.call(newcall)
     end
+    
 end
 

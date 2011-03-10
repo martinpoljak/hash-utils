@@ -9,38 +9,145 @@ require "riot"
 
 ## FILE
 
-context "File#touch" do
-    setup { File.touch("./~test") }
-    asserts("correctness") { File.exists? "./~test" }
-    teardown { File.unlink("./~test") }
-end
+# Filozofové mají Kanta rádi. Matematici mají Kanta také rádi, jen si 
+# myslí, že většina z toho, co vymyslel, je blbost.
+#
+# doc. Jiří Souček
 
-context "File#write" do
-    setup { File.write("./~test", "some string") }
-    asserts("correctness") { File.read("./~test") == "some string" }
-    teardown { File.unlink("./~test") }
+context "File" do
+    asserts("#touch") do 
+        File.touch("./~test1")
+        File.exists? "./~test1"
+    end
+    asserts("#write") do
+        File.write("./~test2", "some string")
+        File.read("./~test2") == "some string"
+    end
+    
+    teardown do 
+        File.unlink("./~test1")
+        File.unlink("./~test2")
+    end
 end
 
 ## HASH
 
-context "Hash#map_values" do
-    setup { {:a => 1, :b => 2 }.map_values { |i| i + 1 } }
-    asserts("correctness") { topic == { :a => 2, :b => 3 } }
-end
-
-context "Hash#map_values!" do
-    setup { {:a => 1, :b => 2 }.map_values! { |i| i + 1 } }
-    asserts("correctness") { topic == { :a => 2, :b => 3 } }
+context "Hash" do
+    setup do 
+        {:a => 1, :b => 2 }
+    end
+    
+    asserts("#map_values") do
+        topic.map_values { |i| i + 1 } == { :a => 2, :b => 3 }
+    end
+    asserts("#map_values!") do
+        t = topic.dup
+        t.map_values! { |i| i + 1 } 
+        t == { :a => 2, :b => 3 }
+    end
 end
 
 ## STRING
 
-context "String#first" do
-    setup { "abc".first }
-    asserts("correctness") { topic == ?a }
-end
+context "String" do
+    asserts("#first") do
+        "abc".first == ?a
+    end
+    asserts("#first_line") do
+        res = true
+        res &= "a\nb\nc\n".first_line == "a\n"
+        res &= "a".first_line == "a"
+    end
+    asserts("#first_lines") do
+        res = true
+        res &= "a\nb".first_lines(2) == ["a\n", "b"]
+        res &= "a\nb\nc\n".first_lines(4) == ["a\n", "b\n", "c\n"]
+    end
+    asserts("#last") do
+        "abc".last == ?c
+    end
+    asserts("#last_line") do
+        res = true
+        res &= "a\nb\nc\n".last_line == ""
+        res &= "a\nb\nc".last_line == "c"
+        res &= "a".last_line == "a"
+    end
+    asserts("#last_lines") do
+        res = true
+        res &= "a\nb".last_lines(2) == ["a\n", "b"]
+        res &= "a\nb\nc\n".last_lines(4) == ["a\n", "b\n", "c\n", ""]
+    end
+    asserts("#pop") do
+        res = true
+        str = "abcd"
+        res &= str.pop == "d"
+        res &= str == "abc"
+        str = "abcd"
+        res &= str.pop(2) == "cd"
+        res &= str == "ab"
+    end
+    asserts("#pop_line") do
+        res = true
+        str = "a\nb\nc\nd"
+        res &= str.pop_line == "d"
+        res &= str = "a\nb\nc\n"
+    end
+    asserts("#pop_lines") do
+        res = true
+        str = "a\nb\nc\nd\n"
+        res &= str.pop_lines(2) == ["d\n", ""]
+        res &= str = "a\nb\nc\n"
+    end
+    asserts("#push_line") do
+        res = true
+        str = "a\nb\nc\nd"
+        res &= str.push_line("1") == "a\nb\nc\nd\n1"
+        res &= str == "a\nb\nc\nd\n1"
+    end
+    asserts("#push_lines") do
+        res = true
+        str = "a\nb\nc\nd"
+        res &= str.push_lines("1", "2") == "a\nb\nc\nd\n1\n2"
+        res &= str == "a\nb\nc\nd\n1\n2"
+    end
+    asserts("#shift") do
+        res = true
+        str = "abcd"
+        res &= str.shift == "a"
+        res &= str == "bcd"
+        str = "abcd"
+        res &= str.shift(2) == "ab"
+        res &= str == "cd"
+    end
+    asserts("#shift_line") do
+        res = true
+        str = "a\nb\nc\nd\n"
+        res &= str.shift_line == "a\n"
+        res &= str = "b\nc\nd\n"
+    end
+    asserts("#shift_lines") do
+        res = true
+        str = "a\nb\nc\nd\n"
+        res &= str.shift_lines(2) == ["a\n", "b\n"]
+        res &= str = "c\nd\n"
+    end
+    asserts("#unshift") do
+        res = true
+        str = "abcd"
+        res &= str.unshift("123") == "123abcd"
+        res &= str == "123abcd"        
+    end
+    asserts("#unshift_line") do
+        res = true
+        str = "a\nb\nc\nd\n"
+        res &= str.unshift_line("1") == "1\na\nb\nc\nd\n"
+        res &= str == "1\na\nb\nc\nd\n"
+    end
+    asserts("#unshift_lines") do
+        res = true
+        str = "a\nb\nc\nd\n"
+        res &= str.unshift_lines("1", "2") == "1\n2\na\nb\nc\nd\n"
+        res &= str == "1\n2\na\nb\nc\nd\n"
+    end
 
-context "String#last" do
-    setup { "abc".last }
-    asserts("correctness") { topic == ?c }
 end
