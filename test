@@ -45,6 +45,17 @@ context "Hash" do
         t.map_values! { |i| i + 1 } 
         t == { :a => 2, :b => 3 }
     end
+    asserts("#deep_merge") do
+        h1 = {:a => {:b => :c, :d => :e}}
+        h2 = {:a => {:d => :f, :h => :i}}
+        h = h1.deep_merge(h2) 
+        (h == {:a => {:b => :c, :d => :f, :h => :i}}) and (h1 == {:a => {:b => :c, :d => :e}})
+    end
+    asserts("#deep_merge!") do
+        h = {:a => {:b => :c, :d => :e}}
+        h.deep_merge!({:a => {:d => :f, :h => :i}})
+        h == {:a => {:b => :c, :d => :f, :h => :i}}
+    end
 end
 
 ## STRING
