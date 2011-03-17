@@ -34,9 +34,19 @@ end
 
 context "Hash" do
     setup do 
-        {:a => 1, :b => 2 }
+        { :a => 1, :b => 2 }
     end
-    
+ 
+    asserts("#compact") do
+        t = { :a => 1, :b => nil }
+        t = t.compact
+        t == { :a => 1 }
+    end
+    asserts("#compact!") do
+        t = { :a => 1, :b => nil }
+        t.compact!
+        t == { :a => 1 }
+    end
     asserts("#map_values") do
         topic.map_values { |i| i + 1 } == { :a => 2, :b => 3 }
     end
