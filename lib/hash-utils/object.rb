@@ -6,6 +6,7 @@
 #
 
 class Object
+
     ##
     # Indicates object is in some object which supports +#include?+.
     #
@@ -42,4 +43,5 @@ class Object
         count.times { result << self.dup }
         return result
     end
+    
 end

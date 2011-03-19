@@ -196,5 +196,13 @@ context "Symbol" do
     asserts("#+") do
         :a + :b == :ab
     end
-
+    asserts("#[]") do
+        :abcde[0...3] == "abc"
+    end
+    asserts("#end_with?") do
+        :abcde.end_with? "ghi", "cde"
+    end
+    asserts("#start_with?") do
+        :abcde.start_with? "ghi", "abc"
+    end
 end
