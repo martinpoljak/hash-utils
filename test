@@ -68,6 +68,20 @@ context "Hash" do
     end
 end
 
+## OBJECT
+
+context "Object" do
+    asserts("#**") do
+        "ab" ** 5 == ["ab", "ab", "ab", "ab", "ab"]
+    end
+    asserts("#in?") do
+        5.in? 1..7
+    end
+    asserts("#to_b") do
+        (nil.to_b === false) and ("ab".to_b === true)
+    end
+end
+
 ## STRING
 
 context "String" do
@@ -169,6 +183,18 @@ context "String" do
         str = "a\nb\nc\nd\n"
         res &= str.unshift_lines("1", "2") == "1\n2\na\nb\nc\nd\n"
         res &= str == "1\n2\na\nb\nc\nd\n"
+    end
+
+end
+
+## SYMBOL
+
+context "Symbol" do
+    asserts("#*") do
+        :a * 5 == :aaaaa
+    end
+    asserts("#+") do
+        :a + :b == :ab
     end
 
 end

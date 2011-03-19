@@ -28,4 +28,18 @@ class Object
     def to_b
         !!self
     end
+    
+    ##
+    # Multiplies object by +#dup+ n-times.
+    #
+    # @param [Integer] count required number of copies
+    # @return [Array] array with object copies
+    # @since 0.12.0
+    #
+    
+    def **(count)
+        result = [ ]
+        count.times { result << self.dup }
+        return result
+    end
 end
