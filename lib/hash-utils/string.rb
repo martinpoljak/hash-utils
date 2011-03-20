@@ -430,7 +430,7 @@ class String
     end
 
     ##
-    # Puts content to begin of file.
+    # Puts content to begin of string.
     #
     # @param [String] string string for prepend
     # @return [String] itself

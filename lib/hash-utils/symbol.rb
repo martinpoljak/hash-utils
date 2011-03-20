@@ -73,5 +73,29 @@ class Symbol
     def end_with?(*suffix)
         self.to_s.end_with?(*suffix)
     end
+    
+    ##
+    # Puts content to end of symbol and returns new symbol.
+    #
+    # @param [String] string string for append
+    # @return [Symbol] itself
+    # @since 0.13.0
+    #
+    
+    def append(string)
+        (self.to_s << string).to_sym
+    end    
+        
+    ##
+    # Puts content to begin of symbol and returns new symbol.
+    #
+    # @param [String] string string for prepend
+    # @return [Symbol] itself
+    # @since 0.13.0
+    #
+    
+    def prepend(string)
+        (string + self.to_s).to_sym
+    end    
         
 end
