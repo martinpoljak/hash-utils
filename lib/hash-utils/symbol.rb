@@ -83,7 +83,7 @@ class Symbol
     #
     
     def append(string)
-        (self.to_s << string).to_sym
+        (self.to_s << string.to_s).to_sym
     end    
         
     ##
@@ -95,7 +95,7 @@ class Symbol
     #
     
     def prepend(string)
-        (string + self.to_s).to_sym
+        (string.to_s + self.to_s).to_sym
     end    
         
 end

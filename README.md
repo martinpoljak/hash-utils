@@ -1,7 +1,7 @@
 Hash Utils
 ==========
 
-**hash-utils** adds more than 65 useful and frequently rather 
+**hash-utils** adds more than 67 useful and frequently rather 
 fundamental methods which are missing in Ruby programming language, 
 to several core classes. It tries to be similar project to 
 [Ruby Facets][1] on principle, but less complex, more practical, 
@@ -12,7 +12,7 @@ non-atomic and organized by better way.
 - `Hash` &ndash; 30 methods,
 - `Object` &ndash; 3 methods,
 - `String` &ndash; 23 methods,
-- `Symbol` &ndash; 5 methods.
+- `Symbol` &ndash; 7 methods.
 
 For full reference and methods lists, see **[documentation][3]**.
 
