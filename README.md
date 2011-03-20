@@ -1,9 +1,15 @@
 Hash Utils
 ==========
 
-**Hash Utils** adds a lot of useful fundamental utility methods which 
-are missing in Ruby, both to [Array][1] and [Hash][2] classes and 
-introduces some useful methods and syntactic sugar to [Object][6] and [String][8] classes too.
+**hash-utils** adds more than 65 useful and frequently very fundamental 
+methods which are missing in Ruby, to 6 base core classes:
+
+- `Array` &ndash; 3 methods,
+- `File` &ndash; 2 methods,
+- `Hash` &ndash; 30 methods,
+- `Object` &ndash; 3 methods,
+- `String` &ndash; 23 methods,
+- `Symbol` &ndash; 5 methods.
 
 For full reference and methods lists, see **[documentation][3]**.
 
@@ -31,10 +37,7 @@ Copyright
 Copyright &copy; 2011 [Martin Kozák][10]. See `LICENSE.txt` for
 further details.
 
-[1]: http://www.ruby-doc.org/core/classes/Array.html
-[2]: http://www.ruby-doc.org/core/classes/Hash.html
+[1]: http://rubyworks.github.com/facets/
 [3]: http://rubydoc.info/gems/hash-utils
-[6]: http://www.ruby-doc.org/core/classes/Object.html
-[8]: http://www.ruby-doc.org/core/classes/String.html
 [9]: http://github.com/martinkozak/hash-utils/issues
 [10]: http://www.martinkozak.net/

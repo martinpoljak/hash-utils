@@ -326,7 +326,7 @@ class String
     # @note Works well for UNIX strings only. Convert your string 
     #   if necessary.
     # @param [Integer] count required number of lines
-    # @string [Array] removed lines
+    # @return [Array] removed lines
     # @since 0.12.0
     #
     
@@ -366,7 +366,7 @@ class String
     # @note Works well for UNIX strings only. Convert your string 
     #   if necessary.
     # @param [Integer] count required number of lines
-    # @string [Array] removed lines
+    # @return [Array] removed lines
     # @since 0.12.0
     #
     
@@ -405,7 +405,7 @@ class String
     # Removes appropriate number of characters from end of string.
     #
     # @param [Integer] count required number of characters
-    # @string [String] removed characters
+    # @return [String] removed characters
     # @since 0.12.0
     #
     
@@ -419,7 +419,7 @@ class String
     # Removes appropriate number of characters from begin of string.
     #
     # @param [Integer] count required number of characters
-    # @string [String] removed characters
+    # @return [String] removed characters
     # @since 0.12.0
     #
     
