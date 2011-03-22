@@ -68,6 +68,15 @@ context "Hash" do
     end
 end
 
+## MODULE
+
+context "Module" do
+    asserts("#get_module") do
+        require "zlib"
+        Kernel.get_module("Zlib::Inflate") == Zlib::Inflate
+    end
+end
+
 ## OBJECT
 
 context "Object" do

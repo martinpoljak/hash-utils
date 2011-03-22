@@ -16,7 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "hash-utils"
   gem.homepage = "http://github.com/martinkozak/hash-utils"
   gem.license = "MIT"
-  gem.summary = 'Adds more than 67 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way.'
+  gem.summary = 'Adds more than 67 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Module, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way.'
   gem.post_install_message = "\nHASH UTILS: Be warn, Hash#all? is deprecated since version 0.10.0 because of\nconflict with built-in one with in fact equivalent functionallity. It will be\nremoved around version 0.13.0. Please, check your code if you can and switch\nto Ruby's one.\n\n"
   gem.email = "martinkozak@martinkozak.net"
   gem.authors = ["Martin Kozák"]
