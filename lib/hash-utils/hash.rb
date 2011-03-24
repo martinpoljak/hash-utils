@@ -548,7 +548,7 @@ class Hash
         while not fm.empty?
             _in, _out = fm.shift
             _out.each_pair do |k, v|
-                if v.kind_of? Hash
+                if _in[k].kind_of? Hash
                     _in[k] = _in[k].dup
                     fm << [_in[k], _out[k]]
                 else
