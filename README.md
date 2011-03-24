@@ -10,9 +10,11 @@ non-atomic and organized by better way.
 - `Array` &ndash; 3 methods,
 - `File` &ndash; 2 methods,
 - `Hash` &ndash; 30 methods,
+- `IO` &ndash; 1 method,
 - `Module` &ndash; 1 method,
-- `Object` &ndash; 3 methods,
+- `Object` &ndash; 4 methods,
 - `String` &ndash; 23 methods,
+- `StringIO` &ndash; 1 method,
 - `Symbol` &ndash; 7 methods.
 
 For full reference and methods lists, see **[documentation][3]**.

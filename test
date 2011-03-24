@@ -3,6 +3,7 @@
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
 $:.push("./lib")
+require "stringio"
 require "hash-utils"
 require "riot"
 
@@ -68,6 +69,20 @@ context "Hash" do
     end
 end
 
+## IO
+
+context "IO" do
+    asserts("#io?") do
+        io = File::open("./~test", "w")
+        result = io.io?
+        io.close()
+        result
+    end
+    teardown do 
+        File.unlink("./~test")
+    end    
+end
+
 ## MODULE
 
 context "Module" do
@@ -85,6 +100,9 @@ context "Object" do
     end
     asserts("#in?") do
         5.in? 1..7
+    end
+    asserts("#io?") do
+        not "".io?
     end
     asserts("#to_b") do
         (nil.to_b === false) and ("ab".to_b === true)
@@ -194,6 +212,14 @@ context "String" do
         res &= str == "1\n2\na\nb\nc\nd\n"
     end
 
+end
+
+## STRINGIO
+
+context "StringIO" do
+    asserts("#io?") do
+        StringIO::new.io?
+    end
 end
 
 ## SYMBOL
