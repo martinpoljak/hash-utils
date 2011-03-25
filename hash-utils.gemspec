@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hash-utils}
-  s.version = "0.13.1"
+  s.version = "0.14.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Kozák"]
@@ -29,10 +29,12 @@ Gem::Specification.new do |s|
     "lib/hash-utils/array.rb",
     "lib/hash-utils/file.rb",
     "lib/hash-utils/hash.rb",
+    "lib/hash-utils/io.rb",
     "lib/hash-utils/module.rb",
     "lib/hash-utils/numeric.rb",
     "lib/hash-utils/object.rb",
     "lib/hash-utils/string.rb",
+    "lib/hash-utils/stringio.rb",
     "lib/hash-utils/symbol.rb",
     "test"
   ]
