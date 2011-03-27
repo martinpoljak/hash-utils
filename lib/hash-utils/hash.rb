@@ -219,14 +219,21 @@ class Hash
     alias :collect_values! :map_values!
     
     ##
-    # Converts all keys to symbols.
+    # Converts all keys to symbols. Since version +0.14.1+ converts 
+    # only +String+ keys to symbols.
     #
     # @return [Hash] new hash
     # @since 0.1.0
     #
     
     def keys_to_sym
-        self.map_keys { |k| k.to_sym }
+        self.map_keys do |k| 
+            if k.kind_of? String
+                k.to_sym 
+            else
+                k
+            end
+        end
     end
     
     ##

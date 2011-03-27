@@ -67,6 +67,15 @@ context "Hash" do
         h.deep_merge!({:a => {:d => :f, :h => :i}})
         h == {:a => {:b => :c, :d => :f, :h => :i}}
     end
+    asserts("#keys_to_sym") do
+        h = {"a" => "b", 2 => "c", "d" => "e"}
+        h.keys_to_sym == {:a => "b", 2 => "c", :d => "e"}
+    end
+    asserts("#keys_to_sym!") do
+        h = {"a" => "b", 2 => "c", "d" => "e"}
+        h.keys_to_sym! 
+        h == {:a => "b", 2 => "c", :d => "e"}
+    end
 end
 
 ## IO
