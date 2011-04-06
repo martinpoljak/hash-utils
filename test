@@ -252,6 +252,9 @@ context "Symbol" do
     asserts("#prepend") do
         :abcd.prepend("012") == :"012abcd"
     end
+    asserts("#split") do
+        :ab_cd_ef.split("_", 2) == [:ab, :cd_ef]
+    end
     asserts("#start_with?") do
         :abcde.start_with? "ghi", "abc"
     end

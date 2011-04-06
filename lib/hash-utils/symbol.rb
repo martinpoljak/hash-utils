@@ -85,7 +85,7 @@ class Symbol
     def append(string)
         (self.to_s << string.to_s).to_sym
     end    
-        
+    
     ##
     # Puts content to begin of symbol and returns new symbol.
     #
@@ -97,5 +97,19 @@ class Symbol
     def prepend(string)
         (string.to_s + self.to_s).to_sym
     end    
+    
+    ##
+    # Splits symbol to more.
+    #
+    # @param [String] separator separator for splitting
+    # @param [Integer] count max new parts count
+    # @since 0.15.0
+    # 
+    
+    def split(separator = " ", count = 0)
+        self.to_s.split(separator, count).map! do |i|
+            i.to_sym
+        end
+    end
         
 end
