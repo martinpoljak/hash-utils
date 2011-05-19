@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hash-utils}
-  s.version = "0.14.0"
+  s.version = "0.15.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Martin Kozák"]
-  s.date = %q{2011-03-25}
+  s.authors = [%q{Martin Kozák}]
+  s.date = %q{2011-05-19}
   s.email = %q{martinkozak@martinkozak.net}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
     "test"
   ]
   s.homepage = %q{http://github.com/martinkozak/hash-utils}
-  s.licenses = ["MIT"]
+  s.licenses = [%q{MIT}]
   s.post_install_message = %q{
 HASH UTILS: Be warn, Hash#all? is deprecated since version 0.10.0 because of
 conflict with built-in one with in fact equivalent functionallity. It will be
@@ -47,9 +47,9 @@ removed around version 0.13.0. Please, check your code if you can and switch
 to Ruby's one.
 
 }
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Adds more than 67 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Module, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way.}
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.2}
+  s.summary = %q{Adds more than 75 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Module, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way.}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
@@ -57,16 +57,16 @@ to Ruby's one.
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_development_dependency(%q<riot>, [">= 0.12.1"])
+      s.add_development_dependency(%q<riot>, [">= 0.12.3"])
     else
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_dependency(%q<riot>, [">= 0.12.1"])
+      s.add_dependency(%q<riot>, [">= 0.12.3"])
     end
   else
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-    s.add_dependency(%q<riot>, [">= 0.12.1"])
+    s.add_dependency(%q<riot>, [">= 0.12.3"])
   end
 end
 

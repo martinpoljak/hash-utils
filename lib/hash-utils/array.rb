@@ -53,7 +53,7 @@ class Array
     # Should be noted, it cannot be named +#to_hash+, because #to_hash 
     # is called by the +Hash#[]+ itself. Reasons why it's absolutely 
     # undocumented call are unknown.
-	#
+    #
     # @example Equivalent calls
     #   [["aa", "bb"], ["bb", "aa"]].to_h
     #   ["aa", "bb", "bb", "aa"].to_h(:flat)
@@ -65,11 +65,11 @@ class Array
     #
     
     def to_h(mode = nil)
-		if mode == :flat
-			Hash[*self]
-		else
-			Hash[self]
-		end
+        if mode == :flat
+            Hash[*self]
+        else
+            Hash[self]
+        end
     end
     
     ##
@@ -89,9 +89,86 @@ class Array
     #
     
     def merge!(*arrays)
-        arrays.flatten!(1)
+        arrays.flatten! 1
         arrays.each { |i| self << i }
         self
+    end
+    
+    ##
+    # Returns the second item in the array.
+    #
+    # @return [Object] item of the array
+    # @since 0.15.0
+    #
+    
+    def second
+        self[1]
+    end
+    
+    ##
+    # Returns the third item in the array.
+    #
+    # @return [Object] item of the array
+    # @since 0.15.0
+    #
+
+    def third
+        self[2]
+    end
+    
+    ##
+    # Returns the fourth item in the array.
+    #
+    # @return [Object] item of the array
+    # @since 0.15.0
+    #
+
+    def fourth
+        self[3]
+    end
+    
+    ##
+    # Returns the fifth item in the array.
+    #
+    # @return [Object] item of the array
+    # @since 0.15.0
+    #
+
+    def fifth
+        self[4]
+    end
+    
+    ##
+    # Returns the sixth item in the array.
+    #
+    # @return [Object] item of the array
+    # @since 0.15.0
+    #
+
+    def sixth
+        self[5]
+    end
+    
+    ##
+    # Returns the seventh item in the array.
+    #
+    # @return [Object] item of the array
+    # @since 0.15.0
+    #
+
+    def seventh
+        self[6]
+    end
+    
+    ##
+    # Returns the eighth item in the array.
+    #
+    # @return [Object] item of the array
+    # @since 0.15.0
+    #
+
+    def eighth
+        self[7]
     end
     
 end

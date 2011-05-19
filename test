@@ -16,6 +16,30 @@ require "riot"
 # doc. Jiří Souček
 
 context "File" do
+    asserts("#second") do
+        [1, 2, 3, 4, 5, 6, 7, 8].second == 2
+    end
+    asserts("#third") do
+        [1, 2, 3, 4, 5, 6, 7, 8].third == 3
+    end
+    asserts("#fourth") do
+        [1, 2, 3, 4, 5, 6, 7, 8].fourth == 4
+    end
+    asserts("#fifth") do
+        [1, 2, 3, 4, 5, 6, 7, 8].fifth == 5
+    end
+    asserts("#sixth") do
+        [1, 2, 3, 4, 5, 6, 7, 8].sixth == 6
+    end
+    asserts("#seventh") do
+        [1, 2, 3, 4, 5, 6, 7, 8].seventh == 7
+    end
+    asserts("#eighth") do
+        [1, 2, 3, 4, 5, 6, 7, 8].eighth == 8
+    end
+end
+
+context "File" do
     asserts("#touch") do 
         File.touch("./~test1")
         File.exists? "./~test1"
