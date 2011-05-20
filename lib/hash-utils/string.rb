@@ -444,6 +444,56 @@ class String
     alias :prepend :unshift
     alias :append :<<
     
+    ##
+    # Converts first character of the string to uppercase.
+    #
+    # @return [String] new string
+    # @see http://www.php.net/ucfirst
+    # @since 0.15.0
+    #
+    
+    def ucfirst
+        self.dup.ucfirst!
+    end
+    
+    ##
+    # Converts first character of the string to uppercase in place.
+    #
+    # @return [String] new string
+    # @see http://www.php.net/ucfirst
+    # @since 0.15.0
+    #
+    
+    def ucfirst!
+        self[0] = self.first.upcase
+        return self
+    end
+
+    ##
+    # Converts first character of the string to lowercase.
+    #
+    # @return [String] new string
+    # @see http://www.php.net/lcfirst
+    # @since 0.15.0
+    #
+    
+    def lcfirst
+        self.dup.lcfirst!
+    end
+    
+    ##
+    # Converts first character of the string to lowercase in place.
+    #
+    # @return [String] new string
+    # @see http://www.php.net/lcfirst
+    # @since 0.15.0
+    #
+    
+    def lcfirst!
+        self[0] = self.first.downcase
+        return self
+    end
+    
     
     private
     

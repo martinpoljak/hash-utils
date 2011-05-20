@@ -172,6 +172,14 @@ context "String" do
         res &= "a\nb".last_lines(2) == ["a\n", "b"]
         res &= "a\nb\nc\n".last_lines(4) == ["a\n", "b\n", "c\n", ""]
     end
+    asserts("#lcfirst") do
+        str = "ABCD"
+        str.lcfirst == "aBCD" and str == "ABCD"
+    end
+    asserts("#lcfirst!") do
+        str = "ABCD"
+        str.lcfirst! == "aBCD" and str == "aBCD"
+    end
     asserts("#pop") do
         res = true
         str = "abcd"
@@ -225,6 +233,14 @@ context "String" do
         str = "a\nb\nc\nd\n"
         res &= str.shift_lines(2) == ["a\n", "b\n"]
         res &= str = "c\nd\n"
+    end
+    asserts("#ucfirst") do
+        str = "abcd"
+        str.ucfirst == "Abcd" and str == "abcd"
+    end
+    asserts("#ucfirst!") do
+        str = "abcd"
+        str.ucfirst! == "Abcd" and str == "Abcd"
     end
     asserts("#unshift") do
         res = true
