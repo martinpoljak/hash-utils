@@ -343,7 +343,7 @@ class Hash
     # @since 0.4.0
     #
     
-    def to_h(mode)
+    def to_h(mode = nil)
         return self
     end
     
