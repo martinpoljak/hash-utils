@@ -343,7 +343,9 @@ class Hash
     # @since 0.4.0
     #
     
-    alias :to_h :to_hash
+    def to_h(mode)
+        return self
+    end
     
     ##
     # Simulates sorting in place. In fact, replaces old one by new one.
