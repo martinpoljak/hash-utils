@@ -46,11 +46,11 @@ class String
     # definitions. See {Array#to_h}. 
     #
     # @example Equivalent calls
-    #   "aa bb".tr("aa" => "bb", "bb" => "aa")
-    #   "aa bb".tr([["aa", "bb"], ["bb", "aa"]])
-    #   "aa bb".tr(["aa", "bb", "bb", "aa"], :flat)
+    #   "aa bb".strtr("aa" => "bb", "bb" => "aa")
+    #   "aa bb".strtr([["aa", "bb"], ["bb", "aa"]])
+    #   "aa bb".strtr(["aa", "bb", "bb", "aa"], :flat)
     # @example Use with symbols
-    # 	"aa bb".tr(:aa => "bb", :bb => "aa") { |s| s.to_sym }
+    # 	"aa bb".strtr(:aa => "bb", :bb => "aa") { |s| s.to_sym }
     #
     # @param [Array, Hash] replacements replacements definition
     # @param [Symbol] mode flat mode switch, can be +:flat+ or +nil+
