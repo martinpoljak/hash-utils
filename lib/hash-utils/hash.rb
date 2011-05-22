@@ -541,7 +541,7 @@ class Hash
     end
     
     ##
-    # Merges two hashes recursively and returns new hash. Receives 
+    # Merges two hashes recursively and returns new +Hash+. Receives 
     # unlimited count of hashes for merging them in left to right order.
     # Included hashes will be copied too.
     #
@@ -568,5 +568,67 @@ class Hash
 
         return result
     end
+    
+    ##
+    # Iterates through items with given key only. None-existing values 
+    # are ignored.
+    #
+    # @param [*Object] keys    
+    # @yield [Array] pairs
+    # @since 0.15.0
+    #
+    
+    def get(*args)
+        args.each do |i|
+            if self.has_key? i
+                yield [i, self[i]]
+            end
+        end
+    end
+    
+    ##
+    # Returns items from +Hash+ under given keys in required order. 
+    # Doesn't keep default values settings. None-existing values are 
+    # ignored.
+    #
+    # @example
+    #   hash = {:a => 1, :b => 2, :c => 3}
+    #   hash.get(:a, :c)                # will return {:a => 1, :c => 3}
+    #    
+    # @param [*Object] keys
+    # @return [Hash] new hash
+    # @since 0.15.0
+    #
+
+    def get_items(*args)
+        result = { }
+        self.get(*args) do |key, value|
+            result[key] = value
+        end
+        
+        return result
+    end
+   
+    ##
+    # Returns values from +Hash+ under given keys in required order. 
+    #
+    # @example
+    #   hash = {:a => 1, :b => 2, :c => 3}
+    #   hash.get(:a, :c)                # will return {:a => 1, :c => 3}
+    #    
+    # @param [*Object] keys
+    # @return [Array] array of values
+    # @since 0.15.0
+    #
+
+    def get_values(*args)
+        result = [ ]
+        self.get(*args) do |key, value|
+            result << value
+        end
+        
+        return result
+    end
+    
     
 end
