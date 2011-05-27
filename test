@@ -72,10 +72,10 @@ context "Hash" do
         t.compact!
         t == { :a => 1 }
     end
-    asserts("#get") do
+    asserts("#get_pairs") do
         h = { :a => 1, :b => 2, :c => 3 }
         result = [ ]
-        h.get(:a, :c, :d) { |i| result << i }
+        h.get_pairs(:a, :c, :d) { |i| result << i }
         result == [[:a, 1], [:c, 3]]
     end
     asserts("#get_items") do
@@ -114,6 +114,21 @@ context "Hash" do
         h.keys_to_sym! 
         h == {:a => "b", 2 => "c", :d => "e"}
     end
+    asserts("#take_pairs") do
+        h = { :a => 1, :b => 2, :c => 3 }
+        result = [ ]
+        h.take_pairs(:a, :c, :d) { |i| result << i }
+        result == [[:a, 1], [:c, 3], [:d, nil]]
+    end
+    asserts("#take_items") do
+        h = { :a => 1, :b => 2, :c => 3 }
+        h.take_items(:a, :c, :d) == { :a => 1, :c => 3, :d => nil }
+    end
+    asserts("#take_values") do
+        h = { :a => 1, :b => 2, :c => 3 }
+        h.take_values(:a, :c, :d) == [1, 3, nil]
+    end
+    
 end
 
 ## IO
@@ -145,6 +160,9 @@ context "Object" do
     asserts("#**") do
         "ab" ** 5 == ["ab", "ab", "ab", "ab", "ab"]
     end
+    asserts("#false?") do
+        (false.false? == true) and ("string".false? == false)
+    end
     asserts("#in?") do
         5.in? 1..7
     end
@@ -153,6 +171,9 @@ context "Object" do
     end
     asserts("#to_b") do
         (nil.to_b === false) and ("ab".to_b === true)
+    end
+    asserts("#true?") do
+        (true.true? == true) and ("string".true? == false)
     end
 end
 

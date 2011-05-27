@@ -55,4 +55,26 @@ class Object
         false
     end
     
+    ##
+    # Indicates, object is pure +true+, so +TrueClass+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.15.0
+    #
+    
+    def true?
+        self.kind_of? TrueClass
+    end
+    
+    ##
+    # Indicates, object is pure +false+, so +FalseClass+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.15.0
+    #
+    
+    def false?
+        self.kind_of? FalseClass
+    end
+    
 end
