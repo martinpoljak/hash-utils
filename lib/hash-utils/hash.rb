@@ -1,6 +1,8 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
+require "hash-utils/array"
+
 ##
 # Hash extension.
 #
@@ -264,24 +266,26 @@ class Hash
     # @deprecated (since 0.10.0, conflict with built-in method)
     # @since 0.2.0
     #
-    
-    def all?(&block)
-        if block.arity == 2
-            self.all_pairs? &block
-        end
-        
-        if self.empty? or block.nil?
-            return true
-        end
-        
-        self.each_value do |v|
-            if block.call(v) == false
-                return false
-            end
-        end
-        
-        return true
-    end
+    #
+    # REMOVED SINCE 0.15.0
+    #
+    # def all?(&block)
+    #    if block.arity == 2
+    #        self.all_pairs? &block
+    #    end
+    #    
+    #    if self.empty? or block.nil?
+    #        return true
+    #    end
+    #    
+    #    self.each_value do |v|
+    #        if block.call(v) == false
+    #            return false
+    #        end
+    #    end
+    #    
+    #    return true
+    # end
     
     ##
     # Checks, all elements follow condition expressed in block.
@@ -578,14 +582,14 @@ class Hash
     # @since 0.15.0
     #
     
-    def get(*args)
-        args.each do |i|
-            if self.has_key? i
-                yield [i, self[i]]
+    def get_pairs(*args)
+        self.take_pairs(*args) do |i|
+            if not i.second.nil?
+                yield i
             end
         end
     end
-    
+      
     ##
     # Returns items from +Hash+ under given keys in required order. 
     # Doesn't keep default values settings. None-existing values are 
@@ -593,7 +597,7 @@ class Hash
     #
     # @example
     #   hash = {:a => 1, :b => 2, :c => 3}
-    #   hash.get(:a, :c)                # will return {:a => 1, :c => 3}
+    #   hash.get_items(:a, :c, :d)                # will return {:a => 1, :c => 3}
     #    
     # @param [*Object] keys
     # @return [Hash] new hash
@@ -602,7 +606,7 @@ class Hash
 
     def get_items(*args)
         result = { }
-        self.get(*args) do |key, value|
+        self.get_pairs(*args) do |key, value|
             result[key] = value
         end
         
@@ -614,7 +618,7 @@ class Hash
     #
     # @example
     #   hash = {:a => 1, :b => 2, :c => 3}
-    #   hash.get(:a, :c)                # will return {:a => 1, :c => 3}
+    #   hash.get_values(:a, :c, :d)            # will return [1, 3]
     #    
     # @param [*Object] keys
     # @return [Array] array of values
@@ -623,12 +627,71 @@ class Hash
 
     def get_values(*args)
         result = [ ]
-        self.get(*args) do |key, value|
+        self.get_pairs(*args) do |key, value|
             result << value
         end
         
         return result
     end
     
+    ##
+    # Iterates through items with given key only including none-existing 
+    # values.
+    #
+    # @param [*Object] keys    
+    # @yield [Array] pairs
+    # @since 0.15.0
+    #
+    
+    def take_pairs(*args)
+        args.each do |i|
+            yield [i, self[i]]
+        end
+    end
+    
+    ##
+    # Returns items from +Hash+ under given keys in required order. 
+    # Doesn't keep default values settings. Includes none-existing 
+    # values.
+    #
+    # @example
+    #   hash = {:a => 1, :b => 2, :c => 3}
+    #   hash.take_items(:a, :c, :d)       # will return {:a => 1, :c => 3, :d => nil}
+    #    
+    # @param [*Object] keys
+    # @return [Hash] new hash
+    # @since 0.15.0
+    #
+
+    def take_items(*args)
+        result = { }
+        self.take_pairs(*args) do |key, value|
+            result[key] = value
+        end
+        
+        return result
+    end
+   
+    ##
+    # Returns values from +Hash+ under given keys in required order 
+    # including none-existing values.
+    #
+    # @example
+    #   hash = {:a => 1, :b => 2, :c => 3}
+    #   hash.take_values(:a, :c, :d)            # will return [1, 3, nil]
+    #    
+    # @param [*Object] keys
+    # @return [Array] array of values
+    # @since 0.15.0
+    #
+
+    def take_values(*args)
+        result = [ ]
+        self.take_pairs(*args) do |key, value|
+            result << value
+        end
+        
+        return result
+    end
     
 end
