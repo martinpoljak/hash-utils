@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Martin Kozák}]
-  s.date = %q{2011-05-27}
+  s.date = %q{2011-05-29}
   s.email = %q{martinkozak@martinkozak.net}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -47,8 +47,8 @@ your code if you can and switch to Ruby's one.
 
 }
   s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.3}
-  s.summary = %q{Adds more than 90 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Module, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way.}
+  s.rubygems_version = %q{1.8.4}
+  s.summary = %q{Adds more than 95 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Module, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way.}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
