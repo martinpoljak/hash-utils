@@ -181,7 +181,28 @@ end
 
 context "String" do
     asserts("#first") do
-        "abc".first == ?a
+        "abcdefgh".first == ?a
+    end
+    asserts("#second") do
+        "abcdefgh".second == ?b
+    end
+    asserts("#third") do
+        "abcdefgh".third == ?c
+    end
+    asserts("#fourth") do
+        "abcdefgh".fourth == ?d
+    end
+    asserts("#fifth") do
+        "abcdefgh".fifth == ?e
+    end
+    asserts("#sixth") do
+        "abcdefgh".sixth == ?f
+    end
+    asserts("#seventh") do
+        "abcdefgh".seventh == ?g
+    end
+    asserts("#eighth") do
+        "abcdefgh".eighth == ?h
     end
     asserts("#first_line") do
         res = true

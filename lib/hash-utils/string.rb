@@ -190,7 +190,7 @@ class String
         
         self
     end
-    
+        
     ##
     # Returns first character of the string.
     #
@@ -202,7 +202,84 @@ class String
     #
     
     def first
-        self[0].chr
+        self.chr
+    end
+        
+    ##
+    # Returns second character of the string.
+    #
+    # @return [String] second character
+    # @since 0.15.0
+    #
+    
+    def second
+        self[1].chr
+    end
+    
+    ##
+    # Returns third character of the string.
+    #
+    # @return [String] third character
+    # @since 0.15.0
+    #
+    
+    def third
+        self[2].chr
+    end
+    
+    ##
+    # Returns fourth character of the string.
+    #
+    # @return [String] fourth character
+    # @since 0.15.0
+    #
+    
+    def fourth
+        self[3].chr
+    end
+    
+    ##
+    # Returns fifth character of the string.
+    #
+    # @return [String] fifth character
+    # @since 0.15.0
+    #
+    
+    def fifth
+        self[4].chr
+    end
+    
+    ##
+    # Returns sixth character of the string.
+    #
+    # @return [String] sixth character
+    # @since 0.15.0
+    #
+
+    def sixth
+        self[5].chr
+    end
+    
+    ##
+    # Returns seventh character of the string.
+    #
+    # @return [String] seventh character
+    # @since 0.15.0
+    #
+
+    def seventh
+        self[6].chr
+    end
+    
+    ##
+    # Returns eighth character of the string.
+    #
+    # @return [String] eighth character
+    # @since 0.15.0
+    #
+
+    def eighth
+        self[7].chr
     end
     
     ##
