@@ -348,7 +348,7 @@ class Hash
     #
     
     def to_h(mode = nil)
-        return self
+        self
     end
     
     ##
