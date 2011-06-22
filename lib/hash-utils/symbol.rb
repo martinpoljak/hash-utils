@@ -25,7 +25,7 @@ class Symbol
     # Returns a new +Symbol+ containing +other_str+ concatenated 
     # to +str+.
     #
-    # @param [Integer] other_str string for concatenating to
+    # @param [Symbol, String] other_str string or symbol for concatenating to
     # @return [Symbol] new symbol
     # @since 0.12.0
     #
