@@ -13,7 +13,7 @@ non-atomic and organized by better way.
 - `IO` &ndash; 1 method,
 - `Module` &ndash; 1 method,
 - `Numeric` &ndash; 4 method,
-- `Object` &ndash; 6 methods,
+- `Object` &ndash; 8 methods,
 - `String` &ndash; 34 methods,
 - `StringIO` &ndash; 1 method,
 - `Symbol` &ndash; 7 methods.

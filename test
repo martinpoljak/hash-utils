@@ -200,8 +200,14 @@ context "Object" do
     asserts("#in?") do
         5.in? 1..7
     end
+    asserts("#instance_of_any?") do
+        "".instance_of_any? [String, Symbol] and not "".instance_of_any? [Integer, Float]
+    end
     asserts("#io?") do
         not "".io?
+    end
+    asserts("#kind_of_any?") do
+        "".kind_of_any? [String, Symbol] and not "".kind_of_any? [Integer, Float]
     end
     asserts("#to_b") do
         (nil.to_b === false) and ("ab".to_b === true)

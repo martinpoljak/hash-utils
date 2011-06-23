@@ -5,6 +5,7 @@ require "hash-utils/object"
 
 ##
 # Numeric extension.
+# @since 0.16.0
 #
 
 class Numeric
