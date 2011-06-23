@@ -1,6 +1,8 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
+require "ruby-version"
+
 ##
 # Array extension.
 #
@@ -170,5 +172,53 @@ class Array
     def eighth
         self[7]
     end
+    
+    ##
+    # Returns sum of items in the array. If other than numeric type found,
+    # it will be normally conacenated if it's possible. 
+    #
+    # @example
+    #   array = [1, 2, 3]
+    #   array.sum                           # will return 6
+    #   array = ["a", "b", "c"]
+    #   array.sum                           # will return "abc"
+    #
+    # @return [Object] result of summing
+    # @since 0.16.0
+    #
+    
+    def sum
+        if RUBY_VERSION[0..2] == "1.9" or Ruby::Version >= [1, 8, 7]
+            self.inject(:+)
+        else
+            first = true
+            self.inject(self.first) do |sum, i|
+                if first
+                    first = false
+                    sum
+                else
+                    sum += i
+                end
+            end
+        end
+    end
+    
+    ##
+    # Returns average of items in the array. Numeric types are expected,
+    # but content of the array isn't checked.
+    #
+    # @example
+    #   array = [1, 2, 3]
+    #   array.avg                           # will return 2
+    #
+    # @return [Numeric] result of averaging
+    # @since 0.16.0
+    #
+    
+    def avg
+        self.sum.to_f / self.length
+    end
+    
+    alias :average :avg
     
 end

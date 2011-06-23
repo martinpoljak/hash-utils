@@ -8,14 +8,14 @@ require "hash-utils"
 require "riot"
 
 
-## FILE
+## ARRAY
 
 # Filozofové mají Kanta rádi. Matematici mají Kanta také rádi, jen si 
 # myslí, že většina z toho, co vymyslel, je blbost.
 #
 # doc. Jiří Souček
 
-context "File" do
+context "Array" do
     asserts("#second") do
         [1, 2, 3, 4, 5, 6, 7, 8].second == 2
     end
@@ -37,7 +37,15 @@ context "File" do
     asserts("#eighth") do
         [1, 2, 3, 4, 5, 6, 7, 8].eighth == 8
     end
+    asserts("#avg") do
+        [1, 2, 3].avg == 2
+    end
+    asserts("#sum") do
+        [1, 2, 3].sum == 6
+    end
 end
+
+## FILE
 
 context "File" do
     asserts("#touch") do 
@@ -61,7 +69,10 @@ context "Hash" do
     setup do 
         { :a => 1, :b => 2 }
     end
- 
+
+    asserts("#avg") do
+        topic.avg == 1.5
+    end 
     asserts("#compact") do
         t = { :a => 1, :b => nil }
         t = t.compact
@@ -114,6 +125,9 @@ context "Hash" do
         h.keys_to_sym! 
         h == {:a => "b", 2 => "c", :d => "e"}
     end
+    asserts("#sum") do
+        topic.sum == 3
+    end
     asserts("#take_pairs") do
         h = { :a => 1, :b => 2, :c => 3 }
         result = [ ]
@@ -151,6 +165,26 @@ context "Module" do
     asserts("#get_module") do
         require "zlib"
         Kernel.get_module("Zlib::Inflate") == Zlib::Inflate
+    end
+end
+
+## NUMERIC
+
+context "Numeric" do
+    asserts("#compare") do
+        5.compare(1) == 1 and 5.compare(5) == 0 and 5.compare(7) == -1
+    end
+    asserts("#negative?") do
+        not 5.negative? and -2.negative?
+    end
+    asserts("#negative!") do
+        5.negative! == -5 and -5.negative! == -5
+    end
+    asserts("#positive?") do
+        5.positive? and not -2.positive?
+    end
+    asserts("#positive!") do
+        5.positive! == 5 and -5.positive! ==  5
     end
 end
 

@@ -694,4 +694,42 @@ class Hash
         return result
     end
     
+    ##
+    # Returns sum of items in the hash. If other than numeric type found,
+    # it will be normally conacenated if it's possible. 
+    #
+    # @example
+    #   hash = {:a => 1, :b => 2, :c => 3}
+    #   hash.sum                            # will return 6
+    #   hash = {:a => "a", :b => "b", :c => "c"}
+    #   hash.sum                            # will return "abc"
+    #
+    # @return [Integer, Object] result of summing
+    # @see Array#sum
+    # @since 0.16.0
+    #
+    
+    def sum
+        self.values.sum
+    end
+    
+    ##
+    # Returns average of items in the hash. Numeric types are expected,
+    # but content of the hash isn't checked.
+    #
+    # @example
+    #   hash = {:a => 1, :b => 2, :c => 3}
+    #   hash.avg                           # will return 2
+    #
+    # @return [Numeric] result of averaging
+    # @since 0.16.0
+    #
+    
+    def avg
+        self.values.avg
+    end
+    
+    alias :average :avg
+    
+    
 end
