@@ -229,7 +229,7 @@ context "Object" do
         (false.false? == true) and ("string".false? == false)
     end
     asserts("#hash?") do
-        not "".hash? and {}.array?
+        not "".hash? and {}.hash?
     end
     asserts("#in?") do
         5.in? 1..7 and not 9.in? 1..7
