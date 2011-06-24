@@ -4,6 +4,7 @@
 require "hash-utils/array"
 require "hash-utils/boolean"
 require "hash-utils/file"
+require "hash-utils/gem"
 require "hash-utils/hash"
 require "hash-utils/io"
 require "hash-utils/module"
