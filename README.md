@@ -33,7 +33,7 @@ to appropriate type only by including the:
 ### Special Requirements
 
 Some methods are optimized at Ruby 1.8.7 and 1.9 and higher. These 
-optimizations requires the `[ruby-version][2]` gem available.
+optimizations requires the [`ruby-version`][2] gem available.
 
 Contributing
 ------------
