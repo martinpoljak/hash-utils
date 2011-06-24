@@ -18,7 +18,7 @@ module Gem
     # @since 0.17.1
     #
     
-    def available?(name)
+    def self.available?(name)
         begin
             return Gem::Specification::find_by_name(name.to_s).to_b
         rescue Gem::LoadError
@@ -36,7 +36,7 @@ module Gem
     # @since 0.17.1
     #
     
-    def require_available(name, file = nil)
+    def self.require_available(name, file = nil)
         if self.available? name
             require file.nil? ? name : file
             true
