@@ -29,6 +29,11 @@ If you don't want to include whole library, you can include extensions
 to appropriate type only by including the:
 
     require "hash-utils/<lowercase-data-type-name>"
+    
+### Special Requirements
+
+Some methods are optimized at Ruby 1.8.7 and 1.9 and higher. These 
+optimizations requires the `[ruby-version][2]` gem available.
 
 Contributing
 ------------
@@ -48,6 +53,7 @@ Copyright &copy; 2011 [Martin Kozák][10]. See `LICENSE.txt` for
 further details.
 
 [1]: http://rubyworks.github.com/facets/
+[2]: http://github.com/martinkozak/ruby-version
 [3]: http://rubydoc.info/gems/hash-utils
 [9]: http://github.com/martinkozak/hash-utils/issues
 [10]: http://www.martinkozak.net/
