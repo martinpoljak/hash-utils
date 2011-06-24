@@ -3,6 +3,8 @@
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
 $:.push("./lib")
+$:.unshift("./lib")
+
 require "stringio"
 require "hash-utils"
 require "riot"
@@ -42,6 +44,20 @@ context "Array" do
     end
     asserts("#sum") do
         [1, 2, 3].sum == 6
+    end
+end
+
+## FALSECLASS
+
+context "FalseClass" do
+    asserts("#boolean?") do
+        false.boolean?
+    end
+    asserts("#false?") do
+        false.false?
+    end
+    asserts("#true?") do
+        not false.true?
     end
 end
 
@@ -180,6 +196,9 @@ context "Numeric" do
     asserts("#negative!") do
         5.negative! == -5 and -5.negative! == -5
     end
+    asserts("#number?") do
+        5.number?
+    end
     asserts("#positive?") do
         5.positive? and not -2.positive?
     end
@@ -193,6 +212,9 @@ end
 context "Object" do
     asserts("#**") do
         "ab" ** 5 == ["ab", "ab", "ab", "ab", "ab"]
+    end
+    asserts("#boolean?") do
+        true.boolean? and false.boolean? and not "".boolean?
     end
     asserts("#false?") do
         (false.false? == true) and ("string".false? == false)
@@ -208,6 +230,15 @@ context "Object" do
     end
     asserts("#kind_of_any?") do
         "".kind_of_any? [String, Symbol] and not "".kind_of_any? [Integer, Float]
+    end
+    asserts("#number?") do
+        not :abcd.number? and 5.number?
+    end
+    asserts("#string?") do
+        "".string? and not 5.string?
+    end
+    asserts("#symbol?") do
+        :abcd.symbol? and not 5.symbol?
     end
     asserts("#to_b") do
         (nil.to_b === false) and ("ab".to_b === true)
@@ -330,6 +361,9 @@ context "String" do
         res &= str.shift_lines(2) == ["a\n", "b\n"]
         res &= str = "c\nd\n"
     end
+    asserts("#string?") do
+        "abcd".string?
+    end
     asserts("#ucfirst") do
         str = "abcd"
         str.ucfirst == "Abcd" and str == "abcd"
@@ -393,5 +427,22 @@ context "Symbol" do
     end
     asserts("#start_with?") do
         :abcde.start_with? "ghi", "abc"
+    end
+    asserts("#strip") do
+        :"  a  ".strip == :a
+    end
+end
+
+## TRUECLASS
+
+context "TrueClass" do
+    asserts("#boolean?") do
+        true.boolean?
+    end
+    asserts("#false?") do
+        not true.false?
+    end
+    asserts("#true?") do
+        true.true?
     end
 end
