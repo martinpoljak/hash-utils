@@ -238,6 +238,8 @@ class Hash
         end
     end
     
+    alias :symbolize_keys :keys_to_sym
+    
     ##
     # Emulates {#keys_to_sym} on place. In fact, replaces old hash by 
     # new one.
@@ -249,6 +251,8 @@ class Hash
     def keys_to_sym!
         self.replace(self.keys_to_sym)
     end
+    
+    alias :"symbolize_keys!" :"keys_to_sym!"
     
     ##
     # Checks, all elements values follow condition expressed in block.
