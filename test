@@ -42,6 +42,9 @@ context "Array" do
     asserts("#avg") do
         [1, 2, 3].avg == 2
     end
+    asserts("#array?") do
+        [1, 2, 3].array?
+    end
     asserts("#sum") do
         [1, 2, 3].sum == 6
     end
@@ -112,6 +115,9 @@ context "Hash" do
     asserts("#get_values") do
         h = { :a => 1, :b => 2, :c => 3 }
         h.get_values(:a, :c, :d) == [1, 3]
+    end
+    asserts("#get_values") do
+        { :a => 1, :b => 2, :c => 3 }.hash?
     end
     asserts("#map_values") do
         topic.map_values { |i| i + 1 } == { :a => 2, :b => 3 }
@@ -213,14 +219,20 @@ context "Object" do
     asserts("#**") do
         "ab" ** 5 == ["ab", "ab", "ab", "ab", "ab"]
     end
+    asserts("#array?") do
+        not "".array? and [].array?
+    end
     asserts("#boolean?") do
         true.boolean? and false.boolean? and not "".boolean?
     end
     asserts("#false?") do
         (false.false? == true) and ("string".false? == false)
     end
+    asserts("#hash?") do
+        not "".hash? and {}.array?
+    end
     asserts("#in?") do
-        5.in? 1..7
+        5.in? 1..7 and not 9.in? 1..7
     end
     asserts("#instance_of_any?") do
         "".instance_of_any? [String, Symbol] and not "".instance_of_any? [Integer, Float]
