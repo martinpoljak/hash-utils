@@ -126,4 +126,48 @@ class Object
         self.kind_of? FalseClass
     end
     
+    ##
+    # Indicates, object is +String+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.17.0
+    #
+    
+    def string?
+        self.kind_of? String
+    end
+    
+    ##
+    # Indicates, object is +Symbol+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.17.0
+    #
+    
+    def symbol?
+        self.kind_of? Symbol
+    end
+    
+    ##
+    # Indicates, object is +Numeric+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.17.0
+    #
+    
+    def number?
+        self.kind_of? Numeric
+    end
+    
+    ##
+    # Indicates, object is boolean.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.17.0
+    #
+    
+    def boolean?
+        self.true? or self.false?
+    end
+    
 end

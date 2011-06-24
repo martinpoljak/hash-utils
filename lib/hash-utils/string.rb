@@ -571,6 +571,18 @@ class String
         return self
     end
     
+    ##
+    # Indicates, object is +String+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.17.0
+    #
+    
+    def string?
+        true
+    end
+    
+    
     
     private
     

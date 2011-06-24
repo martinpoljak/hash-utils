@@ -85,6 +85,18 @@ class Numeric
     # @since 0.16.0
     #
     
-    alias :"positive!" :abs
+    alias :"positive!" :abs    
+    
+    ##
+    # Indicates, object is +Numeric+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.17.0
+    #
+    
+    def number?
+        true
+    end
+
     
 end
