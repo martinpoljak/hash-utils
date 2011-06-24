@@ -9,6 +9,8 @@ require "hash-utils/gem"
 
 class Array
 
+    @__sum_check_done
+
     ##
     # Moves selected values outside the array, so returns them.
     #
@@ -189,8 +191,10 @@ class Array
     
     def sum
         if RUBY_VERSION[0..2] == "1.9" \
+            or @__sum_check_done \
             or (Gem::require_available("ruby-version") and Ruby::Version >= [1, 8, 7])
             
+            @__sum_check_done = true
             self.inject(:+)
         else
             first = true
