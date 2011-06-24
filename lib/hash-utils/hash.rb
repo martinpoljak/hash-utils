@@ -730,6 +730,27 @@ class Hash
     end
     
     alias :average :avg
+
+    ##
+    # Indicates, object is +Array+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.17.0
+    #
     
+    def array?
+        self.kind_of? Array
+    end
     
+    ##
+    # Indicates, object is +Hash+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.17.0
+    #
+    
+    def hash?
+        true
+    end
+        
 end

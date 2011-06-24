@@ -221,4 +221,15 @@ class Array
     
     alias :average :avg
     
+    ##
+    # Indicates, object is +Array+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.17.0
+    #
+    
+    def array?
+        true
+    end
+    
 end
