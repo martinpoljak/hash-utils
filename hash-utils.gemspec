@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hash-utils}
-  s.version = "0.17.0"
+  s.version = "0.17.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Martin Kozák}]
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "lib/hash-utils/array.rb",
     "lib/hash-utils/boolean.rb",
     "lib/hash-utils/file.rb",
+    "lib/hash-utils/gem.rb",
     "lib/hash-utils/hash.rb",
     "lib/hash-utils/io.rb",
     "lib/hash-utils/module.rb",
@@ -42,9 +43,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/martinkozak/hash-utils}
   s.licenses = [%q{MIT}]
   s.post_install_message = %q{
-HASH UTILS: Be warn, Hash#all? has been removed since version 0.15.0 because of
-conflict with built-in one with in fact equivalent functionallity. Please, check
-your code if you can and switch to Ruby's one.
+HASH UTILS: Some methods are optimized at Ruby 1.8.7 and 1.9 or higher, but this feature requires the 'ruby-version' gem.
 
 }
   s.require_paths = [%q{lib}]
@@ -55,18 +54,15 @@ your code if you can and switch to Ruby's one.
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<ruby-version>, [">= 0.1.0"])
       s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_development_dependency(%q<jeweler>, [">= 1.5.2"])
       s.add_development_dependency(%q<riot>, [">= 0.12.3"])
     else
-      s.add_dependency(%q<ruby-version>, [">= 0.1.0"])
       s.add_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_dependency(%q<jeweler>, [">= 1.5.2"])
       s.add_dependency(%q<riot>, [">= 0.12.3"])
     end
   else
-    s.add_dependency(%q<ruby-version>, [">= 0.1.0"])
     s.add_dependency(%q<bundler>, [">= 1.0.0"])
     s.add_dependency(%q<jeweler>, [">= 1.5.2"])
     s.add_dependency(%q<riot>, [">= 0.12.3"])
