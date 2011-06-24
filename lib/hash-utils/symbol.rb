@@ -111,5 +111,18 @@ class Symbol
             i.to_sym
         end
     end
+    
+    ##
+    # Strips whitespace from symbol. It seems non-sense, but it's useful
+    # if you convert some data with problematic white-space heterogenity
+    # to symbols -- for example large CSV files or so.
+    #
+    # @return [Symbol] new symbol without whitespace
+    # @since 0.17.0
+    #
+    
+    def strip
+        self.to_s.strip!.to_sym
+    end
         
 end
