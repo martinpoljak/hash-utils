@@ -10,6 +10,7 @@ non-atomic and organized by better way.
 - `Array` &ndash; 12 methods,
 - `FalseClass` &ndash; 3 methods,
 - `File` &ndash; 2 methods,
+- `Gem` &ndash; 2 methods,
 - `Hash` &ndash; 38 methods,
 - `IO` &ndash; 1 method,
 - `Module` &ndash; 1 method,
