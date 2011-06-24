@@ -1,7 +1,7 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
-require "ruby-version"
+require "hash-utils/gem"
 
 ##
 # Array extension.
@@ -43,7 +43,7 @@ class Array
     # @since 0.2.0
     #
     
-    alias :some? :one?
+    alias :"some?" :"one?"
     
     ##
     # Converts array to +Hash+.
@@ -188,7 +188,9 @@ class Array
     #
     
     def sum
-        if RUBY_VERSION[0..2] == "1.9" or Ruby::Version >= [1, 8, 7]
+        if RUBY_VERSION[0..2] == "1.9" \
+            or (Gem::require_available("ruby-version") and Ruby::Version >= [1, 8, 7])
+            
             self.inject(:+)
         else
             first = true
