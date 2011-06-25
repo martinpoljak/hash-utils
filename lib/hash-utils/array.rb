@@ -190,9 +190,10 @@ class Array
     #
     
     def sum
-        if @__sum_check_done or \
-            RUBY_VERSION[0..2] == "1.9" \
-            or (Gem::require_available("ruby-version") and Ruby::Version >= [1, 8, 7])
+        if @__sum_check_done \
+            or RUBY_VERSION[0..2] == "1.9" \
+            or RUBY_VERSION[0..4] == "1.8.7" \
+            or (Gem::require_available("ruby-version") and Ruby::Version > [1, 8, 7])
             
             @__sum_check_done = true
             self.inject(:+)
