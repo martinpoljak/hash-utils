@@ -265,6 +265,10 @@ context "Object" do
     asserts("#number?") do
         not :abcd.number? and 5.number?
     end
+    asserts("#proc?") do
+        proc = Proc::new { }
+        not :abcd.proc? and proc.proc?
+    end
     asserts("#string?") do
         "".string? and not 5.string?
     end

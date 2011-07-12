@@ -149,6 +149,17 @@ class Object
     end
     
     ##
+    # Indicates, object is +Proc+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 0.18.0
+    #
+    
+    def proc?
+        self.kind_of? Proc
+    end
+    
+    ##
     # Indicates, object is +Numeric+.
     #
     # @return [Boolean] +true+ if yes, +false+ in otherwise
