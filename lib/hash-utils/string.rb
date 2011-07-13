@@ -582,6 +582,35 @@ class String
         true
     end
     
+    ##
+    # Swaps two strings. Return new content of self.
+    #
+    # @param [String] from source string
+    # @return [String] new content of self
+    # @since 0.18.0
+    #
+    
+    def swap_with(from)
+        intermediate = self.dup
+        self.replace(from)
+        from.replace(intermediate)
+        return self
+    end
+    
+    alias :"swap_with!" :swap_with
+    
+    ##
+    # Cuts string on place. Sets the content of #[] on place of 
+    # the string.
+    #
+    # @param [Range] range range with from and to limits
+    # @return [String] itself
+    # @since 0.18.0
+    #
+    
+    def cut!(range)
+        self.replace(self[range])
+    end
     
     
     private

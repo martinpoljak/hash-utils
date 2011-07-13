@@ -310,6 +310,11 @@ context "String" do
     asserts("#eighth") do
         "abcdefgh".eighth == ?h
     end
+    asserts("#cut!") do
+        foo = "0123456789"
+        foo.cut! 3..5
+        foo == "345"
+    end
     asserts("#first_line") do
         res = true
         res &= "a\nb\nc\n".first_line == "a\n"
@@ -398,6 +403,12 @@ context "String" do
     end
     asserts("#string?") do
         "abcd".string?
+    end
+    asserts("#swap_with") do
+        foo = "abc"
+        bar = "123"
+        foo.swap_with(bar)
+        foo = "123" and bar = "abc"
     end
     asserts("#ucfirst") do
         str = "abcd"
