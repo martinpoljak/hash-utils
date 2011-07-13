@@ -16,6 +16,7 @@ non-atomic and organized by better way.
 - `Module` &ndash; 1 method,
 - `Numeric` &ndash; 5 method,
 - `Object` &ndash; 13 methods,
+- `Proc` &ndash; 1 method,
 - `TrueClass` &ndash; 3 methods,
 - `String` &ndash; 37 methods,
 - `StringIO` &ndash; 1 method,
