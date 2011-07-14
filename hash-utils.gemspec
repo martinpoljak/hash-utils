@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hash-utils}
-  s.version = "0.17.1"
+  s.version = "0.18.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Martin Kozák}]
-  s.date = %q{2011-06-24}
+  s.date = %q{2011-07-14}
   s.email = %q{martinkozak@martinkozak.net}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
     "lib/hash-utils/module.rb",
     "lib/hash-utils/numeric.rb",
     "lib/hash-utils/object.rb",
+    "lib/hash-utils/proc.rb",
     "lib/hash-utils/string.rb",
     "lib/hash-utils/stringio.rb",
     "lib/hash-utils/symbol.rb",
