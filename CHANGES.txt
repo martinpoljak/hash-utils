@@ -1,0 +1,111 @@
+
+0.18.0 (2011-07-13)
+* Object: #proc?
+* Proc: #proc?
+* String: #swap_with, #cut!
+* minor optimizations
+
+0.17.1 (2011-06-24)
+* Gem: #available?, #require_available
+
+0.17.0 (2011-06-24)
+* Numeric: #number?
+* String: #string?
+* Object: #string?, #symbol?, #number?, #boolean?, #array?, #hash?
+* Symbol: #strip
+* TrueClass: #boolean?, #false?, #true?
+* FalseClass: #boolean?, #false?, #true?
+* Hash: #hash?
+* Array: #array?
+
+0.16.0 (2011-06-23)
+* Numeric: #compare, #positive?, #negative?, #negative!, #positive!
+* Object: #instance_of_any?, #kind_of_any?
+
+0.15.0 (2011-05-30)
+* Hash#keys_to_sym now converts only strings
+* Hash#to_h bug correction
+* Hash#all? removed in favour built-in one
+* Hash: #get, #get_items, #get_values
+* Symbol: #split
+* Array: #first, #second, #third, #fourth, #fifth, #sixth, 
+  #seventh, #eigtht
+* String: #ucfirst, #ucfirst!, #lcfirst, #lcfirst!, #first, #second, 
+  #third, #fourth, #fifth, #sixth, #seventh, #eigtht
+* Object: #true?, #false?
+
+0.14.0 (2011-03-25)
+* Object: #io?
+* IO: #io?
+* StringIO: #io?
+
+0.13.1 (2011-03-24)
+* Symbol: #append, #prepend
+* Module: #get_module
+* bug in Hash#deep_merge corrected
+
+0.12.0 (2011-03-20)
+* String: #first_lines, #first_line, #last_lines, #last_line, 
+  #shift_lines, #shift_line, #unshift_lines, #unshift_line, #pop_lines,
+  #pop_line, #push_lines, #push_line, #push, #pop, #shift, #unshift
+* Hash: #deep_merge, #deep_merge!, #compact, #compact!
+* Object: #**
+* Symbol: #*, #+, #[], #start_with?, #end_with?
+
+0.11.1 (2011-03-09)
+* binary mode support for File#write
+
+0.11.0 (2011-03-01)
+* File: #write, #touch
+* String: #first, #last
+* Hash: #map_values, #map_values!
+
+0.10.0 (2011-02-22)
+* overimplemented built-in methods removed
+* Array: #merge!
+* Hash: #combine
+
+0.9.0 (2011-02-21)
+* minor documentation corrections
+* Hash: #has_all?, #has_some?
+
+0.8.0 (2011-02-13)
+* #in? method moved to Object class
+* more efficient strigng to array conversion
+* minor bug in central includer corrected
+* String: #gsub_f, #gsub_f!
+
+0.7.0 (2011-02-10)
+* more efficient String#map
+* Object: #to_b
+
+0.6.0 (2011-02-09)
+* String: #to_a, #map, #map!
+
+0.5.0 (2011-02-08)
+* Hash: #sort!, #ksort, #ksort!, #asort, #asort!, #reverse, #reverse!
+
+0.4.1 (2011-01-27)
+* String#tr -> String#strtr
+
+0.4.0 (2011-01-27)
+* String: #tr, #tr!
+* Array: #to_h
+* Hash: #to_h
+* documentation typo changes
+
+0.3.1 (2011-01-20)
+* minor documentation corrections
+
+0.3.0 (2011-01-12)
+* extensions splitted to standalone files
+* Hash: #define, #create, #recreate, #remove!
+* Array: #remove!
+* String: #numeric?
+
+0.2.0 (2011-01-04)
+* Hash: #some?, #all?
+* Array: #some?, #all?
+
+0.1.0 (2011-01-02) 
+* initial version
