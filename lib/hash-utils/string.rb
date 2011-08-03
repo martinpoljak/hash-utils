@@ -18,6 +18,12 @@ class String
     NUMERIC = /^\s*-?\d+(?:\.\d+)?\s*$/
     
     ##
+    # Holds character interlacing matcher.
+    #
+    
+    INTERLACING = /(.)([^$])/
+    
+    ##
     # Indicates, string is numeric, so consists of numbers only.
     #
     # @return [Boolean] +true+ if yes, +false+ in otherwise
@@ -600,7 +606,7 @@ class String
     alias :"swap_with!" :swap_with
     
     ##
-    # Cuts string on place. Sets the content of #[] on place of 
+    # Cuts string in place. Sets the content of #[] on place of 
     # the string.
     #
     # @param [Range] range range with from and to limits
@@ -610,6 +616,38 @@ class String
     
     def cut!(range)
         self.replace(self[range])
+    end
+
+    ##
+    # Performs string interlacing. It means, it inserts given string
+    # between characters of the string.
+    #
+    # @example
+    #   "abc".interlace("123")    # will return "a123b123c"
+    #
+    # @param [String] string string which will interlaced to
+    # @return [String] new interlaced string
+    # @since 0.19.0
+    # 
+    
+    public
+    def interlace(string)
+        self.gsub(self.class::INTERLACING, '\1' << string << '\2' << string)
+    end
+    
+    ##
+    # Performs string interlacing in place. 
+    #
+    # @param [String] string string which will interlaced to
+    # @return [String] itself
+    # @see #interlace
+    # @since 0.19.0
+    # 
+    
+    public
+    def interlace!(string)
+        self.gsub!(self.class::INTERLACING, '\1' << string << '\2' << string)
+        self
     end
     
     

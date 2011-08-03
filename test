@@ -325,6 +325,14 @@ context "String" do
         res &= "a\nb".first_lines(2) == ["a\n", "b"]
         res &= "a\nb\nc\n".first_lines(4) == ["a\n", "b\n", "c\n"]
     end
+    asserts("#interlace") do
+        "abc".interlace("123") == "a123b123c"
+    end
+    asserts("#interlace!") do
+        foo = "abc"
+        foo.interlace! "123"
+        foo == "a123b123c"
+    end
     asserts("#last") do
         "abc".last == ?c
     end
