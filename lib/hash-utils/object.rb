@@ -16,9 +16,9 @@ class Object
     # @since 0.16.0
     #
     
-    def instance_of_any?(classes)
-        if not classes.kind_of? Array
-            raise Exception::new("Array expected.")
+    def instance_of_any?(*classes)
+        if classes.first.array?
+            classes = classes.first
         end
         
         classes.each do |cls|
@@ -42,7 +42,7 @@ class Object
     
     def kind_of_any?(*classes)
         if classes.first.array?
-            classes = args.first
+            classes = classes.first
         end
         
         classes.each do |cls|

@@ -254,13 +254,17 @@ context "Object" do
         5.in? 1..7 and not 9.in? 1..7
     end
     asserts("#instance_of_any?") do
-        "".instance_of_any? [String, Symbol] and not "".instance_of_any? [Integer, Float]
+        "".instance_of_any? [String, Symbol] \
+            and not "".instance_of_any? [Integer, Float] \
+            and "".instance_of_any? String, Symbol
     end
     asserts("#io?") do
         not "".io?
     end
     asserts("#kind_of_any?") do
-        "".kind_of_any? [String, Symbol] and not "".kind_of_any? [Integer, Float]
+        "".kind_of_any? [String, Symbol] \
+            and not "".kind_of_any? [Integer, Float] \
+            and "".kind_of_any? String, Symbol
     end
     asserts("#number?") do
         not :abcd.number? and 5.number?
