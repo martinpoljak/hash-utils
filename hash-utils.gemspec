@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hash-utils}
-  s.version = "0.18.0"
+  s.version = "0.18.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Martin Kozák}]
-  s.date = %q{2011-07-14}
+  s.date = %q{2011-08-22}
   s.email = %q{martinkozak@martinkozak.net}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    "CHANGES.txt",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
@@ -48,7 +49,7 @@ HASH UTILS: Some methods are optimized at Ruby 1.8.7 and 1.9 or higher, but this
 
 }
   s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.5}
+  s.rubygems_version = %q{1.8.8}
   s.summary = %q{Adds more than 125 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Module, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way.}
 
   if s.respond_to? :specification_version then
