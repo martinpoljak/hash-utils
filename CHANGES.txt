@@ -1,4 +1,10 @@
 
+0.18.1 (2011-08-22)
+* String: #interlace, #interlace!
+* Object#instance_of_any? and #kind_of_any? receives both class or 
+  array of classes
+* bug fix in String#unshift
+
 0.18.0 (2011-07-13)
 * Object: #proc?
 * Proc: #proc?
