@@ -521,7 +521,7 @@ class String
     #
     
     def unshift(string)
-        self.replace(string << self)
+        self.replace(string + self)
     end    
     
     alias :prepend :unshift
