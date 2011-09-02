@@ -627,10 +627,9 @@ class String
     #
     # @param [String] string string which will interlaced to
     # @return [String] new interlaced string
-    # @since 0.19.0
+    # @since 0.18.1
     # 
     
-    public
     def interlace(string)
         self.gsub(self.class::INTERLACING, '\1' << string << '\2' << string)
     end
@@ -641,13 +640,27 @@ class String
     # @param [String] string string which will interlaced to
     # @return [String] itself
     # @see #interlace
-    # @since 0.19.0
+    # @since 0.18.1
     # 
     
-    public
     def interlace!(string)
         self.gsub!(self.class::INTERLACING, '\1' << string << '\2' << string)
         self
+    end
+    
+    ##
+    # Converts string to boolean. Note, it works differently than 
+    # {Object#to_b} because it converts to boolean by comparing in 
+    # contrast to +#to_b+ which converts by regular Ruby object boolean
+    # evaluation.
+    #
+    # @param [Object] t  true equivalent
+    # @return [Boolean] result of conversion
+    # @since 0.19.0
+    #
+    
+    def to_boolean(t = "true")
+        self == t
     end
     
     
