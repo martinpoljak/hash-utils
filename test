@@ -56,8 +56,14 @@ context "FalseClass" do
     asserts("#boolean?") do
         false.boolean?
     end
+    asserts("#convert") do
+        false.convert(:a, :b) == :b
+    end
     asserts("#false?") do
         false.false?
+    end
+    asserts("#to_i") do
+        false.to_i == 0
     end
     asserts("#true?") do
         not false.true?
@@ -206,6 +212,14 @@ context "Module" do
     asserts("#get_module") do
         require "zlib"
         Kernel.get_module("Zlib::Inflate") == Zlib::Inflate
+    end
+end
+
+## NILCLASS
+
+context "NilClass" do
+    asserts("#to_boolean") do
+        nil.to_boolean("xyz") === false
     end
 end
 
@@ -422,6 +436,9 @@ context "String" do
         foo.swap_with(bar)
         foo = "123" and bar = "abc"
     end
+    asserts("#to_boolean") do
+        "alfa".to_boolean("alfa") == true
+    end
     asserts("#ucfirst") do
         str = "abcd"
         str.ucfirst == "Abcd" and str == "abcd"
@@ -497,8 +514,14 @@ context "TrueClass" do
     asserts("#boolean?") do
         true.boolean?
     end
+    asserts("#convert") do
+        true.convert(:a, :b) == :a
+    end
     asserts("#false?") do
         not true.false?
+    end
+    asserts("#to_i") do
+        true.to_i == 1
     end
     asserts("#true?") do
         true.true?

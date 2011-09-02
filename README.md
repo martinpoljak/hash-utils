@@ -14,6 +14,7 @@ non-atomic and organized by better way.
 - `Hash` &ndash; 38 methods,
 - `IO` &ndash; 1 method,
 - `Module` &ndash; 1 method,
+- `NilClass` &ndash; 1 method,
 - `Numeric` &ndash; 5 method,
 - `Object` &ndash; 13 methods,
 - `Proc` &ndash; 1 method,
