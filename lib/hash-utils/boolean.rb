@@ -41,6 +41,32 @@ class TrueClass
         true
     end
     
+    ##
+    # Converts value to another type.
+    #
+    # @param [Object] t  true value equivalent
+    # @param [Object] f  false value equivalent
+    # @return [Object]  appropriate response
+    # @since 0.19.0
+    #
+    
+    def convert(t, f)
+        t
+    end
+    
+    ##
+    # Converts value to integer.
+    #
+    # @param [Object] t  true value equivalent
+    # @param [Object] f  false value equivalent
+    # @return [Object]  appropriate equivalent
+    # @since 0.19.0
+    #
+    
+    def to_i(t = 1, f = 0) 
+        self.convert(t, f)
+    end
+    
 end
 
 ##
@@ -81,6 +107,32 @@ class FalseClass
     
     def true?
         false
+    end
+    
+    ##
+    # Converts value to another type.
+    #
+    # @param [Object] t  true value equivalent
+    # @param [Object] f  false value equivalent
+    # @return [Object]  appropriate equivalent
+    # @since 0.19.0
+    #
+    
+    def convert(t, f)
+        f
+    end
+    
+    ##
+    # Converts value to integer.
+    #
+    # @param [Object] t  true value equivalent
+    # @param [Object] f  false value equivalent
+    # @return [Object]  appropriate equivalent
+    # @since 0.19.0
+    #
+    
+    def to_i(t = 1, f = 0) 
+        self.convert(t, f)
     end
     
 end
