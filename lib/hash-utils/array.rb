@@ -238,5 +238,31 @@ class Array
     def array?
         true
     end
+
+    ##
+    # Removes given value from the array. It's +nil+ by default, 
+    # so behaves just as {#compact}.
+    #
+    # @param [Object] value  required value; uses +===+ 
+    #   for comparing
+    # @since 0.19.0
+    #
+    
+    def clean(value = nil)
+        self.reject! { |v| v === value }
+    end
+    
+    ##
+    # Removes given value from the array in place. It's +nil+ 
+    # by default, so behaves just as {#compact}.
+    #
+    # @param [Object] value  required value; uses +===+ 
+    #   for comparing
+    # @since 0.19.0
+    #
+    
+    def clean!(value = nil)
+        self.reject! { |v| v === value }
+    end
     
 end

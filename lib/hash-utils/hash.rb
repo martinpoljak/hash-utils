@@ -104,7 +104,7 @@ class Hash
     #
 
     def compact
-        self.reject { |k, v| v.nil? }
+        self.clean()
     end
     
     ##
@@ -116,9 +116,35 @@ class Hash
     #
     
     def compact!
-        self.reject! { |k, v| v.nil? }
+        self.clean!
     end
     
+    ##
+    # Removes given value from the hash. It's +nil+ by default, 
+    # so behaves just as {#compact}.
+    #
+    # @param [Object] value  required value; uses +===+ 
+    #   for comparing
+    # @since 0.19.0
+    #
+    
+    def clean(value = nil)
+        self.reject! { |k, v| v === value }
+    end
+    
+    ##
+    # Removes given value from the hash in place. It's +nil+ 
+    # by default, so behaves just as {#compact}.
+    #
+    # @param [Object] value  required value; uses +===+ 
+    #   for comparing
+    # @since 0.19.0
+    #
+    
+    def clean!(value = nil)
+        self.reject! { |k, v| v === value }
+    end
+        
     ##
     # Returns a new hash with the results of running block once for 
     # every pair in +self+.

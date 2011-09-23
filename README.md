@@ -7,11 +7,11 @@ to several core classes. It tries to be similar project to
 [Ruby Facets][1] on principle, but less complex, more practical, 
 non-atomic and organized by better way.
 
-- `Array` &ndash; 12 methods,
+- `Array` &ndash; 14 methods,
 - `FalseClass` &ndash; 3 methods,
 - `File` &ndash; 2 methods,
 - `Gem` &ndash; 2 methods,
-- `Hash` &ndash; 38 methods,
+- `Hash` &ndash; 40 methods,
 - `IO` &ndash; 1 method,
 - `Module` &ndash; 1 method,
 - `NilClass` &ndash; 1 method,

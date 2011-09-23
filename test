@@ -39,11 +39,21 @@ context "Array" do
     asserts("#eighth") do
         [1, 2, 3, 4, 5, 6, 7, 8].eighth == 8
     end
+    asserts("#array?") do
+        [1, 2, 3].array?
+    end
     asserts("#avg") do
         [1, 2, 3].avg == 2
     end
-    asserts("#array?") do
-        [1, 2, 3].array?
+    asserts("#clean") do
+        t = [1, nil]
+        t = t.clean(1)
+        t == [nil]
+    end
+    asserts("#clean!") do
+        t = [1, nil]
+        t.clean(1)
+        t == [nil]
     end
     asserts("#sum") do
         [1, 2, 3].sum == 6
@@ -117,6 +127,16 @@ context "Hash" do
     asserts("#avg") do
         topic.avg == 1.5
     end 
+    asserts("#clean") do
+        t = { :a => 1, :b => nil }
+        t = t.clean(1)
+        t == { :b => nil }
+    end
+    asserts("#clean!") do
+        t = { :a => 1, :b => nil }
+        t.clean(1)
+        t == { :b => nil }
+    end
     asserts("#compact") do
         t = { :a => 1, :b => nil }
         t = t.compact
