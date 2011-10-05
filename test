@@ -134,7 +134,7 @@ context "Hash" do
     end
     asserts("#clean!") do
         t = { :a => 1, :b => nil }
-        t.clean(1)
+        t.clean!(1)
         t == { :b => nil }
     end
     asserts("#compact") do
@@ -425,6 +425,12 @@ context "String" do
         str = "a\nb\nc\nd"
         res &= str.push_lines("1", "2") == "a\nb\nc\nd\n1\n2"
         res &= str == "a\nb\nc\nd\n1\n2"
+    end
+    asserts("#random") do
+        str1 = String::random(30)
+        str2 = String::random(30)
+        
+        str1 != str2
     end
     asserts("#shift") do
         res = true
