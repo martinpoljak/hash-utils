@@ -129,7 +129,7 @@ class Hash
     #
     
     def clean(value = nil)
-        self.reject! { |k, v| v === value }
+        self.reject { |k, v| v === value }
     end
     
     ##
