@@ -24,6 +24,60 @@ class String
     INTERLACING = /(.)([^$])/
     
     ##
+    # Holds lower case alpha characters for random string generator.
+    #
+    
+    RANDOM_ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz"
+
+    ##
+    # Holds upper case alpha characters for random string generator.
+    #
+    
+    RANDOM_ALPHA_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    ##
+    # Holds number characters list for random string generator.
+    #
+    
+    RANDOM_NUMBERS = "0123456789"
+    
+    ##
+    # Holds symbols list for random string generator.
+    #
+    
+    RANDOM_SYMBOLS = "!\/#?.,_-+*@%&{}[]()=<>|~'$"
+    
+    ##
+    # Holds whitespace for random string generator.
+    #
+    
+    RANDOM_WHITESPACE = " "
+    
+    ##
+    # Holds full spectrum of possible characters in random string generator.
+    #
+    
+    RANDOM_FULL = self::RANDOM_ALPHA_LOWER + self::RANDOM_ALPHA_UPPER + self::RANDOM_NUMBERS + self::RANDOM_SYMBOLS + self::RANDOM_WHITESPACE 
+    
+    ##
+    # Returns random string.
+    # 
+    # @param [Integer] length  length of the required string
+    # @param [String] characters  list of the characters
+    # @return [String] new random string
+    #
+    
+    def self.random(length, characters = self::RANDOM_FULL)
+        result = ""
+        max = characters.length
+        length.times do
+            result << characters[Kernel.rand(max)].chr
+        end
+        
+        return result
+    end
+    
+    ##
     # Indicates, string is numeric, so consists of numbers only.
     #
     # @return [Boolean] +true+ if yes, +false+ in otherwise
