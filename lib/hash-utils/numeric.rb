@@ -20,15 +20,7 @@ class Numeric
     #
     
     def compare(number)
-        comp = self - number
-        
-        if comp.zero?
-            0
-        elsif comp.positive?
-            1
-        else
-            -1
-        end
+        self <=> number
     end
     
     ##
