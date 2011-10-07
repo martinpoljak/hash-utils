@@ -16,6 +16,7 @@ class Numeric
     #
     # @param [Numeric] number number for comparsion
     # @return [Integer] comparsion result, see above
+    # @deprecated (since 0.19.0) Use the +#<=>+ operator instead.
     # @since 0.16.0
     #
     
