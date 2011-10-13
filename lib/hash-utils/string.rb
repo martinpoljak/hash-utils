@@ -1,6 +1,7 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
+require "ruby-version"
 require "hash-utils/array"
 require "hash-utils/hash"
 require "hash-utils/object"
@@ -13,48 +14,56 @@ class String
 
     ##
     # Holds numeric matcher.
+    # @since 0.3.0
     #
     
     NUMERIC = /^\s*-?\d+(?:\.\d+)?\s*$/
     
     ##
     # Holds character interlacing matcher.
+    # @since 0.18.1
     #
     
     INTERLACING = /(.)([^$])/
     
     ##
     # Holds lower case alpha characters for random string generator.
+    # @since 0.19.0
     #
     
     RANDOM_ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz"
 
     ##
     # Holds upper case alpha characters for random string generator.
+    # @since 0.19.0
     #
     
     RANDOM_ALPHA_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     ##
     # Holds number characters list for random string generator.
+    # @since 0.19.0
     #
     
     RANDOM_NUMBERS = "0123456789"
     
     ##
     # Holds symbols list for random string generator.
+    # @since 0.19.0
     #
     
     RANDOM_SYMBOLS = "!\/#?.,_-+*@%&{}[]()=<>|~'$"
     
     ##
     # Holds whitespace for random string generator.
+    # @since 0.19.0
     #
     
     RANDOM_WHITESPACE = " "
     
     ##
     # Holds full spectrum of possible characters in random string generator.
+    # @since 0.19.0
     #
     
     RANDOM_FULL = self::RANDOM_ALPHA_LOWER + self::RANDOM_ALPHA_UPPER + self::RANDOM_NUMBERS + self::RANDOM_SYMBOLS + self::RANDOM_WHITESPACE 
@@ -65,6 +74,7 @@ class String
     # @param [Integer] length  length of the required string
     # @param [String] characters  list of the characters
     # @return [String] new random string
+    # @since 0.19.0
     #
     
     def self.random(length, characters = self::RANDOM_FULL)
@@ -566,19 +576,27 @@ class String
         return res
     end
 
-    ##
-    # Puts content to begin of string.
-    #
-    # @param [String] string string for prepend
-    # @return [String] itself
-    # @since 0.12.0
-    #
+    if Ruby::Version < [1, 9, 3]
+      
+        ##
+        # Puts content to begin of string.
+        #
+        # @note Since Ruby 1.9.3 replaced by STL native version.
+        #
+        # @param [String] string string for prepend
+        # @return [String] itself
+        # @since 0.12.0
+        #
+        
+        def unshift(string)
+            self.replace(string + self)
+        end    
+        
+        alias :prepend :unshift
+    else
+        alias :unshift :prepend
+    end
     
-    def unshift(string)
-        self.replace(string + self)
-    end    
-    
-    alias :prepend :unshift
     alias :append :<<
     
     ##

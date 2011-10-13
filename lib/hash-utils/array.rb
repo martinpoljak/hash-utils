@@ -1,7 +1,7 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
-require "hash-utils/gem"
+require "ruby-version"
 
 ##
 # Array extension.
@@ -174,30 +174,44 @@ class Array
     def eighth
         self[7]
     end
-    
-    ##
-    # Returns sum of items in the array. If other than numeric type found,
-    # it will be normally conacenated if it's possible. 
-    #
-    # @example
-    #   array = [1, 2, 3]
-    #   array.sum                           # will return 6
-    #   array = ["a", "b", "c"]
-    #   array.sum                           # will return "abc"
-    #
-    # @return [Object] result of summing
-    # @since 0.16.0
-    #
-    
-    def sum
-        if @__sum_check_done \
-            or RUBY_VERSION[0..2] == "1.9" \
-            or RUBY_VERSION[0..4] == "1.8.7" \
-            or (Gem::require_available("ruby-version") and Ruby::Version > [1, 8, 7])
-            
-            @__sum_check_done = true
+        
+    if Ruby::Version >= [1, 8, 7]
+      
+        ##
+        # Returns sum of items in the array. If other than numeric type found,
+        # it will be normally conacenated if it's possible. 
+        #
+        # @example
+        #   array = [1, 2, 3]
+        #   array.sum                           # will return 6
+        #   array = ["a", "b", "c"]
+        #   array.sum                           # will return "abc"
+        #
+        # @return [Object] result of summing
+        # @since 0.16.0
+        #
+
+        def sum
             self.inject(:+)
-        else
+        end
+        
+    else
+    
+        ##
+        # Returns sum of items in the array. If other than numeric type found,
+        # it will be normally conacenated if it's possible. 
+        #
+        # @example
+        #   array = [1, 2, 3]
+        #   array.sum                           # will return 6
+        #   array = ["a", "b", "c"]
+        #   array.sum                           # will return "abc"
+        #
+        # @return [Object] result of summing
+        # @since 0.16.0
+        #
+
+        def sum
             first = true
             self.inject(self.first) do |sum, i|
                 if first
@@ -241,7 +255,7 @@ class Array
 
     ##
     # Removes given value from the array. It's +nil+ by default, 
-    # so behaves just as {#compact}.
+    # so behaves just as {Array#compact}.
     #
     # @param [Object] value  required value; uses +===+ 
     #   for comparing
@@ -254,7 +268,7 @@ class Array
     
     ##
     # Removes given value from the array in place. It's +nil+ 
-    # by default, so behaves just as {#compact}.
+    # by default, so behaves just as {Array#compact}.
     #
     # @param [Object] value  required value; uses +===+ 
     #   for comparing
@@ -266,3 +280,4 @@ class Array
     end
     
 end
+

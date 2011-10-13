@@ -9,14 +9,13 @@
 class NilClass
     
     ##
-    # Equivalent of {TrueClass#to_boolean}, but returns always +false+.
+    # Converts +nil+ to boolean.
     #
-    # @param [Object] t  true equivalent
     # @return [FalseClass] result
     # @since 0.19.0
     #
     
-    def to_boolean(t = nil)
+    def to_boolean(*args)
         false
     end
     
