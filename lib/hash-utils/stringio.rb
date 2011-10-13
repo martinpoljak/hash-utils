@@ -5,7 +5,7 @@
 # StringIO extension.
 #
 
-class StringIO
+class StringIO < Data
 
     ##
     # Indicates, object is IO, so +IO+ or +StringIO+ class.
