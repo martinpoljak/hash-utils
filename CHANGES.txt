@@ -1,4 +1,17 @@
 
+1.0.0 (2011-10-17)
+* Boolean: #convert, #to_i
+* String: #to_boolean
+* Nil: #to_boolean
+* Array: #clean, #clean!
+* Hash: #clean, #clean!
+* String: #random
+* Numeric#compare is deprecated
+* 'ruby-version' dependency
+* conditional methods definitions depending to Ruby version
+* StringIO have correct ancestor now
+* File#write now writes non-binary again, binary writing moved to File#binwrite
+
 0.18.1 (2011-08-22)
 * String: #interlace, #interlace!
 * Object#instance_of_any? and #kind_of_any? receives both class or 
