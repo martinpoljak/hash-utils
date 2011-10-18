@@ -316,6 +316,9 @@ context "Object" do
     asserts("#to_b") do
         (nil.to_b === false) and ("ab".to_b === true)
     end
+    asserts("#to_sym") do
+        (nil.to_sym === :"") and ("ab".to_sym === :ab) and (12.to_sym == :"12")
+    end
     asserts("#true?") do
         (true.true? == true) and ("string".true? == false)
     end

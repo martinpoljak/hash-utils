@@ -202,5 +202,17 @@ class Object
     def hash?
         self.kind_of? Hash
     end
+    
+    ##
+    # Converts object to +Symbol+. In fact, converts it to +String+
+    # and subsequently to +Symbol+ only.
+    #
+    # @return [Symbol] symbol representation of the object
+    # @since 1.1.0
+    #
+    
+    def to_sym
+        self.to_s.to_sym
+    end
         
 end
