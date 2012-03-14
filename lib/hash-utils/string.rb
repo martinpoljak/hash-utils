@@ -747,7 +747,7 @@ class String
         keys = defs.keys
         keys.map! { |i| i.to_s }
 
-        matcher = Regexp::new("(" << keys.join("|") << ")")
+        matcher = Regexp::new("(" + keys.join("|") + ")")
         return [defs, matcher]
     end
     
