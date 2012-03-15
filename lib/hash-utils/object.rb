@@ -10,6 +10,26 @@ require "ruby-version"
 class Object
     
     @@__hash_utils_methods_index = { } 
+    @@__hash_utils_object_index = [ ]
+        
+    private
+    
+    ##
+    # Both indicates, instance of the class responds to some call
+    # and indicates patched calls in Object
+    #
+    # @param [Symbol] call  a call name
+    # @return [Boolean] +true+ it it is, +false+ otherwise
+    # @since 2.0.0
+    #
+
+    def self.__hash_utils_object_respond_to?(call)\
+        @@__hash_utils_object_index << call
+        self.__hash_utils_instance_respond_to? call
+    end
+    
+    
+    public
         
     ##
     # Indicates, instance of the class responds to some call.
@@ -23,14 +43,28 @@ class Object
     if not self.methods.include? :__hash_utils_instance_respond_to?
         def self.__hash_utils_instance_respond_to?(call)
             if not @@__hash_utils_methods_index.has_key? self
+                instance_methods = self.instance_methods
+              
                 if Ruby::Version >= [1, 9]
                     require "set"
-                    @@__hash_utils_methods_index[self] = Set::new(self.instance_methods)
+                    @@__hash_utils_methods_index[self] = Set::new(instance_methods)
+                    
+                    if self != Object
+                        @@__hash_utils_methods_index[self] -= @@__hash_utils_object_index
+                    end
                 else
                     @@__hash_utils_methods_index[self] = { }
-                    self.instance_methods.each do |i|
-                        @@__hash_utils_methods_index[self][i] = true
-                     end
+                    _col = @@__hash_utils_methods_index[self]
+                    
+                    instance_methods.each do |i|
+                        _col[i] = true
+                    end
+                    
+                    if self != Object
+                        @@__hash_utils_object_index.each do |i|
+                            _col.delete(i)
+                        end
+                    end
                 end
             end
             
@@ -49,7 +83,7 @@ class Object
     # @since 0.16.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :instance_of_any?
+    if not __hash_utils_object_respond_to? :instance_of_any?
         def instance_of_any?(*classes)
             if classes.first.array?
                 classes = classes.first
@@ -75,7 +109,7 @@ class Object
     # @since 0.16.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :kind_of_any?
+    if not __hash_utils_object_respond_to? :kind_of_any?
         def kind_of_any?(*classes)
             if classes.first.array?
                 classes = classes.first
@@ -91,7 +125,7 @@ class Object
         end
     end
     
-    if not self.__hash_utils_instance_respond_to? :is_a_any?
+    if not __hash_utils_object_respond_to? :is_a_any?
         alias :is_a_any? :kind_of_any?
     end
 
@@ -103,7 +137,7 @@ class Object
     # @since 0.8.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :in?
+    if not __hash_utils_object_respond_to? :in?
         def in?(range)
             range.include? self
         end
@@ -116,7 +150,7 @@ class Object
     # @since 0.7.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :to_b
+    if not __hash_utils_object_respond_to? :to_b
         def to_b
             !!self
         end
@@ -130,7 +164,7 @@ class Object
     # @since 0.12.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :**
+    if not __hash_utils_object_respond_to? :**
         def **(count)
             result = [ ]
             count.times { result << self.dup }
@@ -145,7 +179,7 @@ class Object
     # @since 0.14.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :io?
+    if not __hash_utils_object_respond_to? :io?
         def io?
             false
         end
@@ -158,7 +192,7 @@ class Object
     # @since 0.15.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :true?
+    if not __hash_utils_object_respond_to? :true?
         def true?
             self.kind_of? TrueClass
         end
@@ -171,7 +205,7 @@ class Object
     # @since 0.15.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :false?
+    if not __hash_utils_object_respond_to? :false?
         def false?
             self.kind_of? FalseClass
         end
@@ -184,7 +218,7 @@ class Object
     # @since 0.17.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :string?
+    if not __hash_utils_object_respond_to? :string?
         def string?
             self.kind_of? String
         end
@@ -197,7 +231,7 @@ class Object
     # @since 0.17.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :symbol?
+    if not __hash_utils_object_respond_to? :symbol?
         def symbol?
             self.kind_of? Symbol
         end
@@ -210,7 +244,7 @@ class Object
     # @since 0.18.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :proc?
+    if not __hash_utils_object_respond_to? :proc?
         def proc?
             self.kind_of? Proc
         end
@@ -223,7 +257,7 @@ class Object
     # @since 0.17.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :number?
+    if not __hash_utils_object_respond_to? :number?
         def number?
             self.kind_of? Numeric
         end
@@ -236,7 +270,7 @@ class Object
     # @since 0.17.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :boolean?
+    if not __hash_utils_object_respond_to? :boolean?
         def boolean?
             self.true? or self.false?
         end
@@ -249,7 +283,7 @@ class Object
     # @since 0.17.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :array?
+    if not __hash_utils_object_respond_to? :array?
         def array?
             self.kind_of? Array
         end
@@ -262,7 +296,7 @@ class Object
     # @since 0.17.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :hash?
+    if not __hash_utils_object_respond_to? :hash?
         def hash?
             self.kind_of? Hash
         end
@@ -276,7 +310,7 @@ class Object
     # @since 1.1.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :to_sym
+    if not __hash_utils_object_respond_to? :to_sym
         def to_sym
             self.to_s.to_sym
         end
@@ -291,7 +325,7 @@ class Object
     # @since 2.0.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :instance_respond_to?    
+    if not __hash_utils_object_respond_to? :instance_respond_to?    
         def instance_respond_to?(call)
             self.__hash_utils_instance_respond_to? call
         end

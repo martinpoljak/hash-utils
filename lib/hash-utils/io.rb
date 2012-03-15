@@ -16,7 +16,7 @@ class IO
     # @since 0.14.0
     #
     
-    if self.__hash_utils_instance_respond_to? :io?
+    if not self.__hash_utils_instance_respond_to? :io?
         def io?
             true
         end
