@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "hash-utils"
-  s.version = "1.0.0"
+  s.version = "2.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Koz\u{e1}k"]
-  s.date = "2011-10-17"
+  s.date = "2012-03-15"
   s.email = "martinkozak@martinkozak.net"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -45,10 +45,10 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/martinkozak/hash-utils"
   s.licenses = ["MIT"]
-  s.post_install_message = "\nHASH UTILS: File#write now works non-binary again. Binary writing were moved to File#binwrite.\n\n"
+  s.post_install_message = "\nHASH UTILS: The 2.0 version avoids the method overwriting conflicts by not performing overwriting of already implemented methods. By this way, it can damage your existing applications based on older versions although it's very improbable. \n\n"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.11"
-  s.summary = "Adds more than 125 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Module, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way."
+  s.rubygems_version = "1.8.17"
+  s.summary = "Adds more than 125 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Module, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way. Thanks to defensive and careful patching it should be compatible with all other libraries."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
@@ -56,18 +56,18 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<ruby-version>, [">= 0"])
       s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, [">= 1.5.2"])
+      s.add_development_dependency(%q<jeweler2>, [">= 2.0.0"])
       s.add_development_dependency(%q<riot>, [">= 0.12.3"])
     else
       s.add_dependency(%q<ruby-version>, [">= 0"])
       s.add_dependency(%q<bundler>, [">= 1.0.0"])
-      s.add_dependency(%q<jeweler>, [">= 1.5.2"])
+      s.add_dependency(%q<jeweler2>, [">= 2.0.0"])
       s.add_dependency(%q<riot>, [">= 0.12.3"])
     end
   else
     s.add_dependency(%q<ruby-version>, [">= 0"])
     s.add_dependency(%q<bundler>, [">= 1.0.0"])
-    s.add_dependency(%q<jeweler>, [">= 1.5.2"])
+    s.add_dependency(%q<jeweler2>, [">= 2.0.0"])
     s.add_dependency(%q<riot>, [">= 0.12.3"])
   end
 end
