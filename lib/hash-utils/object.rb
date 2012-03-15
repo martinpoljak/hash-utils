@@ -1,5 +1,5 @@
 # encoding: utf-8
-# (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
+# (c) 2011-2012 Martin Kozák (martinkozak@martinkozak.net)
 
 require "ruby-version"
 
