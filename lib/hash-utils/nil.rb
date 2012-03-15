@@ -15,8 +15,10 @@ class NilClass
     # @since 0.19.0
     #
     
-    def to_boolean(*args)
-        false
+    if not self.__hash_utils_instance_respond_to? :to_boolean
+        def to_boolean(*args)
+            false
+        end
     end
     
 end

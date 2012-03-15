@@ -14,8 +14,10 @@ class StringIO < Data
     # @since 0.14.0
     #
     
-    def io?
-        true
+    if not self.__hash_utils_instance_respond_to? :io?
+        def io?
+            true
+        end
     end
     
 end

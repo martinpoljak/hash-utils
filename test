@@ -52,11 +52,14 @@ context "Array" do
     end
     asserts("#clean!") do
         t = [1, nil]
-        t.clean(1)
+        t.clean!(1)
         t == [nil]
     end
     asserts("#sum") do
         [1, 2, 3].sum == 6
+    end
+    asserts("#to_set") do
+        [1, 2, 3].to_set == Set::new([1, 2, 3])
     end
 end
 
@@ -291,6 +294,9 @@ context "Object" do
         "".instance_of_any? [String, Symbol] \
             and not "".instance_of_any? [Integer, Float] \
             and "".instance_of_any? String, Symbol
+    end
+    asserts("#instance_respond_to?") do
+        String::instance_respond_to? :split and not String::instance_respond_to? :_nonsense_123
     end
     asserts("#io?") do
         not "".io?

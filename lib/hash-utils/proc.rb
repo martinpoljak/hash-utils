@@ -15,8 +15,10 @@ class Proc
     # @since 0.18.0
     #
     
-    def proc?
-        true
+    if not self.__hash_utils_instance_respond_to? :proc?
+        def proc?
+            true
+        end
     end
     
 end

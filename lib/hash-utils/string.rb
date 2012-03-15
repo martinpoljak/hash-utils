@@ -17,56 +17,72 @@ class String
     # @since 0.3.0
     #
     
-    NUMERIC = /^\s*-?\d+(?:\.\d+)?\s*$/
+    if not self.constants.include? :NUMERIC
+        NUMERIC = /^\s*-?\d+(?:\.\d+)?\s*$/
+    end
     
     ##
     # Holds character interlacing matcher.
     # @since 0.18.1
     #
     
-    INTERLACING = /(.)([^$])/
+    if not self.constants.include? :INTERLACING
+        INTERLACING = /(.)([^$])/
+    end
     
     ##
     # Holds lower case alpha characters for random string generator.
     # @since 0.19.0
     #
     
-    RANDOM_ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz"
-
+    if not self.constants.include? :RANDOM_ALPHA_LOWER
+        RANDOM_ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz"
+    end
+    
     ##
     # Holds upper case alpha characters for random string generator.
     # @since 0.19.0
     #
     
-    RANDOM_ALPHA_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    if not self.constants.include? :RANDOM_ALPHA_UPPER
+        RANDOM_ALPHA_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    end
 
     ##
     # Holds number characters list for random string generator.
     # @since 0.19.0
     #
     
-    RANDOM_NUMBERS = "0123456789"
+    if not self.constants.include? :RANDOM_NUMBERS
+        RANDOM_NUMBERS = "0123456789"
+    end
     
     ##
     # Holds symbols list for random string generator.
     # @since 0.19.0
     #
     
-    RANDOM_SYMBOLS = "!\/#?.,_-+*@%&{}[]()=<>|~'$"
+    if not self.constants.include? :RANDOM_SYMBOLS
+        RANDOM_SYMBOLS = "!\/#?.,_-+*@%&{}[]()=<>|~'$"
+    end
     
     ##
     # Holds whitespace for random string generator.
     # @since 0.19.0
     #
     
-    RANDOM_WHITESPACE = " "
+    if not self.constants.include? :RANDOM_WHITESPACE
+        RANDOM_WHITESPACE = " "
+    end
     
     ##
     # Holds full spectrum of possible characters in random string generator.
     # @since 0.19.0
     #
     
-    RANDOM_FULL = self::RANDOM_ALPHA_LOWER + self::RANDOM_ALPHA_UPPER + self::RANDOM_NUMBERS + self::RANDOM_SYMBOLS + self::RANDOM_WHITESPACE 
+    if not self.constants.include? :RANDOM_FULL
+        RANDOM_FULL = self::RANDOM_ALPHA_LOWER + self::RANDOM_ALPHA_UPPER + self::RANDOM_NUMBERS + self::RANDOM_SYMBOLS + self::RANDOM_WHITESPACE
+    end 
     
     ##
     # Returns random string.
@@ -77,14 +93,16 @@ class String
     # @since 0.19.0
     #
     
-    def self.random(length, characters = self::RANDOM_FULL)
-        result = ""
-        max = characters.length
-        length.times do
-            result << characters[Kernel.rand(max)].chr
+    if not self.respond_to? :random
+        def self.random(length, characters = self::RANDOM_FULL)
+            result = ""
+            max = characters.length
+            length.times do
+                result << characters[Kernel.rand(max)].chr
+            end
+            
+            return result
         end
-        
-        return result
     end
     
     ##
@@ -94,11 +112,13 @@ class String
     # @since 0.3.0
     #
     
-    def numeric?
-        if self.match(self.class::NUMERIC)
-            true
-        else
-            false
+    if not self.__hash_utils_instance_respond_to? :numeric?
+        def numeric?
+            if self.match(self.class::NUMERIC)
+                true
+            else
+                false
+            end
         end
     end
     
@@ -130,13 +150,15 @@ class String
     # @since 0.4.0
     #
     
-    def strtr(defs, mode = nil, &block)
-        if block.nil?
-            block = Proc::new { |s| s }
+    if not self.__hash_utils_instance_respond_to? :strtr
+        def strtr(defs, mode = nil, &block)
+            if block.nil?
+                block = Proc::new { |s| s }
+            end
+            
+            defs, matcher = __prepare_strtr(defs, mode)
+            self.gsub(matcher) { |s| defs[block.call(s)] }
         end
-        
-        defs, matcher = __prepare_strtr(defs, mode)
-        self.gsub(matcher) { |s| defs[block.call(s)] }
     end
     
     ##
@@ -151,13 +173,15 @@ class String
     # @since 0.4.0
     #
     
-    def strtr!(defs, mode = nil, &block)
-        if block.nil?
-            block = Proc::new { |s| s }
+    if not self.__hash_utils_instance_respond_to? :strtr!
+        def strtr!(defs, mode = nil, &block)
+            if block.nil?
+                block = Proc::new { |s| s }
+            end
+            
+            defs, matcher = __prepare_strtr(defs, mode)
+            self.gsub!(matcher) { |s| defs[block.call(s)] }
         end
-        
-        defs, matcher = __prepare_strtr(defs, mode)
-        self.gsub!(matcher) { |s| defs[block.call(s)] }
     end
     
     ##
@@ -167,12 +191,15 @@ class String
     #   foo = "012"
     #   puts foo.to_a.inspect   # prints out ["0", "1", "2"]
     #
+    # @param String glue glue according to convert to array
     # @return [Array] array of single character strings
     # @since 0.6.0
     # 
     
-    def to_a
-        self.split("")
+    if not self.__hash_utils_instance_respond_to? :to_a
+        def to_a(glue = "")
+            self.split(glue)
+        end
     end
     
     ##
@@ -187,13 +214,15 @@ class String
     # @since 0.6.0
     #
     
-    def map(&block)
-        buffer = " " * self.length
-        self.length.times do |i|
-            buffer[i] = block.call(self[i])
+    if not self.__hash_utils_instance_respond_to? :map
+        def map(&block)
+            buffer = " " * self.length
+            self.length.times do |i|
+                buffer[i] = block.call(self[i])
+            end
+                    
+            return buffer
         end
-                
-        return buffer
     end
     
     ##
@@ -205,12 +234,14 @@ class String
     # @see #map
     #
     
-    def map!(&block)
-        self.length.times do |i|
-            self[i] = block.call(self[i])
+    if not self.__hash_utils_instance_respond_to? :map!
+        def map!(&block)
+            self.length.times do |i|
+                self[i] = block.call(self[i])
+            end
+            
+            return self
         end
-        
-        self
     end
     
     ##
@@ -227,12 +258,14 @@ class String
     # @since 0.8.0
     #
 
-    def gsub_f(from, to = nil, &block) 
-        __prepare_gsub_f(from, to, block) do |callback|
-            if to.nil?
-                self.gsub(from, &callback)
-            else
-                self.gsub(from, to)
+    if not self.__hash_utils_instance_respond_to? :gsub_f
+        def gsub_f(from, to = nil, &block) 
+            __prepare_gsub_f(from, to, block) do |callback|
+                if to.nil?
+                    self.gsub(from, &callback)
+                else
+                    self.gsub(from, to)
+                end
             end
         end
     end
@@ -249,16 +282,18 @@ class String
     # @since 0.8.0
     #
 
-    def gsub_f!(from, to = nil, &block) 
-        __prepare_gsub_f(from, to, block) do |callback|
-            if to.nil?
-                self.gsub!(from, &callback)
-            else
-                self.gsub!(from, to)
+    if not self.__hash_utils_instance_respond_to? :gsub_f!
+        def gsub_f!(from, to = nil, &block) 
+            __prepare_gsub_f(from, to, block) do |callback|
+                if to.nil?
+                    self.gsub!(from, &callback)
+                else
+                    self.gsub!(from, to)
+                end
             end
+            
+            return self
         end
-        
-        self
     end
         
     ##
@@ -271,8 +306,10 @@ class String
     # @since 0.11.0
     #
     
-    def first
-        self.chr
+    if not self.__hash_utils_instance_respond_to? :first
+        def first
+            self.chr
+        end
     end
         
     ##
@@ -282,8 +319,10 @@ class String
     # @since 0.15.0
     #
     
-    def second
-        self[1].chr
+    if not self.__hash_utils_instance_respond_to? :second 
+        def second
+            self[1].chr
+        end
     end
     
     ##
@@ -293,8 +332,10 @@ class String
     # @since 0.15.0
     #
     
-    def third
-        self[2].chr
+    if not self.__hash_utils_instance_respond_to? :third
+        def third
+            self[2].chr
+        end
     end
     
     ##
@@ -304,8 +345,10 @@ class String
     # @since 0.15.0
     #
     
-    def fourth
-        self[3].chr
+    if not self.__hash_utils_instance_respond_to? :fourth
+        def fourth
+            self[3].chr
+        end
     end
     
     ##
@@ -315,8 +358,10 @@ class String
     # @since 0.15.0
     #
     
-    def fifth
-        self[4].chr
+    if not self.__hash_utils_instance_respond_to? :fifth
+        def fifth
+            self[4].chr
+        end
     end
     
     ##
@@ -326,8 +371,10 @@ class String
     # @since 0.15.0
     #
 
-    def sixth
-        self[5].chr
+    if not self.__hash_utils_instance_respond_to? :sixth
+        def sixth
+            self[5].chr
+        end
     end
     
     ##
@@ -337,8 +384,10 @@ class String
     # @since 0.15.0
     #
 
-    def seventh
-        self[6].chr
+    if not self.__hash_utils_instance_respond_to? :seventh
+        def seventh
+            self[6].chr
+        end
     end
     
     ##
@@ -348,8 +397,10 @@ class String
     # @since 0.15.0
     #
 
-    def eighth
-        self[7].chr
+    if not self.__hash_utils_instance_respond_to? :eighth 
+        def eighth
+            self[7].chr
+        end
     end
     
     ##
@@ -362,8 +413,10 @@ class String
     # @since 0.11.0
     #
     
-    def last
-        self[-1].chr
+    if not self.__hash_utils_instance_respond_to? :last
+        def last
+            self[-1].chr
+        end
     end
     
     ##
@@ -380,15 +433,17 @@ class String
     # @since 0.12.0
     #
     
-    def first_lines(count = 1)
-        result = [ ]
-        self.each_line do |line|
-            count -= 1
-            result << line
-            break if count == 0
+    if not self.__hash_utils_instance_respond_to? :first_lines
+        def first_lines(count = 1)
+            result = [ ]
+            self.each_line do |line|
+                count -= 1
+                result << line
+                break if count == 0
+            end
+            
+            return result
         end
-        
-        return result
     end
     
     ##
@@ -403,9 +458,11 @@ class String
     # @return [String] line with +\n+
     # @since 0.12.0
     #
-        
-    def first_line
-        self.first_lines.first
+    
+    if not self.__hash_utils_instance_respond_to? :first_line    
+        def first_line
+            self.first_lines.first
+        end
     end
 
     ##
@@ -422,24 +479,26 @@ class String
     # @since 0.12.0
     #
     
-    def last_lines(count = 1)
-        buffer = ""
-        result = [ ]
-        (self.length - 1).downto(0) do |i|
-            chr = self[i]
-            if chr.ord == 10
-                count -= 1
-                result << buffer.reverse!
-                buffer = ""
-                break if count == 0
+    if not self.__hash_utils_instance_respond_to? :last_lines
+        def last_lines(count = 1)
+            buffer = ""
+            result = [ ]
+            (self.length - 1).downto(0) do |i|
+                chr = self[i]
+                if chr.ord == 10
+                    count -= 1
+                    result << buffer.reverse!
+                    buffer = ""
+                    break if count == 0
+                end
+                buffer << chr.chr
             end
-            buffer << chr.chr
+    
+            if count != 0
+                result << buffer.reverse!
+            end
+            return result.reverse!
         end
-
-        if count != 0
-            result << buffer.reverse!
-        end
-        return result.reverse!
     end
     
     ##
@@ -454,9 +513,11 @@ class String
     # @return [String] line
     # @since 0.12.0
     #
-        
-    def last_line
-        self.last_lines.last
+    
+    if not self.__hash_utils_instance_respond_to? :last_line    
+        def last_line
+            self.last_lines.last
+        end
     end
     
     ##
@@ -477,22 +538,28 @@ class String
     # @since 0.12.0
     #
     
-    def shift_lines(count = 1)
-        lines = self.first_lines(count)
-        length = lines.inject(0) { |sum, i| sum + i.length }
-        self.replace(self[length..-1])
-        return lines
+    if not self.__hash_utils_instance_respond_to? :shift_lines
+        def shift_lines(count = 1)
+            lines = self.first_lines(count)
+            length = lines.reduce(0) { |sum, i| sum + i.length }
+            self.replace(self[length..-1])
+            return lines
+        end
     end
     
     ##
     # Removes first line out from the string and returns it.
+    #
     # @return [String] removed line
+    # @since 0.12.0
     #
     
-    def shift_line
-        self.shift_lines.first
+    if not self.__hash_utils_instance_respond_to? :shift_line
+        def shift_line
+            self.shift_lines.first
+        end
     end
-    
+        
     ##
     # Puts lines to begin of string.
     #
@@ -501,11 +568,15 @@ class String
     # @since 0.12.0
     #
     
-    def unshift_lines(*lines)
-        self.unshift(lines.join("\n") << "\n")
+    if not self.__hash_utils_instance_respond_to? :unshift_lines
+        def unshift_lines(*lines)
+            self.unshift(lines.join("\n") << "\n")
+        end
     end
     
-    alias :unshift_line :unshift_lines
+    if not self.__hash_utils_instance_respond_to? :unshift_line
+        alias :unshift_line :unshift_lines
+    end
     
     ##
     # Removes lines out of end of the string.
@@ -517,11 +588,13 @@ class String
     # @since 0.12.0
     #
     
-    def pop_lines(count = 1)
-        lines = self.last_lines(count)
-        length = lines.inject(0) { |sum, i| sum + i.length }
-        self.replace(self[0..(length - 1)])
-        return lines
+    if not self.__hash_utils_instance_respond_to? :pop_lines
+        def pop_lines(count = 1)
+            lines = self.last_lines(count)
+            length = lines.inject(0) { |sum, i| sum + i.length }
+            self.replace(self[0..(length - 1)])
+            return lines
+        end
     end
 
     ##
@@ -529,8 +602,10 @@ class String
     # @return [String] removed line
     #
     
-    def pop_line
-        self.pop_lines.first
+    if not self.__hash_utils_instance_respond_to? :pop_line
+        def pop_line
+            self.pop_lines.first
+        end
     end
     
     ##
@@ -540,13 +615,20 @@ class String
     # @return [String] itself
     # @since 0.12.0
     #
-        
-    def push_lines(*lines)
-        self.push("\n" << lines.join("\n"))
+       
+    if not self.__hash_utils_instance_respond_to? :push_lines 
+        def push_lines(*lines)
+            self.push("\n" << lines.join("\n"))
+        end
     end
     
-    alias :push_line :push_lines
-    alias :push :<<
+    if not self.__hash_utils_instance_respond_to? :push_line
+        alias :push_line :push_lines
+    end
+    
+    if not self.__hash_utils_instance_respond_to? :push
+        alias :push :<<
+    end
     
     ##
     # Removes appropriate number of characters from end of string.
@@ -556,12 +638,14 @@ class String
     # @since 0.12.0
     #
     
-    def pop(count = 1)
-        res = self[(self.length - count)..-1]
-        self.replace(self[0..-(count + 1)])
-        return res
+    if not self.__hash_utils_instance_respond_to? :pop
+        def pop(count = 1)
+            res = self[(self.length - count)..-1]
+            self.replace(self[0..-(count + 1)])
+            return res
+        end
     end
-
+    
     ##
     # Removes appropriate number of characters from begin of string.
     #
@@ -570,10 +654,12 @@ class String
     # @since 0.12.0
     #
     
-    def shift(count = 1)
-        res = self[0...count]
-        self.replace(self[count..-1])
-        return res
+    if not self.__hash_utils_instance_respond_to? :shift
+        def shift(count = 1)
+            res = self[0...count]
+            self.replace(self[count..-1])
+            return res
+        end
     end
 
     if Ruby::Version < [1, 9, 3]
@@ -588,16 +674,24 @@ class String
         # @since 0.12.0
         #
         
-        def unshift(string)
-            self.replace(string + self)
+        if not self.__hash_utils_instance_respond_to? :unshift
+            def unshift(string)
+                self.replace(string + self)
+            end
         end    
         
-        alias :prepend :unshift
+        if not self.__hash_utils_instance_respond_to? :prepend
+            alias :prepend :unshift
+        end
     else
-        alias :unshift :prepend
+        if not self.__hash_utils_instance_respond_to? :unshift
+            alias :unshift :prepend
+        end
     end
     
-    alias :append :<<
+    if not self.__hash_utils_instance_respond_to? :append
+        alias :append :<<
+    end
     
     ##
     # Converts first character of the string to uppercase.
@@ -607,8 +701,10 @@ class String
     # @since 0.15.0
     #
     
-    def ucfirst
-        self.dup.ucfirst!
+    if not self.__hash_utils_instance_respond_to? :ucfirst
+        def ucfirst
+            self.dup.ucfirst!
+        end
     end
     
     ##
@@ -619,9 +715,11 @@ class String
     # @since 0.15.0
     #
     
-    def ucfirst!
-        self[0] = self.first.upcase
-        return self
+    if not self.__hash_utils_instance_respond_to? :ucfirst!
+        def ucfirst!
+            self[0] = self.first.upcase
+            return self
+        end
     end
 
     ##
@@ -632,8 +730,10 @@ class String
     # @since 0.15.0
     #
     
-    def lcfirst
-        self.dup.lcfirst!
+    if not self.__hash_utils_instance_respond_to? :lcfirst
+        def lcfirst
+            self.dup.lcfirst!
+        end
     end
     
     ##
@@ -644,9 +744,11 @@ class String
     # @since 0.15.0
     #
     
-    def lcfirst!
-        self[0] = self.first.downcase
-        return self
+    if not self.__hash_utils_instance_respond_to? :lcfirst! 
+        def lcfirst!
+            self[0] = self.first.downcase
+            return self
+        end
     end
     
     ##
@@ -656,8 +758,10 @@ class String
     # @since 0.17.0
     #
     
-    def string?
-        true
+    if not self.__hash_utils_instance_respond_to? :string?
+        def string?
+            true
+        end
     end
     
     ##
@@ -668,14 +772,18 @@ class String
     # @since 0.18.0
     #
     
-    def swap_with(from)
-        intermediate = self.dup
-        self.replace(from)
-        from.replace(intermediate)
-        return self
+    if not self.__hash_utils_instance_respond_to? :swap_with
+        def swap_with(from)
+            intermediate = self.dup
+            self.replace(from)
+            from.replace(intermediate)
+            return self
+        end
     end
     
-    alias :"swap_with!" :swap_with
+    if not self.__hash_utils_instance_respond_to? :swap_with!    
+        alias :swap_with! :swap_with
+    end
     
     ##
     # Cuts string in place. Sets the content of #[] on place of 
@@ -686,8 +794,10 @@ class String
     # @since 0.18.0
     #
     
-    def cut!(range)
-        self.replace(self[range])
+    if not self.__hash_utils_instance_respond_to? :cut!
+        def cut!(range)
+            self.replace(self[range])
+        end
     end
 
     ##
@@ -702,8 +812,10 @@ class String
     # @since 0.18.1
     # 
     
-    def interlace(string)
-        self.gsub(self.class::INTERLACING, '\1' << string << '\2' << string)
+    if not self.__hash_utils_instance_respond_to? :interlace
+        def interlace(string)
+            self.gsub(self.class::INTERLACING, '\1' << string << '\2' << string)
+        end
     end
     
     ##
@@ -715,9 +827,11 @@ class String
     # @since 0.18.1
     # 
     
-    def interlace!(string)
-        self.gsub!(self.class::INTERLACING, '\1' << string << '\2' << string)
-        self
+    if not self.__hash_utils_instance_respond_to? :interlace!
+        def interlace!(string)
+            self.gsub!(self.class::INTERLACING, '\1' << string << '\2' << string)
+            return self
+        end
     end
     
     ##
@@ -731,8 +845,10 @@ class String
     # @since 0.19.0
     #
     
-    def to_boolean(t = "true")
-        self == t
+    if not self.__hash_utils_instance_respond_to? :to_boolean
+        def to_boolean(t = "true")
+            self == t
+        end
     end
     
     

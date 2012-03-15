@@ -1,6 +1,8 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
+require "hash-utils/object"
+
 ##
 # +TrueClass+ extension.
 # @since 0.17.0
@@ -15,8 +17,10 @@ class TrueClass
     # @since 0.17.0
     #
     
-    def boolean?
-        true
+    if not self.__hash_utils_instance_respond_to? :boolean?
+        def boolean?
+            true
+        end
     end
     
     ##
@@ -26,8 +30,10 @@ class TrueClass
     # @since 0.15.0
     #
     
-    def false?
-        false
+    if not self.__hash_utils_instance_respond_to? :false?
+        def false?
+            false
+        end
     end
     
     ##
@@ -37,8 +43,10 @@ class TrueClass
     # @since 0.15.0
     #
     
-    def true?
-        true
+    if not self.__hash_utils_instance_respond_to? :true?
+        def true?
+            true
+        end
     end
     
     ##
@@ -50,8 +58,10 @@ class TrueClass
     # @since 0.19.0
     #
     
-    def convert(t, f)
-        t
+    if not self.__hash_utils_instance_respond_to? :convert
+        def convert(t, f)
+            t
+        end
     end
     
     ##
@@ -63,8 +73,10 @@ class TrueClass
     # @since 0.19.0
     #
     
-    def to_i(t = 1, f = 0) 
-        self.convert(t, f)
+    if not self.__hash_utils_instance_respond_to? :to_i
+        def to_i(t = 1, f = 0) 
+            self.convert(t, f)
+        end
     end
     
 end
@@ -83,8 +95,10 @@ class FalseClass
     # @since 0.17.0
     #
     
-    def boolean?
-        true
+    if not self.__hash_utils_instance_respond_to? :boolean?
+        def boolean?
+            true
+        end
     end
     
     ##
@@ -94,8 +108,10 @@ class FalseClass
     # @since 0.15.0
     #
     
-    def false?
-        true
+    if not self.__hash_utils_instance_respond_to? :false?
+        def false?
+            true
+        end
     end
     
     ##
@@ -105,8 +121,10 @@ class FalseClass
     # @since 0.15.0
     #
     
-    def true?
-        false
+    if not self.__hash_utils_instance_respond_to? :true?
+        def true?
+            false
+        end
     end
     
     ##
@@ -118,8 +136,10 @@ class FalseClass
     # @since 0.19.0
     #
     
-    def convert(t, f)
-        f
+    if not self.__hash_utils_instance_respond_to? :convert
+        def convert(t, f)
+            f
+        end
     end
     
     ##
@@ -131,8 +151,10 @@ class FalseClass
     # @since 0.19.0
     #
     
-    def to_i(t = 1, f = 0) 
-        self.convert(t, f)
+    if not self.__hash_utils_instance_respond_to? :to_i
+        def to_i(t = 1, f = 0) 
+            self.convert(t, f)
+        end
     end
     
 end

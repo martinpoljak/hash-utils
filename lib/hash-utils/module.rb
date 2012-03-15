@@ -19,16 +19,18 @@ class Module
     # @since 0.13.0
     #
     
-    def get_module(name)
-        names = name.split("::")
-        mod = self
-        
-        while not names.empty?
-            name = names.shift
-            mod = mod.const_get(name)
+    if not self.__hash_utils_instance_respond_to? :get_module
+        def get_module(name)
+            names = name.split("::")
+            mod = self
+            
+            while not names.empty?
+                name = names.shift
+                mod = mod.const_get(name)
+            end
+            
+            return mod
         end
-        
-        return mod
     end
 
 end

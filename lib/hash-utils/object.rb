@@ -1,12 +1,45 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
+require "ruby-version"
+
 ##
 # Object extension.
 #
 
 class Object
-  
+    
+    @@__hash_utils_methods_index = { } 
+        
+    ##
+    # Indicates, instance of the class responds to some call.
+    #
+    # @param [Symbol] call  a call name
+    # @return [Boolean] +true+ it it is, +false+ otherwise
+    # @private as it's intended for internal library use
+    # @since 2.0.0
+    #
+    
+    if not self.methods.include? :__hash_utils_instance_respond_to?
+        def self.__hash_utils_instance_respond_to?(call)
+            if not @@__hash_utils_methods_index.has_key? self
+                if Ruby::Version >= [1, 9]
+                    require "set"
+                    @@__hash_utils_methods_index[self] = Set::new(self.instance_methods)
+                else
+                    @@__hash_utils_methods_index[self] = { }
+                    self.instance_methods.each do |i|
+                        @@__hash_utils_methods_index[self][i] = true
+                     end
+                end
+            end
+            
+            @@__hash_utils_methods_index[self].include? call
+        end
+    else
+        throw new Exception('__hash_utils_instance_respond_to? is already implemented. Hash Utils need this method for iternal defensive checking. Continuing is impossible.')
+    end
+    
     ##
     # Returns +true+ if object is an instance of the given classes. 
     #
@@ -16,18 +49,20 @@ class Object
     # @since 0.16.0
     #
     
-    def instance_of_any?(*classes)
-        if classes.first.array?
-            classes = classes.first
-        end
-        
-        classes.each do |cls|
-            if self.instance_of? cls
-                return true
+    if not self.__hash_utils_instance_respond_to? :instance_of_any?
+        def instance_of_any?(*classes)
+            if classes.first.array?
+                classes = classes.first
             end
+            
+            classes.each do |cls|
+                if self.instance_of? cls
+                    return true
+                end
+            end
+            
+            return false
         end
-        
-        return false
     end
 
     ##
@@ -40,21 +75,25 @@ class Object
     # @since 0.16.0
     #
     
-    def kind_of_any?(*classes)
-        if classes.first.array?
-            classes = classes.first
-        end
-        
-        classes.each do |cls|
-            if self.kind_of? cls
-                return true
+    if not self.__hash_utils_instance_respond_to? :kind_of_any?
+        def kind_of_any?(*classes)
+            if classes.first.array?
+                classes = classes.first
             end
+            
+            classes.each do |cls|
+                if self.kind_of? cls
+                    return true
+                end
+            end
+            
+            return false
         end
-        
-        return false
     end
     
-    alias :"is_a_any?" :"kind_of_any?"
+    if not self.__hash_utils_instance_respond_to? :is_a_any?
+        alias :is_a_any? :kind_of_any?
+    end
 
     ##
     # Indicates object is in some object which supports +#include?+.
@@ -64,8 +103,10 @@ class Object
     # @since 0.8.0
     #
     
-    def in?(range)
-        range.include? self
+    if not self.__hash_utils_instance_respond_to? :in?
+        def in?(range)
+            range.include? self
+        end
     end
 
     ##
@@ -75,8 +116,10 @@ class Object
     # @since 0.7.0
     #
     
-    def to_b
-        !!self
+    if not self.__hash_utils_instance_respond_to? :to_b
+        def to_b
+            !!self
+        end
     end
     
     ##
@@ -87,10 +130,12 @@ class Object
     # @since 0.12.0
     #
     
-    def **(count)
-        result = [ ]
-        count.times { result << self.dup }
-        return result
+    if not self.__hash_utils_instance_respond_to? :**
+        def **(count)
+            result = [ ]
+            count.times { result << self.dup }
+            return result
+        end
     end
     
     ##
@@ -100,8 +145,10 @@ class Object
     # @since 0.14.0
     #
     
-    def io?
-        false
+    if not self.__hash_utils_instance_respond_to? :io?
+        def io?
+            false
+        end
     end
     
     ##
@@ -111,8 +158,10 @@ class Object
     # @since 0.15.0
     #
     
-    def true?
-        self.kind_of? TrueClass
+    if not self.__hash_utils_instance_respond_to? :true?
+        def true?
+            self.kind_of? TrueClass
+        end
     end
     
     ##
@@ -122,8 +171,10 @@ class Object
     # @since 0.15.0
     #
     
-    def false?
-        self.kind_of? FalseClass
+    if not self.__hash_utils_instance_respond_to? :false?
+        def false?
+            self.kind_of? FalseClass
+        end
     end
     
     ##
@@ -133,8 +184,10 @@ class Object
     # @since 0.17.0
     #
     
-    def string?
-        self.kind_of? String
+    if not self.__hash_utils_instance_respond_to? :string?
+        def string?
+            self.kind_of? String
+        end
     end
     
     ##
@@ -144,8 +197,10 @@ class Object
     # @since 0.17.0
     #
     
-    def symbol?
-        self.kind_of? Symbol
+    if not self.__hash_utils_instance_respond_to? :symbol?
+        def symbol?
+            self.kind_of? Symbol
+        end
     end
     
     ##
@@ -155,8 +210,10 @@ class Object
     # @since 0.18.0
     #
     
-    def proc?
-        self.kind_of? Proc
+    if not self.__hash_utils_instance_respond_to? :proc?
+        def proc?
+            self.kind_of? Proc
+        end
     end
     
     ##
@@ -166,8 +223,10 @@ class Object
     # @since 0.17.0
     #
     
-    def number?
-        self.kind_of? Numeric
+    if not self.__hash_utils_instance_respond_to? :number?
+        def number?
+            self.kind_of? Numeric
+        end
     end
     
     ##
@@ -177,8 +236,10 @@ class Object
     # @since 0.17.0
     #
     
-    def boolean?
-        self.true? or self.false?
+    if not self.__hash_utils_instance_respond_to? :boolean?
+        def boolean?
+            self.true? or self.false?
+        end
     end
     
     ##
@@ -188,8 +249,10 @@ class Object
     # @since 0.17.0
     #
     
-    def array?
-        self.kind_of? Array
+    if not self.__hash_utils_instance_respond_to? :array?
+        def array?
+            self.kind_of? Array
+        end
     end
     
     ##
@@ -199,8 +262,10 @@ class Object
     # @since 0.17.0
     #
     
-    def hash?
-        self.kind_of? Hash
+    if not self.__hash_utils_instance_respond_to? :hash?
+        def hash?
+            self.kind_of? Hash
+        end
     end
     
     ##
@@ -211,8 +276,25 @@ class Object
     # @since 1.1.0
     #
     
-    def to_sym
-        self.to_s.to_sym
+    if not self.__hash_utils_instance_respond_to? :to_sym
+        def to_sym
+            self.to_s.to_sym
+        end
+    end
+
+    ##
+    # Indicates, instance of the class responds to some call.
+    #
+    # @param [Symbol] call  a call name
+    # @return [Boolean] +true+ it it is, +false+ otherwise
+    # @private as it's intended for internal library use
+    # @since 2.0.0
+    #
+    
+    if not self.__hash_utils_instance_respond_to? :instance_respond_to?    
+        def instance_respond_to?(call)
+            self.__hash_utils_instance_respond_to? call
+        end
     end
         
 end

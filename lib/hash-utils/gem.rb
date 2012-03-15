@@ -18,11 +18,13 @@ module Gem
     # @since 0.17.1
     #
     
-    def self.available?(name)
-        begin
-            return Gem::Specification::find_by_name(name.to_s).to_b
-        rescue Gem::LoadError
-            return false
+    if not self.respond_to? :available? 
+        def self.available?(name)
+            begin
+                return Gem::Specification::find_by_name(name.to_s).to_b
+            rescue Gem::LoadError
+                return false
+            end
         end
     end
 
@@ -36,12 +38,14 @@ module Gem
     # @since 0.17.1
     #
     
-    def self.require_available(name, file = nil)
-        if self.available? name
-            require file.nil? ? name : file
-            true
-        else
-            false
+    if not self.respond_to? :require_available
+        def self.require_available(name, file = nil)
+            if self.available? name
+                require file.nil? ? name : file
+                true
+            else
+                false
+            end
         end
     end
     

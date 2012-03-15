@@ -1,6 +1,7 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
+require "hash-utils/object"
 require "ruby-version"
 
 ##
@@ -8,8 +9,6 @@ require "ruby-version"
 #
 
 class Array
-
-    @__sum_check_done
 
     ##
     # Moves selected values outside the array, so returns them.
@@ -22,18 +21,20 @@ class Array
     # @since 0.3.0
     #
     
-    def remove!(&block)
-        result = [ ]
-        self.reject! do |v|
-            if block.call(v)
-                result << v
-                true
-            else
-                false
+    if not self.__hash_utils_instance_respond_to? :remove!
+        def remove!(&block)
+            result = [ ]
+            self.reject! do |v|
+                if block.call(v)
+                    result << v
+                    true
+                else
+                    false
+                end
             end
+            
+            return result
         end
-        
-        return result
     end
     
     ##
@@ -45,7 +46,9 @@ class Array
     # @since 0.2.0
     #
     
-    alias :"some?" :"one?"
+    if not self.__hash_utils_instance_respond_to? :some?
+        alias :"some?" :"one?"
+    end
     
     ##
     # Converts array to +Hash+.
@@ -68,11 +71,13 @@ class Array
     # @since 0.4.0
     #
     
-    def to_h(mode = nil)
-        if mode == :flat
-            Hash[*self]
-        else
-            Hash[self]
+    if not self.__hash_utils_instance_respond_to? :to_h
+        def to_h(mode = nil)
+            if mode == :flat
+                Hash[*self]
+            else
+                Hash[self]
+            end
         end
     end
     
@@ -92,10 +97,12 @@ class Array
     # @since 0.10.0
     #
     
-    def merge!(*arrays)
-        arrays.flatten! 1
-        arrays.each { |i| self << i }
-        self
+    if not self.__hash_utils_instance_respond_to? :merge!
+        def merge!(*arrays)
+            arrays.flatten! 1
+            arrays.each { |i| self << i }
+            self
+        end
     end
     
     ##
@@ -105,8 +112,10 @@ class Array
     # @since 0.15.0
     #
     
-    def second
-        self[1]
+    if not self.__hash_utils_instance_respond_to? :second
+        def second
+            self[1]
+        end
     end
     
     ##
@@ -116,8 +125,10 @@ class Array
     # @since 0.15.0
     #
 
-    def third
-        self[2]
+    if not self.__hash_utils_instance_respond_to? :third
+        def third
+            self[2]
+        end
     end
     
     ##
@@ -126,9 +137,11 @@ class Array
     # @return [Object] item of the array
     # @since 0.15.0
     #
-
-    def fourth
-        self[3]
+    
+    if not self.__hash_utils_instance_respond_to? :fourth
+        def fourth
+            self[3]
+        end
     end
     
     ##
@@ -138,8 +151,10 @@ class Array
     # @since 0.15.0
     #
 
-    def fifth
-        self[4]
+    if not self.__hash_utils_instance_respond_to? :fifth
+        def fifth
+            self[4]
+        end
     end
     
     ##
@@ -148,9 +163,11 @@ class Array
     # @return [Object] item of the array
     # @since 0.15.0
     #
-
-    def sixth
-        self[5]
+    
+    if not self.__hash_utils_instance_respond_to? :sixth
+        def sixth
+            self[5]
+        end
     end
     
     ##
@@ -160,8 +177,10 @@ class Array
     # @since 0.15.0
     #
 
-    def seventh
-        self[6]
+    if not self.__hash_utils_instance_respond_to? :seventh
+        def seventh
+            self[6]
+        end
     end
     
     ##
@@ -171,54 +190,41 @@ class Array
     # @since 0.15.0
     #
 
-    def eighth
-        self[7]
-    end
-        
-    if Ruby::Version >= [1, 8, 7]
-      
-        ##
-        # Returns sum of items in the array. If other than numeric type found,
-        # it will be normally conacenated if it's possible. 
-        #
-        # @example
-        #   array = [1, 2, 3]
-        #   array.sum                           # will return 6
-        #   array = ["a", "b", "c"]
-        #   array.sum                           # will return "abc"
-        #
-        # @return [Object] result of summing
-        # @since 0.16.0
-        #
-
-        def sum
-            self.inject(:+)
+    if not self.__hash_utils_instance_respond_to? :eight
+        def eighth
+            self[7]
         end
-        
-    else
+    end
+          
+    ##
+    # Returns sum of items in the array. If other than numeric type found,
+    # it will be normally conacenated if it's possible. 
+    #
+    # @example
+    #   array = [1, 2, 3]
+    #   array.sum                           # will return 6
+    #   array = ["a", "b", "c"]
+    #   array.sum                           # will return "abc"
+    #
+    # @return [Object] result of summing
+    # @since 0.16.0
+    #
     
-        ##
-        # Returns sum of items in the array. If other than numeric type found,
-        # it will be normally conacenated if it's possible. 
-        #
-        # @example
-        #   array = [1, 2, 3]
-        #   array.sum                           # will return 6
-        #   array = ["a", "b", "c"]
-        #   array.sum                           # will return "abc"
-        #
-        # @return [Object] result of summing
-        # @since 0.16.0
-        #
-
-        def sum
-            first = true
-            self.inject(self.first) do |sum, i|
-                if first
-                    first = false
-                    sum
-                else
-                    sum += i
+    if not self.__hash_utils_instance_respond_to? :sum 
+        if Ruby::Version >= [1, 8, 7]
+            def sum
+                self.inject(:+)
+            end
+        else
+            def sum
+                first = true
+                self.inject(self.first) do |sum, i|
+                    if first
+                        first = false
+                        sum
+                    else
+                        sum += i
+                    end
                 end
             end
         end
@@ -236,11 +242,15 @@ class Array
     # @since 0.16.0
     #
     
-    def avg
-        self.sum.to_f / self.length
+    if not self.__hash_utils_instance_respond_to? :avg
+        def avg
+            self.sum.to_f / self.length
+        end
     end
     
-    alias :average :avg
+    if not self.__hash_utils_instance_respond_to? :average
+        alias :average :avg
+    end
     
     ##
     # Indicates, object is +Array+.
@@ -249,8 +259,10 @@ class Array
     # @since 0.17.0
     #
     
-    def array?
-        true
+    if not self.__hash_utils_instance_respond_to? :array?
+        def array?
+            true
+        end
     end
 
     ##
@@ -262,8 +274,10 @@ class Array
     # @since 0.19.0
     #
     
-    def clean(value = nil)
-        self.reject! { |v| v === value }
+    if not self.__hash_utils_instance_respond_to? :clean
+        def clean(value = nil)
+            self.reject { |v| v === value }
+        end
     end
     
     ##
@@ -275,9 +289,23 @@ class Array
     # @since 0.19.0
     #
     
-    def clean!(value = nil)
-        self.reject! { |v| v === value }
+    if not self.__hash_utils_instance_respond_to? :clean!
+        def clean!(value = nil)
+            self.reject! { |v| v === value }
+        end
     end
     
+    ##
+    # Converts array to set. Include sets before calling.
+    #
+    # @return [Set] new set
+    # @since 2.0.0
+    #
+    
+    if not self.__hash_utils_instance_respond_to? :to_set
+        def to_set
+            Set::new(self)
+        end
+    end
 end
 

@@ -20,8 +20,10 @@ class Numeric
     # @since 0.16.0
     #
     
-    def compare(number)
-        self <=> number
+    if not self.__hash_utils_instance_respond_to? :compare
+        def compare(number)
+            self <=> number
+        end
     end
     
     ##
@@ -31,11 +33,15 @@ class Numeric
     # @since 0.16.0
     #
     
-    def positive?
-        self > 0
+    if not self.__hash_utils_instance_respond_to? :positive?
+        def positive?
+            self > 0
+        end
     end
     
-    alias :positive :"positive?"
+    if not self.__hash_utils_instance_respond_to? :positive 
+        alias :positive :positive?
+    end
     
     ##
     # Indicates, number is negative, so lower than 0.
@@ -44,11 +50,15 @@ class Numeric
     # @since 0.16.0
     #
     
-    def negative?
-        self < 0
+    if not self.__hash_utils_instance_respond_to? :negative?
+        def negative?
+            self < 0
+        end
     end
     
-    alias :negative :"negative?"
+    if not self.__hash_utils_instance_respond_to? :negative
+        alias :negative :negative?
+    end
     
     ##
     # Sets the positivity to +false+, so negates the number. +0+ will 
@@ -61,11 +71,15 @@ class Numeric
     # @since 0.16.0
     #
     
-    def negative!
-        -self.positive!
+    if not self.__hash_utils_instance_respond_to? :negative!
+        def negative!
+            -self.positive!
+        end
     end
     
-    alias :"negate!" :"negative!"
+    if not self.__hash_utils_instance_respond_to? :negate!
+        alias :negate! :negative!
+    end
     
     ##
     # Sets the positivity to +true+, so makes number positive. +0+ will 
