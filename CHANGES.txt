@@ -1,4 +1,12 @@
 
+2.0.0 (2012-03-15)
+* defensive (safe) class patching
+* Array: #to_set
+* Object: #to_sym
+* bug fix in Array#clean!
+* many subminor fixes
+* minor optimizations
+
 1.0.0 (2011-10-17)
 * Boolean: #convert, #to_i
 * String: #to_boolean

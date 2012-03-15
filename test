@@ -295,9 +295,6 @@ context "Object" do
             and not "".instance_of_any? [Integer, Float] \
             and "".instance_of_any? String, Symbol
     end
-    asserts("#instance_respond_to?") do
-        String::instance_respond_to? :split and not String::instance_respond_to? :_nonsense_123
-    end
     asserts("#io?") do
         not "".io?
     end

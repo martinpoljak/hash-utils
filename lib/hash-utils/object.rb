@@ -316,19 +316,4 @@ class Object
         end
     end
 
-    ##
-    # Indicates, instance of the class responds to some call.
-    #
-    # @param [Symbol] call  a call name
-    # @return [Boolean] +true+ it it is, +false+ otherwise
-    # @private as it's intended for internal library use
-    # @since 2.0.0
-    #
-    
-    if not __hash_utils_object_respond_to? :instance_respond_to?    
-        def instance_respond_to?(call)
-            self.__hash_utils_instance_respond_to? call
-        end
-    end
-        
 end
