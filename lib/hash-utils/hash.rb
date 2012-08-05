@@ -824,5 +824,31 @@ class Hash
             true
         end
     end
-        
+
+    ##
+    # Flips keys and values.
+    #
+    # @return [Hash] new flipped hash
+    # @see http://www.php.net/array_flip
+    # @since 2.0.1
+    #
+    if not self.__hash_utils_instance_respond_to? :flip     
+        def flip
+            self.map_pairs { |k, v| [v, k] }
+        end
+    end
+
+    ##
+    # Flips keys and values and replaces the original hash in place.
+    #
+    # @return [Hash] new flipped hash
+    # @see http://www.php.net/array_flip
+    # @since 2.0.1
+    #
+    if not self.__hash_utils_instance_respond_to? :flip!     
+        def flip!
+            self.map_pairs! { |k, v| [v, k] }
+        end
+    end
+       
 end

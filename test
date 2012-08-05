@@ -150,6 +150,16 @@ context "Hash" do
         t.compact!
         t == { :a => 1 }
     end
+    asserts("#flip") do
+        t = { :a => 1, :b => 2, :c => 2 }
+        result = t.flip
+        result == { 1 => :a, 2 => :c }
+    end
+    asserts("#flip!") do
+        t = { :a => 1, :b => 2, :c => 2 }
+        t.flip!
+        t == { 1 => :a, 2 => :c }
+    end
     asserts("#get_pairs") do
         h = { :a => 1, :b => 2, :c => 3 }
         result = [ ]
