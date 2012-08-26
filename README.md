@@ -1,7 +1,7 @@
 Hash Utils
 ==========
 
-**hash-utils** adds more than 125 useful and frequently rather 
+**hash-utils** adds more than 135 useful and frequently rather 
 fundamental methods which are missing in Ruby programming language, 
 to several core classes. It tries to be similar project to 
 [Ruby Facets][1] on principle, but less complex, more practical, 
@@ -11,12 +11,12 @@ non-atomic and organized by better way.
 - `FalseClass` &ndash; 3 methods,
 - `File` &ndash; 2 methods,
 - `Gem` &ndash; 2 methods,
-- `Hash` &ndash; 40 methods,
+- `Hash` &ndash; 42 methods,
 - `IO` &ndash; 1 method,
 - `Module` &ndash; 1 method,
 - `NilClass` &ndash; 1 method,
 - `Numeric` &ndash; 5 method,
-- `Object` &ndash; 14 methods,
+- `Object` &ndash; 15 methods,
 - `Proc` &ndash; 1 method,
 - `TrueClass` &ndash; 3 methods,
 - `String` &ndash; 37 methods,
@@ -32,11 +32,7 @@ to appropriate type only by including the:
 
     require "hash-utils/<lowercase-data-type-name>"
     
-### Special Requirements
-
-Some methods are optimized at Ruby 1.8.7 and 1.9 and higher. These 
-optimizations requires the [`ruby-version`][2] gem available.
-
+    
 Contributing
 ------------
 

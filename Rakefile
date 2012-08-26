@@ -18,8 +18,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "hash-utils"
   gem.homepage = "http://github.com/martinkozak/hash-utils"
   gem.license = "MIT"
-  gem.summary = 'Adds more than 125 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Module, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way. Thanks to defensive and careful patching it should be compatible with all other libraries.'
-  gem.post_install_message = "\nHASH UTILS: The 2.0 version avoids the method overwriting conflicts by not performing overwriting of already implemented methods. By this way, it can damage your existing applications based on older versions although it's very improbable. \n\n"
+  gem.summary = 'Adds more than 135 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Module, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way. Thanks to defensive and careful patching it should be compatible with all other libraries.'
+  #gem.post_install_message = "\nHASH UTILS: The 2.0 version avoids the method overwriting conflicts by not performing overwriting of already implemented methods. By this way, it can damage your existing applications based on older versions although it's very improbable. \n\n"
   gem.email = "martinkozak@martinkozak.net"
   gem.authors = ["Martin Kozák"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
