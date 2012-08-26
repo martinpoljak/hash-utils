@@ -301,6 +301,19 @@ class Object
             self.kind_of? Hash
         end
     end
+
+    ##
+    # Indicates, object is implementing +Enumerable+.
+    #
+    # @return [Boolean] +true+ if yes, +false+ in otherwise
+    # @since 2.0.1
+    #
+    
+    if not __hash_utils_object_respond_to? :enumerable?
+        def enumerable?
+            self.kind_of? Enumerable
+        end
+    end
     
     ##
     # Converts object to +Symbol+. In fact, converts it to +String+

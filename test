@@ -291,6 +291,9 @@ context "Object" do
     asserts("#boolean?") do
         true.boolean? and false.boolean? and not "".boolean?
     end
+    asserts("#enumerable?") do
+        [].enumerable? and not 5.enumerable?
+    end
     asserts("#false?") do
         (false.false? == true) and ("string".false? == false)
     end
