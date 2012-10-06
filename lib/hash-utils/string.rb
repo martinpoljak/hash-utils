@@ -308,7 +308,7 @@ class String
     
     if not self.__hash_utils_instance_respond_to? :first
         def first
-            self.chr
+            self[0].chr
         end
     end
         
