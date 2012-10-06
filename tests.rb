@@ -314,7 +314,7 @@ describe "Object" do
         (nil.to_b === false) and ("ab".to_b === true)
     end
     specify("#to_sym") do
-        ((not Ruby::Version >= [1, 9]) or nil.to_sym === :"") and ("ab".to_sym === :ab) and (12.to_sym == :"12")
+        ("ab".to_sym === :ab) and (12.to_sym == :"12")
     end
     specify("#true?") do
         (true.true? == true) and ("string".true? == false)
