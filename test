@@ -2,14 +2,14 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
-#$:.push("./lib")
-#$:.unshift("./lib")
+$:.push("./lib")
+$:.unshift("./lib")
 
-#require "stringio"
-#require "hash-utils"
-#require "riot"
+require "stringio"
+require "hash-utils"
+require "riot"
 
-=begin
+
 ## ARRAY
 
 # Filozofové mají Kanta rádi. Matematici mají Kanta také rádi, jen si 
@@ -572,4 +572,3 @@ context "TrueClass" do
         true.true?
     end
 end
-=end
