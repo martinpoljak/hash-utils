@@ -9,4 +9,5 @@ group :development do
   gem "bundler", ">= 1.0.0"
   gem "jeweler2", ">= 2.0.0"
   gem "riot", ">= 0.12.3"
+  gem "rake"
 end

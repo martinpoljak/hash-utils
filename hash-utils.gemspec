@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Koz\u{e1}k"]
-  s.date = "2012-08-26"
+  s.date = "2012-10-06"
   s.email = "martinkozak@martinkozak.net"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -57,17 +57,20 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_development_dependency(%q<jeweler2>, [">= 2.0.0"])
       s.add_development_dependency(%q<riot>, [">= 0.12.3"])
+      s.add_development_dependency(%q<rake>, [">= 0"])
     else
       s.add_dependency(%q<ruby-version>, [">= 0"])
       s.add_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_dependency(%q<jeweler2>, [">= 2.0.0"])
       s.add_dependency(%q<riot>, [">= 0.12.3"])
+      s.add_dependency(%q<rake>, [">= 0"])
     end
   else
     s.add_dependency(%q<ruby-version>, [">= 0"])
     s.add_dependency(%q<bundler>, [">= 1.0.0"])
     s.add_dependency(%q<jeweler2>, [">= 2.0.0"])
     s.add_dependency(%q<riot>, [">= 0.12.3"])
+    s.add_dependency(%q<rake>, [">= 0"])
   end
 end
 
