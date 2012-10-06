@@ -101,25 +101,6 @@ context "File" do
     end
 end
 
-## GEM
-
-context "Gem" do
-    asserts("#available?") do
-        Gem::available? "hash-utils" and not Gem::available? "xxxxxxx"
-    end
-    asserts("#require_available") do
-        result = Gem::require_available("hash-utils")
-        
-        begin
-            require "hash-utils"
-        rescue LoadError
-            result = false
-        end
-        
-        result and not Gem::require_available("xxxxxxx")
-    end
-end
-
 ## HASH
 
 context "Hash" do
