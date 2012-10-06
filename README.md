@@ -24,6 +24,7 @@ non-atomic and organized by better way.
 - `Symbol` &ndash; 8 methods.
 
 For full reference and methods lists, see **[documentation][3]**.
+
 [![Build Status](https://secure.travis-ci.org/martinkozak/hash-utils.png)](http://travis-ci.org/martinkozak/hash-utils)
 
 ### Modularization
