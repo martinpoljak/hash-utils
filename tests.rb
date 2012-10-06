@@ -88,7 +88,7 @@ describe "FalseClass" do
 end
 
 ## FILE
-=begin
+
 describe "File" do
     specify("#touch") do 
         File.touch("./~test1")
@@ -99,14 +99,14 @@ describe "File" do
         File.read("./~test2") == "some string"
     end
     
-    teardown do 
+    after(:all) do 
         File.unlink("./~test1")
         File.unlink("./~test2")
     end
 end
 
 ## HASH
-=end
+
 describe "Hash" do
     specify("#avg") do
         { :a => 1, :b => 2 }.avg == 1.5
@@ -208,7 +208,6 @@ end
 
 ## IO
 
-=begin
 describe "IO" do
     specify("#io?") do
         io = File::open("./~test", "w")
@@ -216,11 +215,10 @@ describe "IO" do
         io.close()
         result
     end
-    teardown do 
+    after(:all) do 
         File.unlink("./~test")
     end    
 end
-=end
 
 ## MODULE
 
