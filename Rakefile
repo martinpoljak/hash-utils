@@ -10,8 +10,10 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 
+### Jeweler
+
 require 'rake'
-require 'jeweler2'
+require 'jeweler'
 
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
@@ -28,3 +30,13 @@ Jeweler::Tasks.new do |gem|
   #  gem.add_development_dependency 'rspec', '> 1.2.3'
 end
 Jeweler::RubygemsDotOrgTasks.new
+
+
+### RSpec
+
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:test) do |t|
+  t.pattern = 'tests.rb'
+  t.rspec_opts = '--format d -c'
+end

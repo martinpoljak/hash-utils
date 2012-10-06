@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".travis.yml",
     "CHANGES.txt",
     "Gemfile",
     "Gemfile.lock",
@@ -40,8 +41,7 @@ Gem::Specification.new do |s|
     "lib/hash-utils/proc.rb",
     "lib/hash-utils/string.rb",
     "lib/hash-utils/stringio.rb",
-    "lib/hash-utils/symbol.rb",
-    "test"
+    "lib/hash-utils/symbol.rb"
   ]
   s.homepage = "http://github.com/martinkozak/hash-utils"
   s.licenses = ["MIT"]
@@ -54,23 +54,26 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<ruby-version>, [">= 0"])
-      s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
-      s.add_development_dependency(%q<jeweler2>, [">= 2.0.0"])
-      s.add_development_dependency(%q<riot>, [">= 0.12.3"])
+      s.add_development_dependency(%q<bundler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, [">= 0"])
+      s.add_development_dependency(%q<simplecov>, [">= 0"])
     else
       s.add_dependency(%q<ruby-version>, [">= 0"])
-      s.add_dependency(%q<bundler>, [">= 1.0.0"])
-      s.add_dependency(%q<jeweler2>, [">= 2.0.0"])
-      s.add_dependency(%q<riot>, [">= 0.12.3"])
+      s.add_dependency(%q<bundler>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
+      s.add_dependency(%q<rspec>, [">= 0"])
+      s.add_dependency(%q<simplecov>, [">= 0"])
     end
   else
     s.add_dependency(%q<ruby-version>, [">= 0"])
-    s.add_dependency(%q<bundler>, [">= 1.0.0"])
-    s.add_dependency(%q<jeweler2>, [">= 2.0.0"])
-    s.add_dependency(%q<riot>, [">= 0.12.3"])
+    s.add_dependency(%q<bundler>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
+    s.add_dependency(%q<rspec>, [">= 0"])
+    s.add_dependency(%q<simplecov>, [">= 0"])
   end
 end
 

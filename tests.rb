@@ -1,13 +1,17 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
-# (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
+# (c) 2011-2012 Martin Kozák (martinkozak@martinkozak.net)
 
 $:.push("./lib")
 $:.unshift("./lib")
 
+require "rspec"
 require "stringio"
+
+require "simplecov"
+SimpleCov.start
+
 require "hash-utils"
-require "riot"
 
 
 ## ARRAY
@@ -17,80 +21,80 @@ require "riot"
 #
 # doc. Jiří Souček
 
-context "Array" do
-    asserts("#second") do
+describe "Array" do
+    specify("#second") do
         [1, 2, 3, 4, 5, 6, 7, 8].second == 2
     end
-    asserts("#third") do
+    specify("#third") do
         [1, 2, 3, 4, 5, 6, 7, 8].third == 3
     end
-    asserts("#fourth") do
+    specify("#fourth") do
         [1, 2, 3, 4, 5, 6, 7, 8].fourth == 4
     end
-    asserts("#fifth") do
+    specify("#fifth") do
         [1, 2, 3, 4, 5, 6, 7, 8].fifth == 5
     end
-    asserts("#sixth") do
+    specify("#sixth") do
         [1, 2, 3, 4, 5, 6, 7, 8].sixth == 6
     end
-    asserts("#seventh") do
+    specify("#seventh") do
         [1, 2, 3, 4, 5, 6, 7, 8].seventh == 7
     end
-    asserts("#eighth") do
+    specify("#eighth") do
         [1, 2, 3, 4, 5, 6, 7, 8].eighth == 8
     end
-    asserts("#array?") do
+    specify("#array?") do
         [1, 2, 3].array?
     end
-    asserts("#avg") do
+    specify("#avg") do
         [1, 2, 3].avg == 2
     end
-    asserts("#clean") do
+    specify("#clean") do
         t = [1, nil]
         t = t.clean(1)
         t == [nil]
     end
-    asserts("#clean!") do
+    specify("#clean!") do
         t = [1, nil]
         t.clean!(1)
         t == [nil]
     end
-    asserts("#sum") do
+    specify("#sum") do
         [1, 2, 3].sum == 6
     end
-    asserts("#to_set") do
+    specify("#to_set") do
         [1, 2, 3].to_set == Set::new([1, 2, 3])
     end
 end
 
 ## FALSECLASS
 
-context "FalseClass" do
-    asserts("#boolean?") do
+describe "FalseClass" do
+    specify("#boolean?") do
         false.boolean?
     end
-    asserts("#convert") do
+    specify("#convert") do
         false.convert(:a, :b) == :b
     end
-    asserts("#false?") do
+    specify("#false?") do
         false.false?
     end
-    asserts("#to_i") do
+    specify("#to_i") do
         false.to_i == 0
     end
-    asserts("#true?") do
+    specify("#true?") do
         not false.true?
     end
 end
 
 ## FILE
-
-context "File" do
-    asserts("#touch") do 
+=begin
+describe "File" do
+    specify("#touch") do 
         File.touch("./~test1")
         File.exists? "./~test1"
     end
-    asserts("#write") do
+    specify("#write") do
         File.write("./~test2", "some string")
         File.read("./~test2") == "some string"
     end
@@ -102,104 +106,100 @@ context "File" do
 end
 
 ## HASH
-
-context "Hash" do
-    setup do 
-        { :a => 1, :b => 2 }
-    end
-
-    asserts("#avg") do
-        topic.avg == 1.5
+=end
+describe "Hash" do
+    specify("#avg") do
+        { :a => 1, :b => 2 }.avg == 1.5
     end 
-    asserts("#clean") do
+    specify("#clean") do
         t = { :a => 1, :b => nil }
         t = t.clean(1)
         t == { :b => nil }
     end
-    asserts("#clean!") do
+    specify("#clean!") do
         t = { :a => 1, :b => nil }
         t.clean!(1)
         t == { :b => nil }
     end
-    asserts("#compact") do
+    specify("#compact") do
         t = { :a => 1, :b => nil }
         t = t.compact
         t == { :a => 1 }
     end
-    asserts("#compact!") do
+    specify("#compact!") do
         t = { :a => 1, :b => nil }
         t.compact!
         t == { :a => 1 }
     end
-    asserts("#flip") do
+    specify("#flip") do
         t = { :a => 1, :b => 2, :c => 2 }
         result = t.flip
         result == { 1 => :a, 2 => :c }
     end
-    asserts("#flip!") do
+    specify("#flip!") do
         t = { :a => 1, :b => 2, :c => 2 }
         t.flip!
         t == { 1 => :a, 2 => :c }
     end
-    asserts("#get_pairs") do
+    specify("#get_pairs") do
         h = { :a => 1, :b => 2, :c => 3 }
         result = [ ]
         h.get_pairs(:a, :c, :d) { |i| result << i }
         result == [[:a, 1], [:c, 3]]
     end
-    asserts("#get_items") do
+    specify("#get_items") do
         h = { :a => 1, :b => 2, :c => 3 }
         h.get_items(:a, :c, :d) == { :a => 1, :c => 3 }
     end
-    asserts("#get_values") do
+    specify("#get_values") do
         h = { :a => 1, :b => 2, :c => 3 }
         h.get_values(:a, :c, :d) == [1, 3]
     end
-    asserts("#get_values") do
+    specify("#get_values") do
         { :a => 1, :b => 2, :c => 3 }.hash?
     end
-    asserts("#map_values") do
-        topic.map_values { |i| i + 1 } == { :a => 2, :b => 3 }
+    specify("#map_values") do
+        { :a => 1, :b => 2 }.map_values { |i| i + 1 } == { :a => 2, :b => 3 }
     end
-    asserts("#map_values!") do
-        t = topic.dup
+    specify("#map_values!") do
+        t = { :a => 1, :b => 2 }
         t.map_values! { |i| i + 1 } 
         t == { :a => 2, :b => 3 }
     end
-    asserts("#deep_merge") do
+    specify("#deep_merge") do
         h1 = {:a => {:b => :c, :d => :e}}
         h2 = {:a => {:d => :f, :h => :i}}
         h = h1.deep_merge(h2) 
         (h == {:a => {:b => :c, :d => :f, :h => :i}}) and (h1 == {:a => {:b => :c, :d => :e}})
     end
-    asserts("#deep_merge!") do
+    specify("#deep_merge!") do
         h = {:a => {:b => :c, :d => :e}}
         h.deep_merge!({:a => {:d => :f, :h => :i}})
         h == {:a => {:b => :c, :d => :f, :h => :i}}
     end
-    asserts("#keys_to_sym") do
+    specify("#keys_to_sym") do
         h = {"a" => "b", 2 => "c", "d" => "e"}
         h.keys_to_sym == {:a => "b", 2 => "c", :d => "e"}
     end
-    asserts("#keys_to_sym!") do
+    specify("#keys_to_sym!") do
         h = {"a" => "b", 2 => "c", "d" => "e"}
         h.keys_to_sym! 
         h == {:a => "b", 2 => "c", :d => "e"}
     end
-    asserts("#sum") do
-        topic.sum == 3
+    specify("#sum") do
+        { :a => 1, :b => 2 }.sum == 3
     end
-    asserts("#take_pairs") do
+    specify("#take_pairs") do
         h = { :a => 1, :b => 2, :c => 3 }
         result = [ ]
         h.take_pairs(:a, :c, :d) { |i| result << i }
         result == [[:a, 1], [:c, 3], [:d, nil]]
     end
-    asserts("#take_items") do
+    specify("#take_items") do
         h = { :a => 1, :b => 2, :c => 3 }
         h.take_items(:a, :c, :d) == { :a => 1, :c => 3, :d => nil }
     end
-    asserts("#take_values") do
+    specify("#take_values") do
         h = { :a => 1, :b => 2, :c => 3 }
         h.take_values(:a, :c, :d) == [1, 3, nil]
     end
@@ -208,8 +208,9 @@ end
 
 ## IO
 
-context "IO" do
-    asserts("#io?") do
+=begin
+describe "IO" do
+    specify("#io?") do
         io = File::open("./~test", "w")
         result = io.io?
         io.close()
@@ -219,11 +220,12 @@ context "IO" do
         File.unlink("./~test")
     end    
 end
+=end
 
 ## MODULE
 
-context "Module" do
-    asserts("#get_module") do
+describe "Module" do
+    specify("#get_module") do
         require "zlib"
         Kernel.get_module("Zlib::Inflate") == Zlib::Inflate
     end
@@ -231,169 +233,169 @@ end
 
 ## NILCLASS
 
-context "NilClass" do
-    asserts("#to_boolean") do
+describe "NilClass" do
+    specify("#to_boolean") do
         nil.to_boolean("xyz") === false
     end
 end
 
 ## NUMERIC
 
-context "Numeric" do
-    asserts("#compare") do
+describe "Numeric" do
+    specify("#compare") do
         5.compare(1) == 1 and 5.compare(5) == 0 and 5.compare(7) == -1
     end
-    asserts("#negative?") do
+    specify("#negative?") do
         not 5.negative? and -2.negative?
     end
-    asserts("#negative!") do
+    specify("#negative!") do
         5.negative! == -5 and -5.negative! == -5
     end
-    asserts("#number?") do
+    specify("#number?") do
         5.number?
     end
-    asserts("#positive?") do
+    specify("#positive?") do
         5.positive? and not -2.positive?
     end
-    asserts("#positive!") do
+    specify("#positive!") do
         5.positive! == 5 and -5.positive! ==  5
     end
 end
 
 ## OBJECT
 
-context "Object" do
-    asserts("#**") do
+describe "Object" do
+    specify("#**") do
         "ab" ** 5 == ["ab", "ab", "ab", "ab", "ab"]
     end
-    asserts("#array?") do
+    specify("#array?") do
         not "".array? and [].array?
     end
-    asserts("#boolean?") do
+    specify("#boolean?") do
         true.boolean? and false.boolean? and not "".boolean?
     end
-    asserts("#enumerable?") do
+    specify("#enumerable?") do
         [].enumerable? and not 5.enumerable?
     end
-    asserts("#false?") do
+    specify("#false?") do
         (false.false? == true) and ("string".false? == false)
     end
-    asserts("#hash?") do
+    specify("#hash?") do
         not "".hash? and {}.hash?
     end
-    asserts("#in?") do
+    specify("#in?") do
         5.in? 1..7 and not 9.in? 1..7
     end
-    asserts("#instance_of_any?") do
+    specify("#instance_of_any?") do
         "".instance_of_any? [String, Symbol] \
             and not "".instance_of_any? [Integer, Float] \
             and "".instance_of_any? String, Symbol
     end
-    asserts("#io?") do
+    specify("#io?") do
         not "".io?
     end
-    asserts("#kind_of_any?") do
+    specify("#kind_of_any?") do
         "".kind_of_any? [String, Symbol] \
             and not "".kind_of_any? [Integer, Float] \
             and "".kind_of_any? String, Symbol
     end
-    asserts("#number?") do
+    specify("#number?") do
         not :abcd.number? and 5.number?
     end
-    asserts("#proc?") do
+    specify("#proc?") do
         proc = Proc::new { }
         not :abcd.proc? and proc.proc?
     end
-    asserts("#string?") do
+    specify("#string?") do
         "".string? and not 5.string?
     end
-    asserts("#symbol?") do
+    specify("#symbol?") do
         :abcd.symbol? and not 5.symbol?
     end
-    asserts("#to_b") do
+    specify("#to_b") do
         (nil.to_b === false) and ("ab".to_b === true)
     end
-    asserts("#to_sym") do
+    specify("#to_sym") do
         (nil.to_sym === :"") and ("ab".to_sym === :ab) and (12.to_sym == :"12")
     end
-    asserts("#true?") do
+    specify("#true?") do
         (true.true? == true) and ("string".true? == false)
     end
 end
 
 ## STRING
 
-context "String" do
-    asserts("#first") do
+describe "String" do
+    specify("#first") do
         "abcdefgh".first == ?a
     end
-    asserts("#second") do
+    specify("#second") do
         "abcdefgh".second == ?b
     end
-    asserts("#third") do
+    specify("#third") do
         "abcdefgh".third == ?c
     end
-    asserts("#fourth") do
+    specify("#fourth") do
         "abcdefgh".fourth == ?d
     end
-    asserts("#fifth") do
+    specify("#fifth") do
         "abcdefgh".fifth == ?e
     end
-    asserts("#sixth") do
+    specify("#sixth") do
         "abcdefgh".sixth == ?f
     end
-    asserts("#seventh") do
+    specify("#seventh") do
         "abcdefgh".seventh == ?g
     end
-    asserts("#eighth") do
+    specify("#eighth") do
         "abcdefgh".eighth == ?h
     end
-    asserts("#cut!") do
+    specify("#cut!") do
         foo = "0123456789"
         foo.cut! 3..5
         foo == "345"
     end
-    asserts("#first_line") do
+    specify("#first_line") do
         res = true
         res &= "a\nb\nc\n".first_line == "a\n"
         res &= "a".first_line == "a"
     end
-    asserts("#first_lines") do
+    specify("#first_lines") do
         res = true
         res &= "a\nb".first_lines(2) == ["a\n", "b"]
         res &= "a\nb\nc\n".first_lines(4) == ["a\n", "b\n", "c\n"]
     end
-    asserts("#interlace") do
+    specify("#interlace") do
         "abc".interlace("123") == "a123b123c"
     end
-    asserts("#interlace!") do
+    specify("#interlace!") do
         foo = "abc"
         foo.interlace! "123"
         foo == "a123b123c"
     end
-    asserts("#last") do
+    specify("#last") do
         "abc".last == ?c
     end
-    asserts("#last_line") do
+    specify("#last_line") do
         res = true
         res &= "a\nb\nc\n".last_line == ""
         res &= "a\nb\nc".last_line == "c"
         res &= "a".last_line == "a"
     end
-    asserts("#last_lines") do
+    specify("#last_lines") do
         res = true
         res &= "a\nb".last_lines(2) == ["a\n", "b"]
         res &= "a\nb\nc\n".last_lines(4) == ["a\n", "b\n", "c\n", ""]
     end
-    asserts("#lcfirst") do
+    specify("#lcfirst") do
         str = "ABCD"
         str.lcfirst == "aBCD" and str == "ABCD"
     end
-    asserts("#lcfirst!") do
+    specify("#lcfirst!") do
         str = "ABCD"
         str.lcfirst! == "aBCD" and str == "aBCD"
     end
-    asserts("#pop") do
+    specify("#pop") do
         res = true
         str = "abcd"
         res &= str.pop == "d"
@@ -402,37 +404,37 @@ context "String" do
         res &= str.pop(2) == "cd"
         res &= str == "ab"
     end
-    asserts("#pop_line") do
+    specify("#pop_line") do
         res = true
         str = "a\nb\nc\nd"
         res &= str.pop_line == "d"
         res &= str = "a\nb\nc\n"
     end
-    asserts("#pop_lines") do
+    specify("#pop_lines") do
         res = true
         str = "a\nb\nc\nd\n"
         res &= str.pop_lines(2) == ["d\n", ""]
         res &= str = "a\nb\nc\n"
     end
-    asserts("#push_line") do
+    specify("#push_line") do
         res = true
         str = "a\nb\nc\nd"
         res &= str.push_line("1") == "a\nb\nc\nd\n1"
         res &= str == "a\nb\nc\nd\n1"
     end
-    asserts("#push_lines") do
+    specify("#push_lines") do
         res = true
         str = "a\nb\nc\nd"
         res &= str.push_lines("1", "2") == "a\nb\nc\nd\n1\n2"
         res &= str == "a\nb\nc\nd\n1\n2"
     end
-    asserts("#random") do
+    specify("#random") do
         str1 = String::random(30)
         str2 = String::random(30)
         
         str1 != str2
     end
-    asserts("#shift") do
+    specify("#shift") do
         res = true
         str = "abcd"
         res &= str.shift == "a"
@@ -441,51 +443,51 @@ context "String" do
         res &= str.shift(2) == "ab"
         res &= str == "cd"
     end
-    asserts("#shift_line") do
+    specify("#shift_line") do
         res = true
         str = "a\nb\nc\nd\n"
         res &= str.shift_line == "a\n"
         res &= str = "b\nc\nd\n"
     end
-    asserts("#shift_lines") do
+    specify("#shift_lines") do
         res = true
         str = "a\nb\nc\nd\n"
         res &= str.shift_lines(2) == ["a\n", "b\n"]
         res &= str = "c\nd\n"
     end
-    asserts("#string?") do
+    specify("#string?") do
         "abcd".string?
     end
-    asserts("#swap_with") do
+    specify("#swap_with") do
         foo = "abc"
         bar = "123"
         foo.swap_with(bar)
         foo = "123" and bar = "abc"
     end
-    asserts("#to_boolean") do
+    specify("#to_boolean") do
         "alfa".to_boolean("alfa") == true
     end
-    asserts("#ucfirst") do
+    specify("#ucfirst") do
         str = "abcd"
         str.ucfirst == "Abcd" and str == "abcd"
     end
-    asserts("#ucfirst!") do
+    specify("#ucfirst!") do
         str = "abcd"
         str.ucfirst! == "Abcd" and str == "Abcd"
     end
-    asserts("#unshift") do
+    specify("#unshift") do
         res = true
         str = "abcd"
         res &= str.unshift("123") == "123abcd"
         res &= str == "123abcd"        
     end
-    asserts("#unshift_line") do
+    specify("#unshift_line") do
         res = true
         str = "a\nb\nc\nd\n"
         res &= str.unshift_line("1") == "1\na\nb\nc\nd\n"
         res &= str == "1\na\nb\nc\nd\n"
     end
-    asserts("#unshift_lines") do
+    specify("#unshift_lines") do
         res = true
         str = "a\nb\nc\nd\n"
         res &= str.unshift_lines("1", "2") == "1\n2\na\nb\nc\nd\n"
@@ -496,60 +498,61 @@ end
 
 ## STRINGIO
 
-context "StringIO" do
-    asserts("#io?") do
+describe "StringIO" do
+    specify("#io?") do
         StringIO::new.io?
     end
 end
 
 ## SYMBOL
 
-context "Symbol" do
-    asserts("#*") do
+describe "Symbol" do
+    specify("#*") do
         :a * 5 == :aaaaa
     end
-    asserts("#+") do
+    specify("#+") do
         :a + :b == :ab
     end
-    asserts("#[]") do
+    specify("#[]") do
         :abcde[0...3] == "abc"
     end
-    asserts("#append") do
+    specify("#append") do
         :abcd.append("efg") == :abcdefg
     end
-    asserts("#end_with?") do
+    specify("#end_with?") do
         :abcde.end_with? "ghi", "cde"
     end
-    asserts("#prepend") do
+    specify("#prepend") do
         :abcd.prepend("012") == :"012abcd"
     end
-    asserts("#split") do
+    specify("#split") do
         :ab_cd_ef.split("_", 2) == [:ab, :cd_ef]
     end
-    asserts("#start_with?") do
+    specify("#start_with?") do
         :abcde.start_with? "ghi", "abc"
     end
-    asserts("#strip") do
+    specify("#strip") do
         :"  a  ".strip == :a
     end
 end
 
 ## TRUECLASS
 
-context "TrueClass" do
-    asserts("#boolean?") do
+describe "TrueClass" do
+    specify("#boolean?") do
         true.boolean?
     end
-    asserts("#convert") do
+    specify("#convert") do
         true.convert(:a, :b) == :a
     end
-    asserts("#false?") do
+    specify("#false?") do
         not true.false?
     end
-    asserts("#to_i") do
+    specify("#to_i") do
         true.to_i == 1
     end
-    asserts("#true?") do
+    specify("#true?") do
         true.true?
     end
 end
+
