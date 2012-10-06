@@ -9,7 +9,7 @@ require "stringio"
 require "hash-utils"
 require "riot"
 
-
+=begin
 ## ARRAY
 
 # Filozofové mají Kanta rádi. Matematici mají Kanta také rádi, jen si 
@@ -572,3 +572,4 @@ context "TrueClass" do
         true.true?
     end
 end
+=end
