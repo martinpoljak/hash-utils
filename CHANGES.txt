@@ -1,4 +1,10 @@
 
+2.0.2 (2012-10-06)
+* String: #first compatiblity problem with 1.8 fixed
+* StringIO: compatiblity problem with Rubinius 1.9 fixed
+* RSpec tests
+* Travis CI integration
+
 2.0.1 (2012-08-26)
 * Object: #enumerable?
 * Hash: #flip, #flip!
