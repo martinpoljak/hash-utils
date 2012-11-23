@@ -546,6 +546,25 @@ describe "String" do
         str.lcfirst!.should eq("aBCD")
         str.should eq("aBCD")
     end
+    specify("#map") do
+        "012".map { |ch| (ch.to_i + 1).to_s }.should eq("123")
+        "".map { |ch| (ch.to_i + 1).to_s }.should eq("")
+    end
+    specify("#map!") do
+        t = "012"
+        t.map! { |ch| (ch.to_i + 1).to_s }
+        t.should eq("123")
+        
+        t = ""
+        t.map! { |ch| (ch.to_i + 1).to_s }
+        t.should eq("")
+    end
+    specify("#numeric?") do
+        "123".numeric?.should be_true
+        "123a".numeric?.should be_false
+        "12a3".numeric?.should be_false
+        "a123".numeric?.should be_false
+    end
     specify("#pop") do
         res = true
         str = "abcd"
@@ -616,6 +635,29 @@ describe "String" do
     specify("#string?") do
         "abcd".string?.should be_true
     end
+    specify("#strtr") do
+        "aa bb".strtr("aa" => "bb", "bb" => "aa").should eq("bb aa")
+        "aa bb".strtr([["aa", "bb"], ["bb", "aa"]]).should eq("bb aa")
+        "aa bb".strtr(["aa", "bb", "bb", "aa"], :flat).should eq("bb aa")
+        "aa bb".strtr(:aa => "bb", :bb => "aa") { |s| s.to_sym }.should eq("bb aa")
+    end
+    specify("#strtr") do
+        t = "aa bb"
+        t.strtr!("aa" => "bb", "bb" => "aa")
+        t.should eq("bb aa")
+        
+        t = "aa bb"
+        t.strtr!([["aa", "bb"], ["bb", "aa"]])
+        t.should eq("bb aa")
+        
+        t = "aa bb"
+        t.strtr!(["aa", "bb", "bb", "aa"], :flat)
+        t.should eq("bb aa")
+        
+        t = "aa bb"
+        t.strtr!(:aa => "bb", :bb => "aa") { |s| s.to_sym }
+        t.should eq("bb aa")
+    end
     specify("#swap_with") do
         foo = "abc"
         bar = "123"
@@ -623,6 +665,13 @@ describe "String" do
         
         foo.should eq("123") 
         bar.should eq("abc")
+    end
+    specify("#to_a") do
+        "abc".to_a.should eq(["a", "b", "c"])
+        "abc".to_a('X').should eq(["abc"])
+        "aXbXc".to_a('X').should eq(["a", "b", "c"])
+        "".to_a.should eq([ ])
+        "".to_a('X').should eq([ ])
     end
     specify("#to_boolean") do
         "alfa".to_boolean("alfa").should be_true
