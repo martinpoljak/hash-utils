@@ -128,6 +128,24 @@ describe "Array" do
         t.interlace! :a, :b
         t.should eq([1, :a, :b, 2, :a, :b, 3])
     end
+    specify("#merge!") do
+        t = [1, 2, 3]
+        t.merge!([:a, :b])
+        t.should eq([1, 2, 3, :a, :b])
+    end
+    specify("#remove!") do
+        t = [1, 2, 3, 4]
+        t.remove! { |i| i >= 3 }
+        t.should eq([1, 2])
+
+        t = [1, 2, 3, 4]
+        t.remove! { false }
+        t.should eq([1, 2, 3, 4])
+
+        t = [1, 2, 3, 4]
+        t.remove! { true }
+        t.should eq([ ])        
+    end
     specify("#shrink_to") do
         [1, 2, 3, 4, 5].shrink_to(3).should eq([1, 2, 3])
         [1, 2, 3, 4, 5].shrink_to(6).should eq([1, 2, 3, 4, 5])
@@ -152,6 +170,10 @@ describe "Array" do
     end
     specify("#sum") do
         [1, 2, 3].sum.should eq(6)
+    end
+    specify("#to_h") do
+        [[:a, :b], [:b, :a]].to_h.should eq({:a => :b, :b => :a})
+        [:a, :b, :b, :a].to_h(:flat).should eq({:a => :b, :b => :a})
     end
     specify("#to_set") do
         [1, 2, 3].to_set.should eq(Set::new([1, 2, 3]))
