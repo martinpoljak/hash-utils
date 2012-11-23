@@ -100,7 +100,7 @@ class Array
     if not self.__hash_utils_instance_respond_to? :merge!
         def merge!(*arrays)
             arrays.flatten! 1
-            arrays.each { |i| self << i }
+            self.push(*arrays)
             self
         end
     end
