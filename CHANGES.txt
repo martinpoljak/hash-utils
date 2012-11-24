@@ -1,4 +1,11 @@
 
+2.1.0 (2012-11-24) 
+* most of missing tests
+* Hash: #some?, #some_pairs? bug correction 
+* Array: #merge! optimization 
+* Array: #complete_to, #complete_to!, #cut, #cut!, #drop!, #expand_by, 
+  #expand_by!, #interlace, #interlace!, #shrink_to, #shrink_to!, #zip! 
+  
 2.0.2 (2012-10-06)
 * String: #first compatiblity problem with 1.8 fixed
 * StringIO: compatiblity problem with Rubinius 1.9 fixed

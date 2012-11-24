@@ -1,3 +1,2 @@
 * add examples to each call
-* write remaining tests
 * integrate functions from http://rubydoc.info/gems/sane/0.25.5/frames
