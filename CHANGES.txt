@@ -1,7 +1,7 @@
 
 2.1.0 (2012-11-24) 
 * most of missing tests
-* Hash: #some?, #some_pairs? bug correction 
+* Hash: #some?, #some_pairs? bug fix 
 * Array: #merge! optimization 
 * Array: #complete_to, #complete_to!, #cut, #cut!, #drop!, #expand_by, 
   #expand_by!, #interlace, #interlace!, #shrink_to, #shrink_to!, #zip! 
@@ -68,9 +68,9 @@
 * Object: #instance_of_any?, #kind_of_any?
 
 0.15.0 (2011-05-30)
-* Hash#keys_to_sym now converts only strings
-* Hash#to_h bug correction
-* Hash#all? removed in favour built-in one
+* Hash: #keys_to_sym now converts only strings
+* Hash: #to_h bug correction
+* Hash: #all? removed in favour built-in one
 * Hash: #get, #get_items, #get_values
 * Symbol: #split
 * Array: #first, #second, #third, #fourth, #fifth, #sixth, 
