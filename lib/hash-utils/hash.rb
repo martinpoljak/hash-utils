@@ -357,9 +357,11 @@ class Hash
 
     if not self.__hash_utils_instance_respond_to? :some?    
         def some?(&block)
-            self.one? do |pair|
-                block.call(pair[1])
+            self.each_value do |v|
+                return true if block.call(v)
             end
+            
+            return false
         end
     end
        
@@ -373,7 +375,13 @@ class Hash
     #
     
     if not self.__hash_utils_instance_respond_to? :some_pairs?
-        alias :some_pairs? :one?
+        def some_pairs?(&block)
+            self.each_pair do |pair|
+                return true if block.call(pair)
+            end
+            
+            return false
+        end
     end
     
     ##

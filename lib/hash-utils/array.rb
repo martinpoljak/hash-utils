@@ -521,6 +521,7 @@ class Array
     #
     # @param [Integer] length
     # @return [Array] shorten array
+    # @since 0.2.1
     # 
     
     if not self.__hash_utils_instance_respond_to? :shrink_to
@@ -538,6 +539,7 @@ class Array
     #
     # @param [Integer] length
     # @return [Array] shorten array
+    # @since 0.2.1
     # 
     
     if not self.__hash_utils_instance_respond_to? :shrink_to!
@@ -563,6 +565,7 @@ class Array
     #
     # @param [Integer] length
     # @return [Array] remaining part
+    # @since 0.2.1
     #
     
     if not self.__hash_utils_instance_respond_to? :drop!
@@ -578,15 +581,5 @@ class Array
         end
     end
     
-    #OK complete_to!
-    #OK complete_to
-    #OK drop!
-    #OK cut
-    #interlace
-    #interlace!
-    #OK cut!
-    #OK zip!
-    #OK shrink_to
-    #OK shrink_to!
 end
 
