@@ -175,7 +175,7 @@ describe "String" do
         "aa bb".strtr(["aa", "bb", "bb", "aa"], :flat).should eq("bb aa")
         "aa bb".strtr(:aa => "bb", :bb => "aa") { |s| s.to_sym }.should eq("bb aa")
     end
-    specify("#strtr") do
+    specify("#strtr!") do
         t = "aa bb"
         t.strtr!("aa" => "bb", "bb" => "aa")
         t.should eq("bb aa")

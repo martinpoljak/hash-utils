@@ -1,4 +1,4 @@
-script: "rake test"
+script: "rake test --trace"
 rvm:
   - 1.9.3
   - 1.9.2
@@ -10,7 +10,3 @@ rvm:
   - jruby-head
   - 1.8.7
   - ree
-jdk:
-  - openjdk7
-  - oraclejdk7
-  - openjdk6
