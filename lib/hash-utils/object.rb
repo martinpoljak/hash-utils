@@ -321,12 +321,16 @@ class Object
     #
     # @return [Symbol] symbol representation of the object
     # @since 1.1.0
+    # @since 2.1.0 is +#to_sym+ deprecated in favor to +#to_symbol+
     #
     
-    if not __hash_utils_object_respond_to? :to_sym
-        def to_sym
+    if not __hash_utils_object_respond_to? :to_symbol
+        def to_symbol
             self.to_s.to_sym
         end
     end
 
+    if not __hash_utils_object_respond_to? :to_sym
+        alias :to_sym :to_symbol
+    end
 end

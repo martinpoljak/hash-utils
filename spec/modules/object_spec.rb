@@ -67,9 +67,9 @@ describe "Object" do
         nil.to_b.should be_false
         "ab".to_b.should be_true
     end
-    specify("#to_sym") do
-        "ab".to_sym.should eq(:ab)
-        12.to_sym.should eq(:"12")
+    specify("#to_symbol") do
+        "ab".to_symbol.should eq(:ab)
+        12.to_symbol.should eq(:"12")
     end
     specify("#true?") do
         true.true?.should be_true
