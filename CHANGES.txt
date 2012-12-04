@@ -6,6 +6,7 @@
 * Array: #merge! optimization 
 * Array: #complete_to, #complete_to!, #cut, #cut!, #drop!, #expand_by, 
   #expand_by!, #interlace, #interlace!, #shrink_to, #shrink_to!, #zip! 
+* Symbol: #<=>
   
 2.0.2 (2012-10-06)
 * String: #first compatiblity problem with 1.8 fixed

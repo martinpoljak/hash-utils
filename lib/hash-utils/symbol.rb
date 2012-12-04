@@ -147,5 +147,20 @@ class Symbol
             self.to_s.strip!.to_sym
         end
     end
+    
+    ##
+    # Compares symbols by three-value comparing. Implements the +<=>+
+    # operator in fact.
+    #
+    # @param [Symbol] symbol to compare
+    # @return [Integer]
+    # @since 2.1.0
+    #
+    
+    if not self.__hash_utils_instance_respond_to? :<=>
+        def <=>(symbol)
+            self.to_s <=> symbol.to_s
+        end
+    end
         
 end

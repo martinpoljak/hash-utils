@@ -5,6 +5,11 @@
 require "spec_helper"
 
 describe "Symbol" do
+    specify("#<=>") do
+        (:aa <=> :aa).should eq(0)
+        (:aa <=> :bb).should eq(-1)
+        (:bb <=> :aa).should eq(1)
+    end
     specify("#*") do
         (:a * 5).should eq(:aaaaa)
     end
