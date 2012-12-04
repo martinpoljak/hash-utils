@@ -215,13 +215,24 @@ class String
     #
     
     if not self.__hash_utils_instance_respond_to? :map
-        def map(&block)
-            buffer = " " * self.length
-            self.length.times do |i|
-                buffer[i] = block.call(self[i])
+        if Ruby::Version >= "1.9"
+            def map(&block)
+                buffer = " " * self.length
+                self.length.times do |i|
+                    buffer[i] = block.call(self[i]).to_s
+                end
+                        
+                return buffer
             end
-                    
-            return buffer
+        else
+            def map(&block)
+                buffer = " " * self.length
+                self.length.times do |i|
+                    buffer[i] = block.call(self[i]).to_i
+                end
+                        
+                return buffer
+            end
         end
     end
     
@@ -235,12 +246,22 @@ class String
     #
     
     if not self.__hash_utils_instance_respond_to? :map!
-        def map!(&block)
-            self.length.times do |i|
-                self[i] = block.call(self[i])
+        if Ruby::Version >= "1.9"
+            def map!(&block)
+                self.length.times do |i|
+                    self[i] = block.call(self[i]).to_s
+                end
+                
+                return self
             end
-            
-            return self
+        else
+            def map!(&block)
+                self.length.times do |i|
+                    self[i] = block.call(self[i]).to_i
+                end
+                
+                return self
+            end
         end
     end
     

@@ -6,28 +6,28 @@ require "spec_helper"
 
 describe "String" do
     specify("#first") do
-        "abcdefgh".first.should eq(?a)
+        "abcdefgh".first.should eq("a")
     end
     specify("#second") do
-        "abcdefgh".second.should eq(?b)
+        "abcdefgh".second.should eq("b")
     end
     specify("#third") do
-        "abcdefgh".third.should eq(?c)
+        "abcdefgh".third.should eq("c")
     end
     specify("#fourth") do
-        "abcdefgh".fourth.should eq(?d)
+        "abcdefgh".fourth.should eq("d")
     end
     specify("#fifth") do
-        "abcdefgh".fifth.should eq(?e)
+        "abcdefgh".fifth.should eq("e")
     end
     specify("#sixth") do
-        "abcdefgh".sixth.should eq(?f)
+        "abcdefgh".sixth.should eq("f")
     end
     specify("#seventh") do
-        "abcdefgh".seventh.should eq(?g)
+        "abcdefgh".seventh.should eq("g")
     end
     specify("#eighth") do
-        "abcdefgh".eighth.should eq(?h)
+        "abcdefgh".eighth.should eq("h")
     end
     specify("#cut!") do
         foo = "0123456789"
@@ -55,7 +55,7 @@ describe "String" do
         foo.should eq("a123b123c")
     end
     specify("#last") do
-        "abc".last.should eq(?c)
+        "abc".last.should eq("c")
     end
     specify("#last_line") do
         res = true
