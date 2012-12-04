@@ -20,7 +20,7 @@ non-atomic and organized by better way.
 - `Proc` &ndash; 1 method,
 - `String` &ndash; 37 methods,
 - `StringIO` &ndash; 1 method,
-- `Symbol` &ndash; 8 methods,
+- `Symbol` &ndash; 9 methods,
 - `TrueClass` &ndash; 3 methods.
 
 For full reference and methods lists, see **[documentation][3]**.

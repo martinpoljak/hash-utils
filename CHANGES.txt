@@ -1,6 +1,7 @@
 
 2.1.0 (2012-11-24) 
 * most of missing tests
+* a lot of compatibility problems fixed
 * specs (tests) to standard file structure
 * Hash: #some?, #some_pairs? bug fix 
 * Array: #merge! optimization 
