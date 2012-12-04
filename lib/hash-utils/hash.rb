@@ -417,7 +417,7 @@ class Hash
     # @since 0.4.0
     #
     
-    if not self.__hash_utils_instance_respond_to? :to_h
+    if (not self.__hash_utils_instance_respond_to? :to_h) or (Ruby::Version >= "2.0")
         def to_h(mode = nil)
             self
         end
