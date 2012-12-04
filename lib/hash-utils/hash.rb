@@ -31,18 +31,44 @@ class Hash
     ##
     # Creates hash by setting default settings in one call.
     #
-    # @param [Hash] values  initial values
     # @param [Object] default  default value
+    # @param [Hash] hash  initial values
     # @param [Proc] block  default block
     # @return [Hash] new hash
     # @since 0.3.0
     #
     
     if not self.respond_to? :create 
-        def self.create(default = nil, hash = { }, &block)
-            hash.default = default
-            hash.default_proc = block if not block.nil?
-            return hash        
+        if Ruby::Version >= "1.9"
+            def self.create(default = nil, hash = nil, &block)
+                if not hash.nil?
+                    hash = hash.dup
+                else
+                    hash = { }
+                end
+                
+                hash.default = default
+                hash.default_proc = block if not block.nil?
+                return hash        
+            end
+        else
+            def self.create(default = nil, hash = nil, &block)
+                if not hash.nil?
+                    hash = hash.dup
+                else
+                    hash = { }
+                end
+                
+                if not block.nil?
+                    new = Hash::new(&block)
+                    new.update(hash) if not hash.empty?
+                    hash = new
+                else
+                    hash.default = default
+                end
+                
+                return hash      
+            end
         end
     end
 

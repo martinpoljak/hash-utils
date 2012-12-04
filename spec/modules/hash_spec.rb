@@ -52,6 +52,14 @@ describe "Hash" do
         t.compact!
         t.should eq({ :a => 1 })
     end
+    specify("::create") do
+        proc = Proc::new { |dict, key| dict[key] = "" }
+        t1 = Hash::create(:default)
+        t2 = Hash::define(&proc)
+        
+        t1.default.should eq(:default)
+        t2.default_proc.should eq(proc)
+    end
     specify("::define") do
         proc = Proc::new { |dict, key| dict[key] = "" }
         t1 = Hash::define({:a => :b}, :default)
@@ -64,12 +72,22 @@ describe "Hash" do
     specify("#flip") do
         t = { :a => 1, :b => 2, :c => 2 }
         result = t.flip
-        result.should eq({ 1 => :a, 2 => :c })
+        
+        if Ruby::Version >= "1.9" 
+            result.should eq({ 1 => :a, 2 => :c })
+        else
+            result.should eq({ 1 => :a, 2 => :b })
+        end
     end
     specify("#flip!") do
         t = { :a => 1, :b => 2, :c => 2 }
         t.flip!
-        t.should eq({ 1 => :a, 2 => :c })
+
+        if Ruby::Version >= "1.9" 
+            t.should eq({ 1 => :a, 2 => :c })
+        else
+            t.should eq({ 1 => :a, 2 => :b })
+        end
     end
     specify("#get_pairs") do
         h = { :a => 1, :b => 2, :c => 3 }
