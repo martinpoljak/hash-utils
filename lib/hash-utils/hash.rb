@@ -853,6 +853,7 @@ class Hash
     # @return [Boolean] +true+ if yes, +false+ in otherwise
     # @since 0.17.0
     #
+    
     if not self.__hash_utils_instance_respond_to? :hash?     
         def hash?
             true
@@ -866,6 +867,7 @@ class Hash
     # @see http://www.php.net/array_flip
     # @since 2.0.1
     #
+    
     if not self.__hash_utils_instance_respond_to? :flip     
         def flip
             self.map_pairs { |k, v| [v, k] }
@@ -879,10 +881,35 @@ class Hash
     # @see http://www.php.net/array_flip
     # @since 2.0.1
     #
+    
     if not self.__hash_utils_instance_respond_to? :flip!     
         def flip!
             self.map_pairs! { |k, v| [v, k] }
         end
     end
-       
+    
+    ##
+    # Sums hashes by merging.
+    #
+    # @param [Hash] hash  merged item
+    # @return [Hash] new hash
+    # @since 2.1.1
+    #
+    
+    if not self.__hash_utils_instance_respond_to? :+
+        alias :+ :merge
+    end
+    
+    ##
+    # Sums hashes by merging in place.
+    #
+    # @param [Hash] hash  merged item
+    # @return [Hash]
+    # @since 2.1.1
+    #
+    
+    if not self.__hash_utils_instance_respond_to? :<<
+        alias :<< :merge!
+    end
+    
 end
