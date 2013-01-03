@@ -11,7 +11,7 @@ non-atomic and organized by better way.
 - `FalseClass` &ndash; 3 methods,
 - `File` &ndash; 2 methods,
 - `Gem` &ndash; 2 methods,
-- `Hash` &ndash; 42 methods,
+- `Hash` &ndash; 44 methods,
 - `IO` &ndash; 1 method,
 - `Module` &ndash; 1 method,
 - `NilClass` &ndash; 1 method,
