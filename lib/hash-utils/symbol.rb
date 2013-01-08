@@ -64,27 +64,31 @@ class Symbol
     ##
     # Returns true if +Symbol+ starts with a prefix given.
     #
-    # @param [String+] prefix prefixes for check
+    # @param [Symbol, String] *prefix prefixes for check
     # @return [Boolean] +true+ if yes, +false+ in otherwise
     # @since 0.12.0
+    # @since 2.1.1 receives also +Symbol+
     #
     
     if not self.__hash_utils_instance_respond_to? :start_with?
         def start_with?(*prefix)
+            prefix.map! { |i| i.to_s }
             self.to_s.start_with?(*prefix)
         end
     end
     
     ##
-    # Returns true if +Symbol+ ends with a prefix given.
+    # Returns true if +Symbol+ ends with a suffix given.
     #
-    # @param [String+] prefix prefixes for check
+    # @param [Symbol, String] *suffix suffixes for check
     # @return [Boolean] +true+ if yes, +false+ in otherwise
     # @since 0.12.0
+    # @since 2.1.1 receives also +Symbol+
     #
     
     if not self.__hash_utils_instance_respond_to? :end_with?
         def end_with?(*suffix)
+            suffix.map! { |i| i.to_s }
             self.to_s.end_with?(*suffix)
         end
     end

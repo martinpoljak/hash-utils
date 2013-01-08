@@ -24,6 +24,9 @@ describe "Symbol" do
     end
     specify("#end_with?") do
         :abcde.end_with?("ghi", "cde").should be_true
+        :abcde.end_with?(:ghi, :cde).should be_true
+        :abcde.end_with?("ghi").should be_false
+        :abcde.end_with?(:ghi).should be_false
     end
     specify("#prepend") do
         :abcd.prepend("012").should eq(:"012abcd")
@@ -33,6 +36,9 @@ describe "Symbol" do
     end
     specify("#start_with?") do
         :abcde.start_with?("ghi", "abc").should be_true
+        :abcde.start_with?(:ghi, :abc).should be_true
+        :abcde.start_with?("ghi").should be_false
+        :abcde.start_with?(:ghi).should be_false
     end
     specify("#strip") do
         :"  a  ".strip.should eq(:a)
