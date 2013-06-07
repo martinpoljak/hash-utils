@@ -1,4 +1,11 @@
 
+2.1.2 (2013-06-07)
+* Hash: #first_key, #first_value
+
+2.1.1 (2013-02-12)
+* Hash: #+, #<<
+* Symbol: #start_with? and #end_with? receives also symbols
+
 2.1.0 (2012-11-24) 
 * most of missing tests
 * a lot of compatibility problems fixed

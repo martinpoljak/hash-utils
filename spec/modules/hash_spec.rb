@@ -69,6 +69,14 @@ describe "Hash" do
         t1.default.should eq(:default)
         t2.default_proc.should eq(proc)
     end
+    specify("#first_key") do
+        {:a => :b}.first_key.should eq(:a)
+        { }.first_key.should be_nil
+    end
+    specify("#first_value") do
+        {:a => :b}.first_value.should eq(:b)
+        { }.first_key.should be_nil
+    end
     specify("#flip") do
         t = { :a => 1, :b => 2, :c => 2 }
         result = t.flip

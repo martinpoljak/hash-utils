@@ -911,5 +911,33 @@ class Hash
     if not self.__hash_utils_instance_respond_to? :<<
         alias :<< :merge!
     end
+
+    ##
+    # Returns first key of the hash.
+    #
+    # @return [Object]
+    # @since 2.1.2
+    #
     
+    if not self.__hash_utils_instance_respond_to? :first_key
+        def first_key
+            first = self.first
+            first ? first.first : nil
+        end
+    end
+
+    ##
+    # Returns first value in the hash.
+    #
+    # @return [Object]
+    # @since 2.1.2
+    #
+    
+    if not self.__hash_utils_instance_respond_to? :first_value
+        def first_value
+            first = self.first
+            first ? first.second : nil
+        end
+    end
+
 end
