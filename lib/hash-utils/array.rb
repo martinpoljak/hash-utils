@@ -1,5 +1,5 @@
 # encoding: utf-8
-# (c) 2011-2012 Martin Kozák (martinkozak@martinkozak.net)
+# (c) 2011-2013 Martin Poljak (martin@poljak.cz)
 
 require "hash-utils/object"
 require "ruby-version"
@@ -578,6 +578,23 @@ class Array
                 self.slice! 0..(length - 1)
                 self
             end
+        end
+    end
+    
+    ##
+    # Returns values of the array.
+    #
+    # @example
+    #   x = [1, 2, 3, 4, 5]
+    #   x.values        # will return array itself
+    #
+    # @return [Array] self
+    # @since 2.1.3
+    #
+    
+    if not self.__hash_utils_instance_respond_to? :values
+        def values
+            self
         end
     end
     

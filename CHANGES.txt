@@ -1,4 +1,6 @@
 
+* Array: #values
+
 2.1.2 (2013-06-07)
 * Hash: #first_key, #first_value
 

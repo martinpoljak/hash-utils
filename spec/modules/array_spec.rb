@@ -161,6 +161,10 @@ describe "Array" do
     specify("#to_set") do
         [1, 2, 3].to_set.should eq(Set::new([1, 2, 3]))
     end
+    specify("#values") do
+        a = [1, 2, 3]
+        a.values.should eq(a)
+    end
     specify("#zip!") do
         t = [1, 2, 3]
         t.zip!
