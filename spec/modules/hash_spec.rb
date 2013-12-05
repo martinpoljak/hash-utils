@@ -121,18 +121,6 @@ describe "Hash" do
         t.map_values! { |i| i + 1 } 
         t.should eq({ :a => 2, :b => 3 })
     end
-    specify("#deep_merge") do
-        h1 = {:a => {:b => :c, :d => :e}}
-        h2 = {:a => {:d => :f, :h => :i}}
-        h = h1.deep_merge(h2) 
-        h.should eq({:a => {:b => :c, :d => :f, :h => :i}})
-        h1.should eq({:a => {:b => :c, :d => :e}})
-    end
-    specify("#deep_merge!") do
-        h = {:a => {:b => :c, :d => :e}}
-        h.deep_merge!({:a => {:d => :f, :h => :i}})
-        h.should eq({:a => {:b => :c, :d => :f, :h => :i}})
-    end
     specify("#keys_to_sym") do
         h = {"a" => "b", 2 => "c", "d" => "e"}
         h.keys_to_sym.should eq({:a => "b", 2 => "c", :d => "e"})

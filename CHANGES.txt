@@ -1,5 +1,7 @@
 
+2.2.0 (2013-12-05)
 * Array: #values
+* Hash: #deep_merge! and #deep_merge removed
 
 2.1.2 (2013-06-07)
 * Hash: #first_key, #first_value

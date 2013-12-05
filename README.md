@@ -49,7 +49,7 @@ Contributing
 Copyright
 ---------
 
-Copyright &copy; 2011 &ndash; 2012 [Martin Kozák][10]. See `LICENSE.txt` for
+Copyright &copy; 2011 &ndash; 2013 [Martin Kozák][10]. See `LICENSE.txt` for
 further details.
 
 [1]: http://rubyworks.github.com/facets/

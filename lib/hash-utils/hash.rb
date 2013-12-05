@@ -611,65 +611,6 @@ class Hash
             return result
         end
     end
-    
-    ##
-    # Merges two hashes recursively in place. Receives unlimited
-    # count of hashes for merging them in left to right order.
-    #
-    # @param [*Hash] hashs for merge from
-    # @return [Hash] hash for merge to
-    # @since 0.12.0
-    #
-    
-    if not self.__hash_utils_instance_respond_to? :deep_merge!
-        def deep_merge!(*args)
-            fm = args.map { |hash| [self, hash] }
-            
-            while not fm.empty?
-                _in, _out = fm.shift
-                _out.each_pair do |k, v|
-                    if v.kind_of? Hash
-                        fm << [_in[k], _out[k]]
-                    else
-                        _in[k] = v
-                    end
-                end
-            end
-            
-            return self
-        end
-    end
-    
-    ##
-    # Merges two hashes recursively and returns new +Hash+. Receives 
-    # unlimited count of hashes for merging them in left to right order.
-    # Included hashes will be copied too.
-    #
-    # @param [*Hash] hashes for merge from
-    # @return [Hash] hash for merge to
-    # @since 0.12.0
-    #
-    
-    if not self.__hash_utils_instance_respond_to? :deep_merge
-        def deep_merge(*args)
-            result = self.dup
-            fm = args.map { |hash| [result, hash] }
-    
-            while not fm.empty?
-                _in, _out = fm.shift
-                _out.each_pair do |k, v|
-                    if _in[k].kind_of? Hash
-                        _in[k] = _in[k].dup
-                        fm << [_in[k], _out[k]]
-                    else
-                        _in[k] = v
-                    end
-                end
-            end
-    
-            return result
-        end
-    end
         
     ##
     # Iterates through items with given key only. None-existing values 
