@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "hash-utils"
-  s.version = "2.1.2"
+  s.version = "2.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Koz\u{e1}k"]
-  s.date = "2013-06-07"
+  s.date = "2013-12-05"
   s.email = "martinkozak@martinkozak.net"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -59,6 +59,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/martinkozak/hash-utils"
   s.licenses = ["MIT"]
+  s.post_install_message = "\nHASH UTILS: The 2.2 version removes the #deep_merge and #deep_merge! methods to avoid conflicts with Active Support or other libraries. Use them or the 'deep_merge' gem if need them. \n\n"
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.25"
   s.summary = "Adds more than 155 useful and frequently rather fundamental methods which are missing in Ruby programming language, to Array, File, Hash, Module, Object, String and Symbol classes. It tries to be similar project to Ruby Facets on principle, but less complex, more practical, non-atomic and organized by better way. Thanks to defensive and careful patching it should be compatible with all other libraries."
